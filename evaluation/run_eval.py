@@ -51,16 +51,16 @@ def _get_context(arch: str, result: dict) -> str:
     return ""
 
 
-def _run_arch(arch: str, question: str) -> dict:
+def _run_arch(arch: str, question: str, use_mock: bool = False) -> dict:
     try:
         if arch == "text_to_sql":
-            return text_to_sql.answer(question, use_mock=True)
+            return text_to_sql.answer(question, use_mock=use_mock)
         if arch == "hybrid_rag":
-            return hybrid_rag.answer(question, use_mock=True)
+            return hybrid_rag.answer(question, use_mock=use_mock)
         if arch == "light_rag":
-            return light_rag.answer(question, use_mock=True)
+            return light_rag.answer(question, use_mock=use_mock)
     except Exception as exc:
-        return {"error": str(exc), "answer": "", "latency_ms": 0.0}
+        return {"error": str(exc), "answer": "", "latency_ms": 0.0, "cost_usd": 0.0}
     return {}
 
 
@@ -101,20 +101,23 @@ def _score_result(arch: str, result: dict, ground_truth: str) -> dict:
 def evaluate(
     archs: list[str],
     quiet: bool = False,
+    use_mock: bool = False,
 ) -> dict:
     questions = json.loads(GT_PATH.read_text(encoding="utf-8"))
     total = len(questions)
 
-    # Warm up all architectures once so index-build time doesn't count
     if not quiet:
+        mode = "MOCK" if use_mock else "LIVE (deepseek-v4-flash)"
+        print(f"Mode: {mode}", flush=True)
         print(f"Warming up {len(archs)} architecture(s)...", flush=True)
     for arch in archs:
         try:
-            _run_arch(arch, "warm up")
+            _run_arch(arch, "warm up", use_mock=use_mock)
         except Exception:
             pass
 
     results_per_question = []
+    total_cost = 0.0
     if not quiet:
         print(f"Evaluating {total} questions across {archs}...", flush=True)
 
@@ -125,8 +128,10 @@ def evaluate(
 
         per_arch: dict[str, dict] = {}
         for arch in archs:
-            raw = _run_arch(arch, q["question"])
-            per_arch[arch] = _score_result(arch, raw, q["ground_truth"])
+            raw = _run_arch(arch, q["question"], use_mock=use_mock)
+            scored = _score_result(arch, raw, q["ground_truth"])
+            total_cost += scored.get("cost_usd", 0.0)
+            per_arch[arch] = scored
 
         # Determine which arch won on answer_f1 this question
         if len(archs) > 1:
@@ -145,15 +150,19 @@ def evaluate(
             "results":       per_arch,
         })
 
+    if not quiet:
+        print(f"\nTotal LLM cost: ${total_cost:.4f}", flush=True)
+
     summary = _summarise(results_per_question, archs)
 
     output = {
-        "run_id":    f"eval-{int(time.time())}",
-        "timestamp": datetime.now(timezone.utc).isoformat(),
-        "archs":     archs,
-        "use_mock":  True,
-        "questions": results_per_question,
-        "summary":   summary,
+        "run_id":       f"eval-{int(time.time())}",
+        "timestamp":    datetime.now(timezone.utc).isoformat(),
+        "archs":        archs,
+        "use_mock":     use_mock,
+        "total_cost_usd": round(total_cost, 4),
+        "questions":    results_per_question,
+        "summary":      summary,
     }
 
     RESULTS_PATH.parent.mkdir(parents=True, exist_ok=True)
@@ -238,10 +247,12 @@ if __name__ == "__main__":
     parser = argparse.ArgumentParser()
     parser.add_argument("--arch", choices=ARCHS, default=None,
                         help="Evaluate a single architecture only")
+    parser.add_argument("--mock", action="store_true",
+                        help="Use mock LLM instead of live API")
     parser.add_argument("--quiet", action="store_true")
     args = parser.parse_args()
 
     archs_to_run = [args.arch] if args.arch else ARCHS
-    output = evaluate(archs_to_run, quiet=args.quiet)
+    output = evaluate(archs_to_run, quiet=args.quiet, use_mock=args.mock)
     if not args.quiet:
         _print_summary(output)

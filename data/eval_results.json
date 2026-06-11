@@ -1,12 +1,13 @@
 {
-  "run_id": "eval-1781141357",
-  "timestamp": "2026-06-11T01:29:17.423783+00:00",
+  "run_id": "eval-1781169121",
+  "timestamp": "2026-06-11T09:12:01.174052+00:00",
   "archs": [
     "text_to_sql",
     "hybrid_rag",
     "light_rag"
   ],
-  "use_mock": true,
+  "use_mock": false,
+  "total_cost_usd": 0.1457,
   "questions": [
     {
       "id": "q001",
@@ -15,39 +16,39 @@
       "expected_best": "text_to_sql",
       "category": "factual",
       "difficulty": "easy",
-      "winner": "light_rag",
+      "winner": "text_to_sql",
       "results": {
         "text_to_sql": {
-          "answer": "Top row: ('mock has no canned SQL for this question',)",
-          "answer_f1": 0.0,
-          "context_recall": 0.0,
-          "latency_ms": 0.6,
-          "cost_usd": 0.0,
-          "use_mock": true,
-          "sql": "SELECT 'mock has no canned SQL for this question' AS note;",
+          "answer": "V Kohli has scored the most runs in IPL history with 9,346 runs.",
+          "answer_f1": 0.4615,
+          "context_recall": 0.5,
+          "latency_ms": 6159.6,
+          "cost_usd": 0.001036,
+          "use_mock": false,
+          "sql": "SELECT p.player_name, SUM(d.runs_batter) AS total_runs\nFROM deliveries d\nJOIN players p ON p.player_id = d.batter_id\nGROUP BY d.batter_id\nORDER BY total_runs DESC\nLIMIT 1",
           "row_count": 1
         },
         "hybrid_rag": {
-          "answer": "Retrieved 12 chunks. RG Sharma is the most frequently mentioned player in this context.",
+          "answer": "The context does not contain enough information to determine the all-time leading run-scorer in IPL history, as it only provides individual season data for a few players.",
           "answer_f1": 0.0,
           "context_recall": 0.0,
-          "latency_ms": 27.3,
-          "cost_usd": 0.0,
-          "use_mock": true,
+          "latency_ms": 2007.8,
+          "cost_usd": 0.000336,
+          "use_mock": false,
           "retrieved_count": 12,
-          "bm25_ms": 9.2,
-          "vector_ms": 18.0
+          "bm25_ms": 21.2,
+          "vector_ms": 37.6
         },
         "light_rag": {
-          "answer": "No named entities found in the question. Graph context snippet: Mumbai Indians beat Rajasthan Royals by 8 runs. Mumbai Indians beat Kolkata Knight Riders by 6 wickets. Mumbai Indians beat Royal Challengers Bangalore by 6 wickets. Mumbai Indians beat Chennai Super ...",
-          "answer_f1": 0.05,
+          "answer": "The provided graph context does not contain any player statistics, such as individual run totals, so it cannot answer who has scored the most runs in IPL history.",
+          "answer_f1": 0.0769,
           "context_recall": 0.25,
-          "latency_ms": 3.4,
-          "cost_usd": 0.0,
-          "use_mock": true,
+          "latency_ms": 2416.5,
+          "cost_usd": 0.001487,
+          "use_mock": false,
           "seed_count": 0,
           "top_node_count": 30,
-          "graph_ms": 2.8
+          "graph_ms": 6.8
         }
       }
     },
@@ -58,39 +59,39 @@
       "expected_best": "text_to_sql",
       "category": "factual",
       "difficulty": "easy",
-      "winner": "light_rag",
+      "winner": "hybrid_rag",
       "results": {
         "text_to_sql": {
-          "answer": "Top row: ('mock has no canned SQL for this question',)",
+          "answer": "",
           "answer_f1": 0.0,
           "context_recall": 0.0,
-          "latency_ms": 0.4,
-          "cost_usd": 0.0,
-          "use_mock": true,
-          "sql": "SELECT 'mock has no canned SQL for this question' AS note;",
-          "row_count": 1
+          "latency_ms": 10890.7,
+          "cost_usd": 0.001398,
+          "use_mock": false,
+          "sql": "",
+          "row_count": 0
         },
         "hybrid_rag": {
-          "answer": "Retrieved 12 chunks. Mohammed Siraj is the most frequently mentioned player in this context.",
-          "answer_f1": 0.0,
+          "answer": "The context does not contain enough information to determine who has taken the most wickets in IPL history.",
+          "answer_f1": 0.125,
           "context_recall": 0.0,
-          "latency_ms": 26.1,
-          "cost_usd": 0.0,
-          "use_mock": true,
+          "latency_ms": 1823.8,
+          "cost_usd": 0.000308,
+          "use_mock": false,
           "retrieved_count": 12,
-          "bm25_ms": 9.4,
-          "vector_ms": 16.7
+          "bm25_ms": 19.4,
+          "vector_ms": 32.2
         },
         "light_rag": {
-          "answer": "No named entities found in the question. Graph context snippet: Mumbai Indians beat Rajasthan Royals by 8 runs. Mumbai Indians beat Kolkata Knight Riders by 6 wickets. Mumbai Indians beat Royal Challengers Bangalore by 6 wickets. Mumbai Indians beat Chennai Super ...",
-          "answer_f1": 0.05,
+          "answer": "The context provided only contains match results and venue information, with no data on individual player statistics such as wickets taken. Therefore, I cannot identify the player with the most wickets in IPL history.",
+          "answer_f1": 0.0667,
           "context_recall": 0.25,
-          "latency_ms": 3.8,
-          "cost_usd": 0.0,
-          "use_mock": true,
+          "latency_ms": 2231.1,
+          "cost_usd": 0.001522,
+          "use_mock": false,
           "seed_count": 0,
           "top_node_count": 30,
-          "graph_ms": 2.9
+          "graph_ms": 5.7
         }
       }
     },
@@ -101,39 +102,39 @@
       "expected_best": "text_to_sql",
       "category": "factual",
       "difficulty": "easy",
-      "winner": "light_rag",
+      "winner": "text_to_sql",
       "results": {
         "text_to_sql": {
-          "answer": "Top row: ('mock has no canned SQL for this question',)",
-          "answer_f1": 0.0,
-          "context_recall": 0.0,
-          "latency_ms": 0.5,
-          "cost_usd": 0.0,
-          "use_mock": true,
-          "sql": "SELECT 'mock has no canned SQL for this question' AS note;",
+          "answer": "Mumbai Indians have won the most matches in IPL history with 155 wins.",
+          "answer_f1": 0.6154,
+          "context_recall": 0.75,
+          "latency_ms": 6226.1,
+          "cost_usd": 0.001099,
+          "use_mock": false,
+          "sql": "SELECT t.team_name, COUNT(*) AS total_wins\nFROM matches m\nJOIN teams t ON t.team_id = m.winner_id\nWHERE m.winner_id IS NOT NULL\nGROUP BY t.team_id, t.team_name\nORDER BY total_wins DESC\nLIMIT 1;",
           "row_count": 1
         },
         "hybrid_rag": {
-          "answer": "Retrieved 12 chunks. YS Chahal is the most frequently mentioned player in this context.",
+          "answer": "The context does not contain enough information to determine which team has won the most matches in IPL history. It only provides a few match results from specific seasons.",
           "answer_f1": 0.0,
           "context_recall": 0.0,
-          "latency_ms": 30.4,
-          "cost_usd": 0.0,
-          "use_mock": true,
+          "latency_ms": 2236.6,
+          "cost_usd": 0.000291,
+          "use_mock": false,
           "retrieved_count": 12,
-          "bm25_ms": 12.1,
-          "vector_ms": 18.3
+          "bm25_ms": 24.6,
+          "vector_ms": 34.2
         },
         "light_rag": {
-          "answer": "No named entities found in the question. Graph context snippet: Mumbai Indians beat Rajasthan Royals by 8 runs. Mumbai Indians beat Kolkata Knight Riders by 6 wickets. Mumbai Indians beat Royal Challengers Bangalore by 6 wickets. Mumbai Indians beat Chennai Super ...",
-          "answer_f1": 0.1,
-          "context_recall": 0.5,
-          "latency_ms": 3.5,
-          "cost_usd": 0.0,
-          "use_mock": true,
+          "answer": "",
+          "answer_f1": 0.0,
+          "context_recall": 0.0,
+          "latency_ms": 4164.0,
+          "cost_usd": 0.001719,
+          "use_mock": false,
           "seed_count": 0,
           "top_node_count": 30,
-          "graph_ms": 2.8
+          "graph_ms": 5.1
         }
       }
     },
@@ -144,39 +145,39 @@
       "expected_best": "text_to_sql",
       "category": "factual",
       "difficulty": "easy",
-      "winner": "light_rag",
+      "winner": "text_to_sql",
       "results": {
         "text_to_sql": {
-          "answer": "Top row: ('mock has no canned SQL for this question',)",
+          "answer": "",
           "answer_f1": 0.0,
           "context_recall": 0.0,
-          "latency_ms": 0.4,
+          "latency_ms": 0.0,
           "cost_usd": 0.0,
           "use_mock": true,
-          "sql": "SELECT 'mock has no canned SQL for this question' AS note;",
-          "row_count": 1
+          "sql": "",
+          "row_count": 0
         },
         "hybrid_rag": {
-          "answer": "Retrieved 12 chunks. S Dhawan is the most frequently mentioned player in this context.",
+          "answer": "The context does not contain enough information to determine the highest individual innings score in IPL, as the highest scores provided (e.g., 92 for S Dhawan, 82 for S Dhawan, 6 for IS Sodhi) do not include any centuries or higher totals that may exist outside this data.",
           "answer_f1": 0.0,
           "context_recall": 0.0,
-          "latency_ms": 23.6,
-          "cost_usd": 0.0,
-          "use_mock": true,
+          "latency_ms": 3359.6,
+          "cost_usd": 0.000441,
+          "use_mock": false,
           "retrieved_count": 12,
-          "bm25_ms": 10.9,
-          "vector_ms": 12.5
+          "bm25_ms": 29.1,
+          "vector_ms": 31.6
         },
         "light_rag": {
-          "answer": "No named entities found in the question. Graph context snippet: Mumbai Indians beat Rajasthan Royals by 8 runs. Mumbai Indians beat Kolkata Knight Riders by 6 wickets. Mumbai Indians beat Royal Challengers Bangalore by 6 wickets. Mumbai Indians beat Chennai Super ...",
-          "answer_f1": 0.0476,
-          "context_recall": 0.1667,
-          "latency_ms": 3.3,
-          "cost_usd": 0.0,
-          "use_mock": true,
+          "answer": "The provided graph context contains only team match results and venue information—no individual batting scores or player statistics are included, so it cannot answer this question.",
+          "answer_f1": 0.0,
+          "context_recall": 0.0,
+          "latency_ms": 2554.4,
+          "cost_usd": 0.001509,
+          "use_mock": false,
           "seed_count": 0,
           "top_node_count": 30,
-          "graph_ms": 2.7
+          "graph_ms": 7.4
         }
       }
     },
@@ -187,39 +188,39 @@
       "expected_best": "text_to_sql",
       "category": "factual",
       "difficulty": "easy",
-      "winner": "light_rag",
+      "winner": "text_to_sql",
       "results": {
         "text_to_sql": {
-          "answer": "Top row: ('mock has no canned SQL for this question',)",
-          "answer_f1": 0.0,
-          "context_recall": 0.0,
-          "latency_ms": 0.4,
-          "cost_usd": 0.0,
-          "use_mock": true,
-          "sql": "SELECT 'mock has no canned SQL for this question' AS note;",
+          "answer": "Eden Gardens has hosted the most IPL matches, with 77.",
+          "answer_f1": 0.6667,
+          "context_recall": 0.6,
+          "latency_ms": 4039.5,
+          "cost_usd": 0.000927,
+          "use_mock": false,
+          "sql": "SELECT v.venue_name, COUNT(*) AS match_count\nFROM matches m\nJOIN venues v ON v.venue_id = m.venue_id\nGROUP BY v.venue_id, v.venue_name\nORDER BY match_count DESC\nLIMIT 1;",
           "row_count": 1
         },
         "hybrid_rag": {
-          "answer": "Retrieved 12 chunks. YS Chahal is the most frequently mentioned player in this context.",
+          "answer": "",
           "answer_f1": 0.0,
           "context_recall": 0.0,
-          "latency_ms": 23.6,
-          "cost_usd": 0.0,
-          "use_mock": true,
+          "latency_ms": 3640.3,
+          "cost_usd": 0.000474,
+          "use_mock": false,
           "retrieved_count": 12,
-          "bm25_ms": 8.5,
-          "vector_ms": 15.1
+          "bm25_ms": 22.2,
+          "vector_ms": 34.8
         },
         "light_rag": {
-          "answer": "No named entities found in the question. Graph context snippet: Mumbai Indians beat Rajasthan Royals by 8 runs. Mumbai Indians beat Kolkata Knight Riders by 6 wickets. Mumbai Indians beat Royal Challengers Bangalore by 6 wickets. Mumbai Indians beat Chennai Super ...",
-          "answer_f1": 0.0488,
-          "context_recall": 0.2,
-          "latency_ms": 3.5,
-          "cost_usd": 0.0,
-          "use_mock": true,
+          "answer": "",
+          "answer_f1": 0.0,
+          "context_recall": 0.0,
+          "latency_ms": 3660.8,
+          "cost_usd": 0.001718,
+          "use_mock": false,
           "seed_count": 0,
           "top_node_count": 30,
-          "graph_ms": 2.8
+          "graph_ms": 9.4
         }
       }
     },
@@ -233,36 +234,36 @@
       "winner": "text_to_sql",
       "results": {
         "text_to_sql": {
-          "answer": "Top row: ('mock has no canned SQL for this question',)",
-          "answer_f1": 0.0,
-          "context_recall": 0.0,
-          "latency_ms": 0.4,
-          "cost_usd": 0.0,
-          "use_mock": true,
-          "sql": "SELECT 'mock has no canned SQL for this question' AS note;",
+          "answer": "CH Gayle has hit the most sixes in IPL history with 359.",
+          "answer_f1": 0.6667,
+          "context_recall": 0.75,
+          "latency_ms": 4356.3,
+          "cost_usd": 0.00092,
+          "use_mock": false,
+          "sql": "SELECT p.player_name, COUNT(*) AS total_sixes\nFROM deliveries d\nJOIN players p ON p.player_id = d.batter_id\nWHERE d.is_six = 1\nGROUP BY d.batter_id, p.player_name\nORDER BY total_sixes DESC\nLIMIT 1",
           "row_count": 1
         },
         "hybrid_rag": {
-          "answer": "Retrieved 12 chunks. JG Bethell is the most frequently mentioned player in this context.",
-          "answer_f1": 0.0,
+          "answer": "The context does not contain enough information to determine who has hit the most sixes in IPL history.",
+          "answer_f1": 0.125,
           "context_recall": 0.0,
-          "latency_ms": 24.4,
-          "cost_usd": 0.0,
-          "use_mock": true,
+          "latency_ms": 1907.4,
+          "cost_usd": 0.000253,
+          "use_mock": false,
           "retrieved_count": 12,
-          "bm25_ms": 9.1,
-          "vector_ms": 15.2
+          "bm25_ms": 20.9,
+          "vector_ms": 26.5
         },
         "light_rag": {
-          "answer": "No named entities found in the question. Graph context snippet: Mumbai Indians beat Rajasthan Royals by 8 runs. Mumbai Indians beat Kolkata Knight Riders by 6 wickets. Mumbai Indians beat Royal Challengers Bangalore by 6 wickets. Mumbai Indians beat Chennai Super ...",
-          "answer_f1": 0.0,
-          "context_recall": 0.0,
-          "latency_ms": 3.5,
-          "cost_usd": 0.0,
-          "use_mock": true,
+          "answer": "The graph context does not contain any information about individual player statistics such as sixes hit, so I cannot answer the question.",
+          "answer_f1": 0.0833,
+          "context_recall": 0.25,
+          "latency_ms": 1774.6,
+          "cost_usd": 0.001471,
+          "use_mock": false,
           "seed_count": 0,
           "top_node_count": 30,
-          "graph_ms": 2.8
+          "graph_ms": 11.0
         }
       }
     },
@@ -273,39 +274,39 @@
       "expected_best": "text_to_sql",
       "category": "temporal",
       "difficulty": "easy",
-      "winner": "light_rag",
+      "winner": "text_to_sql",
       "results": {
         "text_to_sql": {
-          "answer": "Top row: ('mock has no canned SQL for this question',)",
-          "answer_f1": 0.0,
-          "context_recall": 0.0,
-          "latency_ms": 0.4,
-          "cost_usd": 0.0,
-          "use_mock": true,
-          "sql": "SELECT 'mock has no canned SQL for this question' AS note;",
+          "answer": "Virat Kohli scored the most runs in the 2016 IPL season with 973 runs.",
+          "answer_f1": 0.5333,
+          "context_recall": 0.6,
+          "latency_ms": 4297.5,
+          "cost_usd": 0.000968,
+          "use_mock": false,
+          "sql": "SELECT p.player_name, SUM(d.runs_batter) AS total_runs\nFROM deliveries d\nJOIN innings i ON i.innings_id = d.innings_id\nJOIN matches m ON m.match_id = i.match_id\nJOIN players p ON p.player_id = d.batter_id\nWHERE m.season = 2016\nGROUP BY d.batter_id, p.player_name\nORDER BY total_runs DESC\nLIMIT 1",
           "row_count": 1
         },
         "hybrid_rag": {
-          "answer": "Retrieved 12 chunks. RG Sharma is the most frequently mentioned player in this context.",
-          "answer_f1": 0.0,
+          "answer": "Based on the provided context, S Dhawan scored the most runs in the 2016 IPL season with 501 runs, compared to RG Sharma",
+          "answer_f1": 0.1905,
           "context_recall": 0.0,
-          "latency_ms": 25.3,
-          "cost_usd": 0.0,
-          "use_mock": true,
+          "latency_ms": 3848.7,
+          "cost_usd": 0.0005,
+          "use_mock": false,
           "retrieved_count": 12,
-          "bm25_ms": 10.7,
-          "vector_ms": 14.6
+          "bm25_ms": 27.1,
+          "vector_ms": 27.1
         },
         "light_rag": {
-          "answer": "No named entities found in the question. Graph context snippet: Mumbai Indians beat Rajasthan Royals by 8 runs. Mumbai Indians beat Kolkata Knight Riders by 6 wickets. Mumbai Indians beat Royal Challengers Bangalore by 6 wickets. Mumbai Indians beat Chennai Super ...",
-          "answer_f1": 0.0488,
-          "context_recall": 0.2,
-          "latency_ms": 3.4,
-          "cost_usd": 0.0,
-          "use_mock": true,
+          "answer": "The context does not contain any player statistics, so it is insufficient to determine who scored the most runs in the 2016 IPL season.",
+          "answer_f1": 0.1905,
+          "context_recall": 0.4,
+          "latency_ms": 2041.6,
+          "cost_usd": 0.001488,
+          "use_mock": false,
           "seed_count": 0,
           "top_node_count": 30,
-          "graph_ms": 2.8
+          "graph_ms": 5.7
         }
       }
     },
@@ -316,39 +317,39 @@
       "expected_best": "text_to_sql",
       "category": "temporal",
       "difficulty": "easy",
-      "winner": "light_rag",
+      "winner": "hybrid_rag",
       "results": {
         "text_to_sql": {
-          "answer": "Top row: ('mock has no canned SQL for this question',)",
+          "answer": "",
           "answer_f1": 0.0,
           "context_recall": 0.0,
-          "latency_ms": 0.4,
-          "cost_usd": 0.0,
-          "use_mock": true,
-          "sql": "SELECT 'mock has no canned SQL for this question' AS note;",
-          "row_count": 1
+          "latency_ms": 11235.8,
+          "cost_usd": 0.0014,
+          "use_mock": false,
+          "sql": "",
+          "row_count": 0
         },
         "hybrid_rag": {
-          "answer": "Retrieved 12 chunks. T Natarajan is the most frequently mentioned player in this context.",
-          "answer_f1": 0.0,
+          "answer": "TA Boult took the most wickets in the 2020 IPL season with 25 wickets.",
+          "answer_f1": 0.2667,
           "context_recall": 0.0,
-          "latency_ms": 25.1,
-          "cost_usd": 0.0,
-          "use_mock": true,
+          "latency_ms": 2878.1,
+          "cost_usd": 0.00044,
+          "use_mock": false,
           "retrieved_count": 12,
-          "bm25_ms": 10.8,
-          "vector_ms": 14.1
+          "bm25_ms": 24.6,
+          "vector_ms": 31.6
         },
         "light_rag": {
-          "answer": "No named entities found in the question. Graph context snippet: Mumbai Indians beat Rajasthan Royals by 8 runs. Mumbai Indians beat Kolkata Knight Riders by 6 wickets. Mumbai Indians beat Royal Challengers Bangalore by 6 wickets. Mumbai Indians beat Chennai Super ...",
-          "answer_f1": 0.0488,
+          "answer": "The provided graph context does not include any player statistics such as wickets taken, so it is insufficient to answer the question.",
+          "answer_f1": 0.0909,
           "context_recall": 0.2,
-          "latency_ms": 4.3,
-          "cost_usd": 0.0,
-          "use_mock": true,
+          "latency_ms": 2241.4,
+          "cost_usd": 0.001485,
+          "use_mock": false,
           "seed_count": 0,
           "top_node_count": 30,
-          "graph_ms": 3.4
+          "graph_ms": 9.2
         }
       }
     },
@@ -362,36 +363,36 @@
       "winner": "text_to_sql",
       "results": {
         "text_to_sql": {
-          "answer": "Top row: ('mock has no canned SQL for this question',)",
-          "answer_f1": 0.0,
-          "context_recall": 0.0,
-          "latency_ms": 0.5,
-          "cost_usd": 0.0,
-          "use_mock": true,
-          "sql": "SELECT 'mock has no canned SQL for this question' AS note;",
+          "answer": "V Kohli has hit the most fours in IPL history with 847.",
+          "answer_f1": 0.5,
+          "context_recall": 0.5,
+          "latency_ms": 5984.3,
+          "cost_usd": 0.001071,
+          "use_mock": false,
+          "sql": "SELECT p.player_name, SUM(d.is_four) AS total_fours\nFROM deliveries d\nJOIN players p ON p.player_id = d.batter_id\nGROUP BY d.batter_id, p.player_name\nORDER BY total_fours DESC\nLIMIT 1",
           "row_count": 1
         },
         "hybrid_rag": {
-          "answer": "Retrieved 12 chunks. S Dhawan is the most frequently mentioned player in this context.",
-          "answer_f1": 0.0,
+          "answer": "The context does not contain all-time IPL data, so it is not possible to determine who has hit the most fours in IPL history from the provided information.",
+          "answer_f1": 0.0909,
           "context_recall": 0.0,
-          "latency_ms": 24.8,
-          "cost_usd": 0.0,
-          "use_mock": true,
+          "latency_ms": 1688.4,
+          "cost_usd": 0.000246,
+          "use_mock": false,
           "retrieved_count": 12,
-          "bm25_ms": 11.4,
-          "vector_ms": 13.3
+          "bm25_ms": 19.5,
+          "vector_ms": 21.3
         },
         "light_rag": {
-          "answer": "No named entities found in the question. Graph context snippet: Mumbai Indians beat Rajasthan Royals by 8 runs. Mumbai Indians beat Kolkata Knight Riders by 6 wickets. Mumbai Indians beat Royal Challengers Bangalore by 6 wickets. Mumbai Indians beat Chennai Super ...",
-          "answer_f1": 0.0,
-          "context_recall": 0.0,
-          "latency_ms": 4.1,
-          "cost_usd": 0.0,
-          "use_mock": true,
+          "answer": "The provided graph context contains only team match results and venues, with no information about individual player statistics such as fours hit. Therefore, it is insufficient to determine who has hit the most fours in IPL history.",
+          "answer_f1": 0.0645,
+          "context_recall": 0.25,
+          "latency_ms": 2404.2,
+          "cost_usd": 0.001542,
+          "use_mock": false,
           "seed_count": 0,
           "top_node_count": 30,
-          "graph_ms": 2.9
+          "graph_ms": 6.3
         }
       }
     },
@@ -402,39 +403,39 @@
       "expected_best": "text_to_sql",
       "category": "factual",
       "difficulty": "easy",
-      "winner": "light_rag",
+      "winner": "hybrid_rag",
       "results": {
         "text_to_sql": {
-          "answer": "Top row: ('mock has no canned SQL for this question',)",
+          "answer": "",
           "answer_f1": 0.0,
           "context_recall": 0.0,
-          "latency_ms": 0.7,
-          "cost_usd": 0.0,
-          "use_mock": true,
-          "sql": "SELECT 'mock has no canned SQL for this question' AS note;",
-          "row_count": 1
+          "latency_ms": 10883.5,
+          "cost_usd": 0.001398,
+          "use_mock": false,
+          "sql": "",
+          "row_count": 0
         },
         "hybrid_rag": {
-          "answer": "Retrieved 12 chunks. Mohammed Siraj is the most frequently mentioned player in this context.",
-          "answer_f1": 0.0,
+          "answer": "The context does not contain information about which batsman has scored the most centuries in the IPL, as all batting entries show 0 hundreds for the players and seasons listed.",
+          "answer_f1": 0.1538,
           "context_recall": 0.0,
-          "latency_ms": 30.1,
-          "cost_usd": 0.0,
-          "use_mock": true,
+          "latency_ms": 2560.3,
+          "cost_usd": 0.000352,
+          "use_mock": false,
           "retrieved_count": 12,
-          "bm25_ms": 13.9,
-          "vector_ms": 16.1
+          "bm25_ms": 28.5,
+          "vector_ms": 31.8
         },
         "light_rag": {
-          "answer": "No named entities found in the question. Graph context snippet: Mumbai Indians beat Rajasthan Royals by 8 runs. Mumbai Indians beat Kolkata Knight Riders by 6 wickets. Mumbai Indians beat Royal Challengers Bangalore by 6 wickets. Mumbai Indians beat Chennai Super ...",
-          "answer_f1": 0.0488,
-          "context_recall": 0.2,
-          "latency_ms": 3.6,
-          "cost_usd": 0.0,
-          "use_mock": true,
+          "answer": "The provided graph context only contains team match results and venue data, with no information about individual batsmen or centuries scored. Therefore, it is insufficient to determine which batsman has scored the most centuries in IPL.",
+          "answer_f1": 0.1333,
+          "context_recall": 0.4,
+          "latency_ms": 2137.0,
+          "cost_usd": 0.001521,
+          "use_mock": false,
           "seed_count": 0,
           "top_node_count": 30,
-          "graph_ms": 2.9
+          "graph_ms": 8.2
         }
       }
     },
@@ -445,39 +446,39 @@
       "expected_best": "text_to_sql",
       "category": "factual",
       "difficulty": "medium",
-      "winner": "text_to_sql",
+      "winner": "light_rag",
       "results": {
         "text_to_sql": {
-          "answer": "Top row: ('mock has no canned SQL for this question',)",
+          "answer": "No batsman meets the minimum 500 balls faced criterion in the IPL dataset.",
           "answer_f1": 0.0,
           "context_recall": 0.0,
-          "latency_ms": 0.4,
-          "cost_usd": 0.0,
-          "use_mock": true,
-          "sql": "SELECT 'mock has no canned SQL for this question' AS note;",
-          "row_count": 1
+          "latency_ms": 9219.5,
+          "cost_usd": 0.001307,
+          "use_mock": false,
+          "sql": "",
+          "row_count": 0
         },
         "hybrid_rag": {
-          "answer": "Retrieved 12 chunks. Mohammed Siraj is the most frequently mentioned player in this context.",
+          "answer": "Based solely on the provided context, there is no information about any player who has faced a minimum of 500 balls in their IPL career, so the question cannot be answered.",
           "answer_f1": 0.0,
           "context_recall": 0.0,
-          "latency_ms": 40.2,
-          "cost_usd": 0.0,
-          "use_mock": true,
+          "latency_ms": 2377.1,
+          "cost_usd": 0.000387,
+          "use_mock": false,
           "retrieved_count": 12,
-          "bm25_ms": 21.5,
-          "vector_ms": 18.6
+          "bm25_ms": 22.0,
+          "vector_ms": 33.3
         },
         "light_rag": {
-          "answer": "No named entities found in the question. Graph context snippet: Mumbai Indians beat Rajasthan Royals by 8 runs. Mumbai Indians beat Kolkata Knight Riders by 6 wickets. Mumbai Indians beat Royal Challengers Bangalore by 6 wickets. Mumbai Indians beat Chennai Super ...",
-          "answer_f1": 0.0,
-          "context_recall": 0.0,
-          "latency_ms": 4.8,
-          "cost_usd": 0.0,
-          "use_mock": true,
+          "answer": "The context provided contains only team match results and venue information, not individual player statistics or strike rates. Therefore, it is insufficient to answer the question.",
+          "answer_f1": 0.0833,
+          "context_recall": 0.2,
+          "latency_ms": 2128.9,
+          "cost_usd": 0.001513,
+          "use_mock": false,
           "seed_count": 0,
           "top_node_count": 30,
-          "graph_ms": 3.9
+          "graph_ms": 9.6
         }
       }
     },
@@ -488,39 +489,39 @@
       "expected_best": "text_to_sql",
       "category": "factual",
       "difficulty": "easy",
-      "winner": "text_to_sql",
+      "winner": "light_rag",
       "results": {
         "text_to_sql": {
-          "answer": "Top row: ('mock has no canned SQL for this question',)",
+          "answer": "",
           "answer_f1": 0.0,
           "context_recall": 0.0,
-          "latency_ms": 0.6,
-          "cost_usd": 0.0,
-          "use_mock": true,
-          "sql": "SELECT 'mock has no canned SQL for this question' AS note;",
-          "row_count": 1
+          "latency_ms": 10065.8,
+          "cost_usd": 0.001398,
+          "use_mock": false,
+          "sql": "",
+          "row_count": 0
         },
         "hybrid_rag": {
-          "answer": "Retrieved 12 chunks. PP Shaw is the most frequently mentioned player in this context.",
-          "answer_f1": 0.0,
+          "answer": "Based solely on the provided context, every player's highest score includes \"0 hundreds,\" so the context does not contain enough information to determine the total number of centuries in IPL history.",
+          "answer_f1": 0.2069,
           "context_recall": 0.0,
-          "latency_ms": 33.8,
-          "cost_usd": 0.0,
-          "use_mock": true,
+          "latency_ms": 2288.7,
+          "cost_usd": 0.000355,
+          "use_mock": false,
           "retrieved_count": 12,
-          "bm25_ms": 13.7,
-          "vector_ms": 20.1
+          "bm25_ms": 23.6,
+          "vector_ms": 26.3
         },
         "light_rag": {
-          "answer": "No named entities found in the question. Graph context snippet: Mumbai Indians beat Rajasthan Royals by 8 runs. Mumbai Indians beat Kolkata Knight Riders by 6 wickets. Mumbai Indians beat Royal Challengers Bangalore by 6 wickets. Mumbai Indians beat Chennai Super ...",
-          "answer_f1": 0.0,
-          "context_recall": 0.0,
-          "latency_ms": 3.6,
-          "cost_usd": 0.0,
-          "use_mock": true,
+          "answer": "The provided context contains only match results and venue information for IPL teams, with no data on centuries scored. Therefore, I cannot answer the question based on this graph.",
+          "answer_f1": 0.2308,
+          "context_recall": 0.6,
+          "latency_ms": 2179.6,
+          "cost_usd": 0.00151,
+          "use_mock": false,
           "seed_count": 0,
           "top_node_count": 30,
-          "graph_ms": 2.9
+          "graph_ms": 8.0
         }
       }
     },
@@ -531,39 +532,39 @@
       "expected_best": "text_to_sql",
       "category": "factual",
       "difficulty": "easy",
-      "winner": "hybrid_rag",
+      "winner": "light_rag",
       "results": {
         "text_to_sql": {
-          "answer": "Top row: ('mock has no canned SQL for this question',)",
+          "answer": "",
           "answer_f1": 0.0,
           "context_recall": 0.0,
-          "latency_ms": 0.5,
-          "cost_usd": 0.0,
-          "use_mock": true,
-          "sql": "SELECT 'mock has no canned SQL for this question' AS note;",
-          "row_count": 1
+          "latency_ms": 9853.9,
+          "cost_usd": 0.0014,
+          "use_mock": false,
+          "sql": "",
+          "row_count": 0
         },
         "hybrid_rag": {
-          "answer": "Retrieved 12 chunks. MJ Santner is the most frequently mentioned player in this context.",
-          "answer_f1": 0.1176,
+          "answer": "The provided context only lists individual Player of the Match awards from specific matches, but does not include cumulative totals or historical rankings. Therefore, it does not contain enough information to determine who has won the most Player of the Match awards in IPL history.",
+          "answer_f1": 0.1538,
           "context_recall": 0.0,
-          "latency_ms": 41.4,
-          "cost_usd": 0.0,
-          "use_mock": true,
+          "latency_ms": 2985.8,
+          "cost_usd": 0.000418,
+          "use_mock": false,
           "retrieved_count": 12,
-          "bm25_ms": 19.5,
-          "vector_ms": 21.7
+          "bm25_ms": 31.4,
+          "vector_ms": 28.2
         },
         "light_rag": {
-          "answer": "No named entities found in the question. Graph context snippet: Mumbai Indians beat Rajasthan Royals by 8 runs. Mumbai Indians beat Kolkata Knight Riders by 6 wickets. Mumbai Indians beat Royal Challengers Bangalore by 6 wickets. Mumbai Indians beat Chennai Super ...",
-          "answer_f1": 0.0,
-          "context_recall": 0.0,
-          "latency_ms": 3.6,
-          "cost_usd": 0.0,
-          "use_mock": true,
+          "answer": "Based solely on the provided context, there is no information about individual Player of the Match awards, so this question cannot be answered.",
+          "answer_f1": 0.2609,
+          "context_recall": 0.4286,
+          "latency_ms": 2672.7,
+          "cost_usd": 0.001541,
+          "use_mock": false,
           "seed_count": 0,
           "top_node_count": 30,
-          "graph_ms": 2.8
+          "graph_ms": 8.9
         }
       }
     },
@@ -577,36 +578,36 @@
       "winner": "hybrid_rag",
       "results": {
         "text_to_sql": {
-          "answer": "Top row: ('mock has no canned SQL for this question',)",
+          "answer": "",
           "answer_f1": 0.0,
           "context_recall": 0.0,
-          "latency_ms": 0.5,
+          "latency_ms": 0.0,
           "cost_usd": 0.0,
           "use_mock": true,
-          "sql": "SELECT 'mock has no canned SQL for this question' AS note;",
-          "row_count": 1
+          "sql": "",
+          "row_count": 0
         },
         "hybrid_rag": {
-          "answer": "Retrieved 12 chunks. RG Sharma is the most frequently mentioned player in this context.",
-          "answer_f1": 0.1053,
+          "answer": "The context does not provide team-level cumulative runs for any IPL season, so it is not possible to determine which team scored the most cumulative runs.",
+          "answer_f1": 0.2857,
           "context_recall": 0.0,
-          "latency_ms": 32.5,
-          "cost_usd": 0.0,
-          "use_mock": true,
+          "latency_ms": 2127.7,
+          "cost_usd": 0.000362,
+          "use_mock": false,
           "retrieved_count": 12,
-          "bm25_ms": 18.0,
-          "vector_ms": 14.4
+          "bm25_ms": 33.7,
+          "vector_ms": 30.8
         },
         "light_rag": {
-          "answer": "No named entities found in the question. Graph context snippet: Mumbai Indians beat Rajasthan Royals by 8 runs. Mumbai Indians beat Kolkata Knight Riders by 6 wickets. Mumbai Indians beat Royal Challengers Bangalore by 6 wickets. Mumbai Indians beat Chennai Super ...",
-          "answer_f1": 0.0444,
-          "context_recall": 0.2222,
-          "latency_ms": 3.6,
-          "cost_usd": 0.0,
-          "use_mock": true,
+          "answer": "The provided graph context does not contain cumulative run totals per season, so it is insufficient to determine which team scored the most cumulative runs in a single IPL season.",
+          "answer_f1": 0.1935,
+          "context_recall": 0.4444,
+          "latency_ms": 2411.8,
+          "cost_usd": 0.001529,
+          "use_mock": false,
           "seed_count": 0,
           "top_node_count": 30,
-          "graph_ms": 2.9
+          "graph_ms": 8.6
         }
       }
     },
@@ -617,39 +618,39 @@
       "expected_best": "text_to_sql",
       "category": "factual",
       "difficulty": "medium",
-      "winner": "light_rag",
+      "winner": "hybrid_rag",
       "results": {
         "text_to_sql": {
-          "answer": "Top row: ('mock has no canned SQL for this question',)",
-          "answer_f1": 0.0,
-          "context_recall": 0.0,
-          "latency_ms": 0.5,
-          "cost_usd": 0.0,
-          "use_mock": true,
-          "sql": "SELECT 'mock has no canned SQL for this question' AS note;",
-          "row_count": 1
+          "answer": "No bowler meets the criteria of at least 50 wickets in IPL.",
+          "answer_f1": 0.0952,
+          "context_recall": 0.0769,
+          "latency_ms": 8959.5,
+          "cost_usd": 0.001255,
+          "use_mock": false,
+          "sql": "",
+          "row_count": 0
         },
         "hybrid_rag": {
-          "answer": "Retrieved 12 chunks. Mustafizur Rahman is the most frequently mentioned player in this context.",
-          "answer_f1": 0.0,
+          "answer": "The context does not provide any bowler with a career total of 50 or more wickets, so it lacks sufficient information to determine which bowler has the best economy rate under that condition.",
+          "answer_f1": 0.1714,
           "context_recall": 0.0,
-          "latency_ms": 35.8,
-          "cost_usd": 0.0,
-          "use_mock": true,
+          "latency_ms": 3362.9,
+          "cost_usd": 0.000476,
+          "use_mock": false,
           "retrieved_count": 12,
-          "bm25_ms": 19.2,
-          "vector_ms": 16.5
+          "bm25_ms": 27.0,
+          "vector_ms": 37.3
         },
         "light_rag": {
-          "answer": "No named entities found in the question. Graph context snippet: Mumbai Indians beat Rajasthan Royals by 8 runs. Mumbai Indians beat Kolkata Knight Riders by 6 wickets. Mumbai Indians beat Royal Challengers Bangalore by 6 wickets. Mumbai Indians beat Chennai Super ...",
-          "answer_f1": 0.0816,
+          "answer": "The graph context does not contain any bowler statistics such as economy rates or wickets taken, so I cannot answer the question.",
+          "answer_f1": 0.125,
           "context_recall": 0.1538,
-          "latency_ms": 3.3,
-          "cost_usd": 0.0,
-          "use_mock": true,
+          "latency_ms": 2244.5,
+          "cost_usd": 0.001499,
+          "use_mock": false,
           "seed_count": 0,
           "top_node_count": 30,
-          "graph_ms": 2.6
+          "graph_ms": 7.2
         }
       }
     },
@@ -660,39 +661,39 @@
       "expected_best": "text_to_sql",
       "category": "temporal",
       "difficulty": "easy",
-      "winner": "light_rag",
+      "winner": "text_to_sql",
       "results": {
         "text_to_sql": {
-          "answer": "Top row: ('mock has no canned SQL for this question',)",
-          "answer_f1": 0.0,
-          "context_recall": 0.0,
-          "latency_ms": 0.5,
-          "cost_usd": 0.0,
-          "use_mock": true,
-          "sql": "SELECT 'mock has no canned SQL for this question' AS note;",
+          "answer": "David Warner scored the most runs in the 2019 IPL season with 692 runs.",
+          "answer_f1": 0.5333,
+          "context_recall": 0.6,
+          "latency_ms": 3696.3,
+          "cost_usd": 0.000894,
+          "use_mock": false,
+          "sql": "SELECT p.player_name, SUM(d.runs_batter) AS total_runs\nFROM deliveries d\nJOIN innings i ON i.innings_id = d.innings_id\nJOIN matches m ON m.match_id = i.match_id\nJOIN players p ON p.player_id = d.batter_id\nWHERE m.season = 2019\nGROUP BY d.batter_id, p.player_name\nORDER BY total_runs DESC\nLIMIT 1",
           "row_count": 1
         },
         "hybrid_rag": {
-          "answer": "Retrieved 12 chunks. RG Sharma is the most frequently mentioned player in this context.",
+          "answer": "",
           "answer_f1": 0.0,
           "context_recall": 0.0,
-          "latency_ms": 25.7,
-          "cost_usd": 0.0,
-          "use_mock": true,
+          "latency_ms": 3747.3,
+          "cost_usd": 0.000496,
+          "use_mock": false,
           "retrieved_count": 12,
-          "bm25_ms": 13.1,
-          "vector_ms": 12.5
+          "bm25_ms": 21.2,
+          "vector_ms": 28.4
         },
         "light_rag": {
-          "answer": "No named entities found in the question. Graph context snippet: Mumbai Indians beat Rajasthan Royals by 8 runs. Mumbai Indians beat Kolkata Knight Riders by 6 wickets. Mumbai Indians beat Royal Challengers Bangalore by 6 wickets. Mumbai Indians beat Chennai Super ...",
-          "answer_f1": 0.0488,
-          "context_recall": 0.2,
-          "latency_ms": 3.7,
-          "cost_usd": 0.0,
-          "use_mock": true,
+          "answer": "The graph does not contain any player statistics or runs data, so it cannot tell who scored the most runs in the 2019 IPL season.",
+          "answer_f1": 0.1739,
+          "context_recall": 0.4,
+          "latency_ms": 1838.9,
+          "cost_usd": 0.00148,
+          "use_mock": false,
           "seed_count": 0,
           "top_node_count": 30,
-          "graph_ms": 2.9
+          "graph_ms": 8.2
         }
       }
     },
@@ -706,36 +707,36 @@
       "winner": "light_rag",
       "results": {
         "text_to_sql": {
-          "answer": "Top row: ('mock has no canned SQL for this question',)",
+          "answer": "",
           "answer_f1": 0.0,
           "context_recall": 0.0,
-          "latency_ms": 0.6,
+          "latency_ms": 0.0,
           "cost_usd": 0.0,
           "use_mock": true,
-          "sql": "SELECT 'mock has no canned SQL for this question' AS note;",
-          "row_count": 1
+          "sql": "",
+          "row_count": 0
         },
         "hybrid_rag": {
-          "answer": "Retrieved 12 chunks. I Sharma is the most frequently mentioned player in this context.",
-          "answer_f1": 0.0,
+          "answer": "The context does not provide total wickets per team for the entire 2013 IPL season, so it does not contain enough information to determine which team took the most wickets.",
+          "answer_f1": 0.1429,
           "context_recall": 0.0,
-          "latency_ms": 28.8,
-          "cost_usd": 0.0,
-          "use_mock": true,
+          "latency_ms": 2165.7,
+          "cost_usd": 0.000279,
+          "use_mock": false,
           "retrieved_count": 12,
-          "bm25_ms": 12.2,
-          "vector_ms": 16.5
+          "bm25_ms": 29.5,
+          "vector_ms": 35.5
         },
         "light_rag": {
-          "answer": "No named entities found in the question. Graph context snippet: Mumbai Indians beat Rajasthan Royals by 8 runs. Mumbai Indians beat Kolkata Knight Riders by 6 wickets. Mumbai Indians beat Royal Challengers Bangalore by 6 wickets. Mumbai Indians beat Chennai Super ...",
-          "answer_f1": 0.1463,
-          "context_recall": 0.6,
-          "latency_ms": 3.3,
-          "cost_usd": 0.0,
-          "use_mock": true,
+          "answer": "The provided graph context contains no wicket statistics, only match results and venues, so it is insufficient to determine which team took the most wickets in the 2013 IPL season.",
+          "answer_f1": 0.1538,
+          "context_recall": 0.4,
+          "latency_ms": 2134.1,
+          "cost_usd": 0.001514,
+          "use_mock": false,
           "seed_count": 0,
           "top_node_count": 30,
-          "graph_ms": 2.6
+          "graph_ms": 8.9
         }
       }
     },
@@ -746,39 +747,39 @@
       "expected_best": "text_to_sql",
       "category": "factual",
       "difficulty": "easy",
-      "winner": "text_to_sql",
+      "winner": "hybrid_rag",
       "results": {
         "text_to_sql": {
-          "answer": "Top row: ('mock has no canned SQL for this question',)",
+          "answer": "No data is available to determine which batsman has scored the most half-centuries in IPL.",
           "answer_f1": 0.0,
           "context_recall": 0.0,
-          "latency_ms": 0.4,
-          "cost_usd": 0.0,
-          "use_mock": true,
-          "sql": "SELECT 'mock has no canned SQL for this question' AS note;",
-          "row_count": 1
+          "latency_ms": 10737.9,
+          "cost_usd": 0.001398,
+          "use_mock": false,
+          "sql": "",
+          "row_count": 0
         },
         "hybrid_rag": {
-          "answer": "Retrieved 12 chunks. Mohammed Siraj is the most frequently mentioned player in this context.",
-          "answer_f1": 0.0,
+          "answer": "According to the provided context, no batsman has scored a half-century (fifty) in the IPL seasons listed, as every player's stats show \"0 fifties\".",
+          "answer_f1": 0.0909,
           "context_recall": 0.0,
-          "latency_ms": 24.8,
-          "cost_usd": 0.0,
-          "use_mock": true,
+          "latency_ms": 2560.1,
+          "cost_usd": 0.000442,
+          "use_mock": false,
           "retrieved_count": 12,
-          "bm25_ms": 11.4,
-          "vector_ms": 13.2
+          "bm25_ms": 28.7,
+          "vector_ms": 29.5
         },
         "light_rag": {
-          "answer": "No named entities found in the question. Graph context snippet: Mumbai Indians beat Rajasthan Royals by 8 runs. Mumbai Indians beat Kolkata Knight Riders by 6 wickets. Mumbai Indians beat Royal Challengers Bangalore by 6 wickets. Mumbai Indians beat Chennai Super ...",
-          "answer_f1": 0.0,
-          "context_recall": 0.0,
-          "latency_ms": 3.9,
-          "cost_usd": 0.0,
-          "use_mock": true,
+          "answer": "The provided graph context includes only team match results and venue information, with no data on individual batsmen's performances or half-century counts. Therefore, it is insufficient to determine which batsman has scored the most fifties in IPL.",
+          "answer_f1": 0.069,
+          "context_recall": 0.25,
+          "latency_ms": 2264.5,
+          "cost_usd": 0.001512,
+          "use_mock": false,
           "seed_count": 0,
           "top_node_count": 30,
-          "graph_ms": 3.3
+          "graph_ms": 8.7
         }
       }
     },
@@ -789,39 +790,39 @@
       "expected_best": "text_to_sql",
       "category": "factual",
       "difficulty": "easy",
-      "winner": "hybrid_rag",
+      "winner": "text_to_sql",
       "results": {
         "text_to_sql": {
-          "answer": "Top row: ('mock has no canned SQL for this question',)",
-          "answer_f1": 0.0,
-          "context_recall": 0.0,
-          "latency_ms": 0.5,
-          "cost_usd": 0.0,
-          "use_mock": true,
-          "sql": "SELECT 'mock has no canned SQL for this question' AS note;",
-          "row_count": 1
+          "answer": "The query returned no results, so the number of IPL seasons MS Dhoni has played in is unknown.",
+          "answer_f1": 0.5556,
+          "context_recall": 0.8333,
+          "latency_ms": 8820.3,
+          "cost_usd": 0.001346,
+          "use_mock": false,
+          "sql": "",
+          "row_count": 0
         },
         "hybrid_rag": {
-          "answer": "Retrieved 12 chunks. MS Dhoni is the most frequently mentioned player in this context.",
-          "answer_f1": 0.25,
+          "answer": "Based on the context, MS Dhoni has played in eight IPL seasons: 2008, 2009, 2018, 2019, 2020, 2021, 2023, and 2024.",
+          "answer_f1": 0.4545,
           "context_recall": 0.0,
-          "latency_ms": 22.4,
-          "cost_usd": 0.0,
-          "use_mock": true,
+          "latency_ms": 2703.1,
+          "cost_usd": 0.000479,
+          "use_mock": false,
           "retrieved_count": 12,
-          "bm25_ms": 9.5,
-          "vector_ms": 12.8
+          "bm25_ms": 23.6,
+          "vector_ms": 31.0
         },
         "light_rag": {
-          "answer": "Graph retrieval identified 1 entity node(s): MS Dhoni. Personalised PageRank surfaced a 2702-word context subgraph. Context excerpt: MS Dhoni is an IPL player. MS Dhoni was player of the match for Chennai Super Kings 16 time(s). MS Dhoni was player of the match for Rising Pune Supergiants 1 time(s). MS Dhoni was player of the match for Rising Pune Supergiant 1 time(s). Chennai Super Kings beat Mumbai Indians by 8 wickets. Chennai...",
-          "answer_f1": 0.0968,
-          "context_recall": 0.5,
-          "latency_ms": 4.4,
-          "cost_usd": 0.0,
-          "use_mock": true,
+          "answer": "",
+          "answer_f1": 0.0,
+          "context_recall": 0.0,
+          "latency_ms": 3900.7,
+          "cost_usd": 0.001487,
+          "use_mock": false,
           "seed_count": 1,
           "top_node_count": 30,
-          "graph_ms": 3.3
+          "graph_ms": 6.0
         }
       }
     },
@@ -832,39 +833,39 @@
       "expected_best": "text_to_sql",
       "category": "temporal",
       "difficulty": "easy",
-      "winner": "light_rag",
+      "winner": "text_to_sql",
       "results": {
         "text_to_sql": {
-          "answer": "Top row: ('mock has no canned SQL for this question',)",
-          "answer_f1": 0.0,
-          "context_recall": 0.0,
-          "latency_ms": 0.5,
-          "cost_usd": 0.0,
-          "use_mock": true,
-          "sql": "SELECT 'mock has no canned SQL for this question' AS note;",
+          "answer": "Shubman Gill scored the most runs in the 2023 IPL season with 890 runs.",
+          "answer_f1": 0.6667,
+          "context_recall": 0.6,
+          "latency_ms": 4549.4,
+          "cost_usd": 0.001075,
+          "use_mock": false,
+          "sql": "SELECT p.player_name, SUM(d.runs_batter) AS total_runs\nFROM deliveries d\nJOIN innings i ON i.innings_id = d.innings_id\nJOIN matches m ON m.match_id = i.match_id\nJOIN players p ON p.player_id = d.batter_id\nWHERE m.season = 2023\nGROUP BY d.batter_id, p.player_name\nORDER BY total_runs DESC\nLIMIT 1;",
           "row_count": 1
         },
         "hybrid_rag": {
-          "answer": "Retrieved 12 chunks. RG Sharma is the most frequently mentioned player in this context.",
+          "answer": "",
           "answer_f1": 0.0,
           "context_recall": 0.0,
-          "latency_ms": 25.2,
-          "cost_usd": 0.0,
-          "use_mock": true,
+          "latency_ms": 3900.0,
+          "cost_usd": 0.000497,
+          "use_mock": false,
           "retrieved_count": 12,
-          "bm25_ms": 11.3,
-          "vector_ms": 13.8
+          "bm25_ms": 20.2,
+          "vector_ms": 25.2
         },
         "light_rag": {
-          "answer": "No named entities found in the question. Graph context snippet: Mumbai Indians beat Rajasthan Royals by 8 runs. Mumbai Indians beat Kolkata Knight Riders by 6 wickets. Mumbai Indians beat Royal Challengers Bangalore by 6 wickets. Mumbai Indians beat Chennai Super ...",
-          "answer_f1": 0.0488,
-          "context_recall": 0.2,
-          "latency_ms": 4.9,
-          "cost_usd": 0.0,
-          "use_mock": true,
+          "answer": "The provided graph context contains no information about individual player runs or statistics for the 2023 IPL season, so it is insufficient to answer.",
+          "answer_f1": 0.1818,
+          "context_recall": 0.4,
+          "latency_ms": 3136.3,
+          "cost_usd": 0.001611,
+          "use_mock": false,
           "seed_count": 0,
           "top_node_count": 30,
-          "graph_ms": 4.2
+          "graph_ms": 9.1
         }
       }
     },
@@ -875,39 +876,39 @@
       "expected_best": "hybrid_rag",
       "category": "narrative",
       "difficulty": "medium",
-      "winner": "light_rag",
+      "winner": "hybrid_rag",
       "results": {
         "text_to_sql": {
-          "answer": "Top row: ('mock has no canned SQL for this question',)",
+          "answer": "",
           "answer_f1": 0.0,
           "context_recall": 0.0,
-          "latency_ms": 0.4,
-          "cost_usd": 0.0,
-          "use_mock": true,
-          "sql": "SELECT 'mock has no canned SQL for this question' AS note;",
-          "row_count": 1
+          "latency_ms": 8922.2,
+          "cost_usd": 0.0014,
+          "use_mock": false,
+          "sql": "",
+          "row_count": 0
         },
         "hybrid_rag": {
-          "answer": "Retrieved 12 chunks. V Kohli is the most frequently mentioned player in this context.",
-          "answer_f1": 0.0645,
+          "answer": "In the 2016 IPL season, Virat Kohli scored 973 runs off 637 balls at a strike rate of 152.75, hitting 84 fours and 38 sixes, with a highest score of 113 and recording 7 fifties and 4 hundreds.",
+          "answer_f1": 0.5833,
           "context_recall": 0.0,
-          "latency_ms": 26.9,
-          "cost_usd": 0.0,
-          "use_mock": true,
+          "latency_ms": 2742.4,
+          "cost_usd": 0.000486,
+          "use_mock": false,
           "retrieved_count": 12,
-          "bm25_ms": 12.9,
-          "vector_ms": 13.9
+          "bm25_ms": 27.1,
+          "vector_ms": 28.0
         },
         "light_rag": {
-          "answer": "Graph retrieval identified 2 entity node(s): V Kohli, T Kohli. Personalised PageRank surfaced a 2607-word context subgraph. Context excerpt: V Kohli is an IPL player. T Kohli is an IPL player. V Kohli was player of the match for Royal Challengers Bangalore 14 time(s). V Kohli was player of the match for Gujarat Lions 1 time(s). V Kohli was player of the match for Royal Challengers Bengaluru 6 time(s). T Kohli played for Kings XI Punjab i...",
-          "answer_f1": 0.1,
+          "answer": "The context does not provide specific statistics or performance details for Virat Kohli in the 2016 IPL season, only total player-of-the-match counts across his career.",
+          "answer_f1": 0.2,
           "context_recall": 0.1905,
-          "latency_ms": 4.4,
-          "cost_usd": 0.0,
-          "use_mock": true,
+          "latency_ms": 2832.1,
+          "cost_usd": 0.001316,
+          "use_mock": false,
           "seed_count": 2,
           "top_node_count": 30,
-          "graph_ms": 3.5
+          "graph_ms": 8.7
         }
       }
     },
@@ -918,39 +919,39 @@
       "expected_best": "hybrid_rag",
       "category": "narrative",
       "difficulty": "medium",
-      "winner": "light_rag",
+      "winner": "hybrid_rag",
       "results": {
         "text_to_sql": {
-          "answer": "Top row: ('mock has no canned SQL for this question',)",
+          "answer": "",
           "answer_f1": 0.0,
           "context_recall": 0.0,
-          "latency_ms": 0.5,
-          "cost_usd": 0.0,
-          "use_mock": true,
-          "sql": "SELECT 'mock has no canned SQL for this question' AS note;",
-          "row_count": 1
+          "latency_ms": 9216.7,
+          "cost_usd": 0.0014,
+          "use_mock": false,
+          "sql": "",
+          "row_count": 0
         },
         "hybrid_rag": {
-          "answer": "Retrieved 12 chunks. CH Gayle is the most frequently mentioned player in this context.",
-          "answer_f1": 0.0741,
+          "answer": "In the 2012 IPL season, Chris Gayle played 14 matches for Royal Challengers Bangalore, scoring 733 runs off 451 balls at a strike rate of 162.53, with 46 fours, 59 sixes, a highest score of 128, and totals of 7 fifties and 1 hundred.",
+          "answer_f1": 0.6531,
           "context_recall": 0.0,
-          "latency_ms": 27.4,
-          "cost_usd": 0.0,
-          "use_mock": true,
+          "latency_ms": 2211.1,
+          "cost_usd": 0.000436,
+          "use_mock": false,
           "retrieved_count": 12,
-          "bm25_ms": 13.2,
-          "vector_ms": 14.2
+          "bm25_ms": 19.2,
+          "vector_ms": 27.7
         },
         "light_rag": {
-          "answer": "Graph retrieval identified 1 entity node(s): CH Gayle. Personalised PageRank surfaced a 2750-word context subgraph. Context excerpt: CH Gayle is an IPL player. CH Gayle was player of the match for Kolkata Knight Riders 1 time(s). CH Gayle was player of the match for Royal Challengers Bangalore 17 time(s). CH Gayle was player of the match for Kings XI Punjab 4 time(s). CH Gayle played for Punjab Kings in 2021. Kolkata Knight Rider...",
-          "answer_f1": 0.1096,
-          "context_recall": 0.2353,
-          "latency_ms": 4.5,
-          "cost_usd": 0.0,
-          "use_mock": true,
+          "answer": "The graph does not contain any information about Chris Gayle's performance in the 2012 IPL season.",
+          "answer_f1": 0.1333,
+          "context_recall": 0.1176,
+          "latency_ms": 1852.2,
+          "cost_usd": 0.001239,
+          "use_mock": false,
           "seed_count": 1,
           "top_node_count": 30,
-          "graph_ms": 3.6
+          "graph_ms": 8.1
         }
       }
     },
@@ -964,36 +965,36 @@
       "winner": "text_to_sql",
       "results": {
         "text_to_sql": {
-          "answer": "Top row: ('mock has no canned SQL for this question',)",
-          "answer_f1": 0.1538,
-          "context_recall": 0.0,
-          "latency_ms": 0.5,
-          "cost_usd": 0.0,
-          "use_mock": true,
-          "sql": "SELECT 'mock has no canned SQL for this question' AS note;",
-          "row_count": 1
+          "answer": "No data is available for Rohit Sharma's IPL batting career in the queried database.",
+          "answer_f1": 0.25,
+          "context_recall": 0.3333,
+          "latency_ms": 8385.1,
+          "cost_usd": 0.001257,
+          "use_mock": false,
+          "sql": "",
+          "row_count": 0
         },
         "hybrid_rag": {
-          "answer": "Retrieved 12 chunks. RG Sharma is the most frequently mentioned player in this context.",
-          "answer_f1": 0.0,
+          "answer": "Based on the retrieved context, Rohit Sharma played for Mumbai Indians in the 2017, 2018, 2020, 2023, 2024, and 2025 IPL seasons, with his highest run tally being 418 in 2025 at a strike rate of 149.82, and his only hundred came in 2024 when he scored 105.",
+          "answer_f1": 0.1053,
           "context_recall": 0.0,
-          "latency_ms": 25.5,
-          "cost_usd": 0.0,
-          "use_mock": true,
+          "latency_ms": 3513.6,
+          "cost_usd": 0.000468,
+          "use_mock": false,
           "retrieved_count": 12,
-          "bm25_ms": 10.8,
-          "vector_ms": 14.6
+          "bm25_ms": 18.8,
+          "vector_ms": 27.4
         },
         "light_rag": {
-          "answer": "Graph retrieval identified 21 entity node(s): Bipul Sharma, RG Sharma, Sandeep Sharma, MM Sharma, I Sharma. Personalised PageRank surfaced a 1017-word context subgraph. Context excerpt: Bipul Sharma is an IPL player. RG Sharma is an IPL player. Sandeep Sharma is an IPL player. MM Sharma is an IPL player. I Sharma is an IPL player. Ankit Sharma is an IPL player. KV Sharma is an IPL player. Abhishek Sharma is an IPL player. JM Sharma is an IPL player. KS Sharma is an IPL player. Suya...",
-          "answer_f1": 0.0,
-          "context_recall": 0.0,
-          "latency_ms": 4.0,
-          "cost_usd": 0.0,
-          "use_mock": true,
+          "answer": "The context only notes that RG Sharma (Rohit Sharma) was player of the match 18 times for Mumbai Indians and 3 times for Deccan Chargers, with no other batting statistics or season-by-season data. Therefore, it is insufficient to describe his batting career across IPL seasons.",
+          "answer_f1": 0.1622,
+          "context_recall": 0.5,
+          "latency_ms": 2430.8,
+          "cost_usd": 0.000592,
+          "use_mock": false,
           "seed_count": 21,
           "top_node_count": 30,
-          "graph_ms": 3.6
+          "graph_ms": 6.4
         }
       }
     },
@@ -1004,39 +1005,39 @@
       "expected_best": "hybrid_rag",
       "category": "narrative",
       "difficulty": "medium",
-      "winner": "hybrid_rag",
+      "winner": "light_rag",
       "results": {
         "text_to_sql": {
-          "answer": "Top row: ('mock has no canned SQL for this question',)",
+          "answer": "",
           "answer_f1": 0.0,
           "context_recall": 0.0,
-          "latency_ms": 0.4,
-          "cost_usd": 0.0,
-          "use_mock": true,
-          "sql": "SELECT 'mock has no canned SQL for this question' AS note;",
-          "row_count": 1
+          "latency_ms": 10627.3,
+          "cost_usd": 0.001398,
+          "use_mock": false,
+          "sql": "",
+          "row_count": 0
         },
         "hybrid_rag": {
-          "answer": "Retrieved 12 chunks. AB de Villiers is the most frequently mentioned player in this context.",
-          "answer_f1": 0.1935,
+          "answer": "AB de Villiers stood out due to his exceptionally high strike rates—such as 176.29 in 2015 (scoring 513 runs) and 174.55 in 2018 (480 runs)—along with his frequent selection as Player of the Match (e.g., in the 2020 season",
+          "answer_f1": 0.25,
           "context_recall": 0.0,
-          "latency_ms": 23.2,
-          "cost_usd": 0.0,
-          "use_mock": true,
+          "latency_ms": 3704.4,
+          "cost_usd": 0.000555,
+          "use_mock": false,
           "retrieved_count": 12,
-          "bm25_ms": 8.6,
-          "vector_ms": 14.5
+          "bm25_ms": 27.8,
+          "vector_ms": 33.9
         },
         "light_rag": {
-          "answer": "Graph retrieval identified 1 entity node(s): AB de Villiers. Personalised PageRank surfaced a 2536-word context subgraph. Context excerpt: AB de Villiers is an IPL player. AB de Villiers was player of the match for Royal Challengers Bangalore 22 time(s). AB de Villiers was player of the match for Delhi Daredevils 2 time(s). Royal Challengers Bangalore beat Delhi Daredevils by 6 wickets. Royal Challengers Bangalore beat Mumbai Indians b...",
-          "answer_f1": 0.1579,
+          "answer": "AB de Villiers was a standout IPL performer because he won Player of the Match awards 24 times in total—22 for Royal Challengers Bangalore and 2 for Delhi Daredevils—highlighting his consistent match-winning contributions.",
+          "answer_f1": 0.2791,
           "context_recall": 0.3,
-          "latency_ms": 3.8,
-          "cost_usd": 0.0,
-          "use_mock": true,
+          "latency_ms": 2581.8,
+          "cost_usd": 0.001289,
+          "use_mock": false,
           "seed_count": 1,
           "top_node_count": 30,
-          "graph_ms": 3.0
+          "graph_ms": 4.4
         }
       }
     },
@@ -1047,39 +1048,39 @@
       "expected_best": "hybrid_rag",
       "category": "narrative",
       "difficulty": "medium",
-      "winner": "light_rag",
+      "winner": "text_to_sql",
       "results": {
         "text_to_sql": {
-          "answer": "Top row: ('mock has no canned SQL for this question',)",
-          "answer_f1": 0.0,
-          "context_recall": 0.0,
-          "latency_ms": 0.4,
-          "cost_usd": 0.0,
-          "use_mock": true,
-          "sql": "SELECT 'mock has no canned SQL for this question' AS note;",
-          "row_count": 1
+          "answer": "No data was found for Sunrisers Hyderabad in the 2016 IPL season.",
+          "answer_f1": 0.5,
+          "context_recall": 0.4167,
+          "latency_ms": 8819.1,
+          "cost_usd": 0.001297,
+          "use_mock": false,
+          "sql": "",
+          "row_count": 0
         },
         "hybrid_rag": {
-          "answer": "Retrieved 12 chunks. V Shankar is the most frequently mentioned player in this context.",
+          "answer": "",
           "answer_f1": 0.0,
           "context_recall": 0.0,
-          "latency_ms": 35.1,
-          "cost_usd": 0.0,
-          "use_mock": true,
+          "latency_ms": 3349.1,
+          "cost_usd": 0.000528,
+          "use_mock": false,
           "retrieved_count": 12,
-          "bm25_ms": 14.9,
-          "vector_ms": 20.0
+          "bm25_ms": 26.7,
+          "vector_ms": 33.9
         },
         "light_rag": {
-          "answer": "Graph retrieval identified 2 entity node(s): Sunrisers Hyderabad, Rajiv Gandhi International Stadium, Uppal, Hyderabad. Personalised PageRank surfaced a 2774-word context subgraph. Context excerpt: Sunrisers Hyderabad is an IPL team. Rajiv Gandhi International Stadium, Uppal, Hyderabad is a venue in Hyderabad. Sunrisers Hyderabad played at Rajiv Gandhi International Stadium, Uppal, Hyderabad in 2026. Sunrisers Hyderabad beat Mumbai Indians by 6 wickets. Sunrisers Hyderabad beat Kolkata Knight ...",
-          "answer_f1": 0.0882,
+          "answer": "The provided graph context lists several venues where Sunrisers Hyderabad played in 2016, but it does not include their overall",
+          "answer_f1": 0.2143,
           "context_recall": 0.25,
-          "latency_ms": 4.6,
-          "cost_usd": 0.0,
-          "use_mock": true,
+          "latency_ms": 3866.2,
+          "cost_usd": 0.001533,
+          "use_mock": false,
           "seed_count": 2,
           "top_node_count": 30,
-          "graph_ms": 3.4
+          "graph_ms": 12.1
         }
       }
     },
@@ -1090,39 +1091,39 @@
       "expected_best": "hybrid_rag",
       "category": "narrative",
       "difficulty": "medium",
-      "winner": "light_rag",
+      "winner": "hybrid_rag",
       "results": {
         "text_to_sql": {
-          "answer": "Top row: ('mock has no canned SQL for this question',)",
-          "answer_f1": 0.0,
-          "context_recall": 0.0,
-          "latency_ms": 0.6,
-          "cost_usd": 0.0,
-          "use_mock": true,
-          "sql": "SELECT 'mock has no canned SQL for this question' AS note;",
-          "row_count": 1
+          "answer": "There are no records of Jasprit Bumrah's bowling career in the IPL data.",
+          "answer_f1": 0.1026,
+          "context_recall": 0.0667,
+          "latency_ms": 9344.2,
+          "cost_usd": 0.00125,
+          "use_mock": false,
+          "sql": "",
+          "row_count": 0
         },
         "hybrid_rag": {
-          "answer": "Retrieved 12 chunks. JJ Bumrah is the most frequently mentioned player in this context.",
-          "answer_f1": 0.0,
+          "answer": "Based on the provided context, Jasprit Bumrah's IPL bowling career includes: in 2019 (16 matches, 20 wickets, economy 6.95), 2020 (15 matches, 29 wickets, economy 7.03), 2022 (14 matches, 15 wickets, economy 7.35), 2024 (13 matches, 20 wickets, economy 6.58), 2025 (12 matches, 18 wickets, economy 6.8), and 2026 (3 matches, 1 wicket, economy 7.08).",
+          "answer_f1": 0.1481,
           "context_recall": 0.0,
-          "latency_ms": 33.4,
-          "cost_usd": 0.0,
-          "use_mock": true,
+          "latency_ms": 2766.5,
+          "cost_usd": 0.000404,
+          "use_mock": false,
           "retrieved_count": 12,
-          "bm25_ms": 12.3,
-          "vector_ms": 21.0
+          "bm25_ms": 21.1,
+          "vector_ms": 35.5
         },
         "light_rag": {
-          "answer": "Graph retrieval identified 1 entity node(s): JJ Bumrah. Personalised PageRank surfaced a 2530-word context subgraph. Context excerpt: JJ Bumrah is an IPL player. JJ Bumrah was player of the match for Mumbai Indians 8 time(s). JJ Bumrah was player of the match for Kolkata Knight Riders 1 time(s). Mumbai Indians beat Kolkata Knight Riders by 6 wickets. Mumbai Indians played at Eden Gardens in 2016. Mumbai Indians played at Wankhede ...",
-          "answer_f1": 0.2118,
-          "context_recall": 0.3667,
-          "latency_ms": 6.5,
-          "cost_usd": 0.0,
-          "use_mock": true,
+          "answer": "The context only states that JJ Bumrah is an IPL player who was player of the match 8 times for Mumbai Indians and once for Kolkata Knight Riders, with no further details about his bowling statistics or career. Therefore, the information is insufficient to describe his bowling career.",
+          "answer_f1": 0.0667,
+          "context_recall": 0.3333,
+          "latency_ms": 2309.1,
+          "cost_usd": 0.001255,
+          "use_mock": false,
           "seed_count": 1,
           "top_node_count": 30,
-          "graph_ms": 5.3
+          "graph_ms": 8.9
         }
       }
     },
@@ -1136,36 +1137,36 @@
       "winner": "hybrid_rag",
       "results": {
         "text_to_sql": {
-          "answer": "Top row: ('mock has no canned SQL for this question',)",
-          "answer_f1": 0.0,
-          "context_recall": 0.0,
-          "latency_ms": 0.8,
-          "cost_usd": 0.0,
-          "use_mock": true,
-          "sql": "SELECT 'mock has no canned SQL for this question' AS note;",
-          "row_count": 1
+          "answer": "Yuvraj Singh had no recorded performance in the 2014 IPL season.",
+          "answer_f1": 0.2609,
+          "context_recall": 0.2,
+          "latency_ms": 7804.1,
+          "cost_usd": 0.001249,
+          "use_mock": false,
+          "sql": "",
+          "row_count": 0
         },
         "hybrid_rag": {
-          "answer": "Retrieved 12 chunks. Yuvraj Singh is the most frequently mentioned player in this context.",
-          "answer_f1": 0.16,
+          "answer": "In the 2014 IPL season, Yuvraj Singh played for Royal Challengers Bangalore, scoring 376 runs at a strike rate of 137.23 with three fifties and also taking five wickets.",
+          "answer_f1": 0.5556,
           "context_recall": 0.0,
-          "latency_ms": 42.8,
-          "cost_usd": 0.0,
-          "use_mock": true,
+          "latency_ms": 2426.8,
+          "cost_usd": 0.000417,
+          "use_mock": false,
           "retrieved_count": 12,
-          "bm25_ms": 22.4,
-          "vector_ms": 20.2
+          "bm25_ms": 30.2,
+          "vector_ms": 31.2
         },
         "light_rag": {
-          "answer": "Graph retrieval identified 37 entity node(s): Yuvraj Singh, Mandeep Singh, Swapnil Singh, Harbhajan Singh, NB Singh. Personalised PageRank surfaced a 339-word context subgraph. Context excerpt: Yuvraj Singh is an IPL player. Mandeep Singh is an IPL player. Swapnil Singh is an IPL player. Harbhajan Singh is an IPL player. NB Singh is an IPL player. Anureet Singh is an IPL player. Gurkeerat Singh is an IPL player. RK Singh is an IPL player. Arshdeep Singh is an IPL player. P Simran Singh is ...",
-          "answer_f1": 0.0513,
+          "answer": "The provided context does not include any information about Yuvraj Singh's performance in the 2014 IPL season.",
+          "answer_f1": 0.1379,
           "context_recall": 0.1333,
-          "latency_ms": 4.4,
-          "cost_usd": 0.0,
-          "use_mock": true,
+          "latency_ms": 2207.2,
+          "cost_usd": 0.000332,
+          "use_mock": false,
           "seed_count": 37,
           "top_node_count": 30,
-          "graph_ms": 4.0
+          "graph_ms": 10.6
         }
       }
     },
@@ -1179,36 +1180,36 @@
       "winner": "light_rag",
       "results": {
         "text_to_sql": {
-          "answer": "Top row: ('mock has no canned SQL for this question',)",
-          "answer_f1": 0.0,
-          "context_recall": 0.0,
-          "latency_ms": 0.7,
-          "cost_usd": 0.0,
-          "use_mock": true,
-          "sql": "SELECT 'mock has no canned SQL for this question' AS note;",
-          "row_count": 1
+          "answer": "There is no data available on KL Rahul's IPL career evolution across seasons.",
+          "answer_f1": 0.093,
+          "context_recall": 0.0625,
+          "latency_ms": 9363.9,
+          "cost_usd": 0.001289,
+          "use_mock": false,
+          "sql": "",
+          "row_count": 0
         },
         "hybrid_rag": {
-          "answer": "Retrieved 12 chunks. KL Rahul is the most frequently mentioned player in this context.",
-          "answer_f1": 0.0476,
+          "answer": "Based on the provided data, KL Rahul's",
+          "answer_f1": 0.1081,
           "context_recall": 0.0,
-          "latency_ms": 36.7,
-          "cost_usd": 0.0,
-          "use_mock": true,
+          "latency_ms": 3360.3,
+          "cost_usd": 0.000529,
+          "use_mock": false,
           "retrieved_count": 12,
-          "bm25_ms": 15.7,
-          "vector_ms": 20.7
+          "bm25_ms": 25.5,
+          "vector_ms": 47.0
         },
         "light_rag": {
-          "answer": "Graph retrieval identified 1 entity node(s): KL Rahul. Personalised PageRank surfaced a 3047-word context subgraph. Context excerpt: KL Rahul is an IPL player. KL Rahul played for Royal Challengers Bangalore in 2013, 2016. KL Rahul played for Sunrisers Hyderabad in 2014, 2015. KL Rahul was player of the match for Delhi Capitals 3 time(s). KL Rahul was player of the match for Punjab Kings 4 time(s). KL Rahul was player of the matc...",
-          "answer_f1": 0.2759,
-          "context_recall": 0.5312,
-          "latency_ms": 4.5,
-          "cost_usd": 0.0,
-          "use_mock": true,
+          "answer": "KL Rahul began his IPL career with Royal Challengers Bangalore in 2013 and 2016, played for Sunrisers Hyderabad in 2014–2015, and later earned multiple Player of the Match awards for Kings XI Punjab (6), Punjab Kings (4), Delhi Capitals (3), and Lucknow Super Giants (3), showing a progression across several teams.",
+          "answer_f1": 0.3099,
+          "context_recall": 0.5,
+          "latency_ms": 3038.9,
+          "cost_usd": 0.00153,
+          "use_mock": false,
           "seed_count": 1,
           "top_node_count": 30,
-          "graph_ms": 3.6
+          "graph_ms": 11.3
         }
       }
     },
@@ -1219,39 +1220,39 @@
       "expected_best": "hybrid_rag",
       "category": "narrative",
       "difficulty": "medium",
-      "winner": "light_rag",
+      "winner": "text_to_sql",
       "results": {
         "text_to_sql": {
-          "answer": "Top row: ('mock has no canned SQL for this question',)",
-          "answer_f1": 0.0,
-          "context_recall": 0.0,
-          "latency_ms": 0.5,
-          "cost_usd": 0.0,
-          "use_mock": true,
-          "sql": "SELECT 'mock has no canned SQL for this question' AS note;",
-          "row_count": 1
+          "answer": "No data was returned for Mumbai Indians' 2019 IPL performance.",
+          "answer_f1": 0.4211,
+          "context_recall": 0.3636,
+          "latency_ms": 9189.8,
+          "cost_usd": 0.001329,
+          "use_mock": false,
+          "sql": "",
+          "row_count": 0
         },
         "hybrid_rag": {
-          "answer": "Retrieved 12 chunks. Anmolpreet Singh is the most frequently mentioned player in this context.",
+          "answer": "",
           "answer_f1": 0.0,
           "context_recall": 0.0,
-          "latency_ms": 36.8,
-          "cost_usd": 0.0,
-          "use_mock": true,
+          "latency_ms": 4022.8,
+          "cost_usd": 0.000506,
+          "use_mock": false,
           "retrieved_count": 12,
-          "bm25_ms": 19.4,
-          "vector_ms": 17.3
+          "bm25_ms": 26.3,
+          "vector_ms": 28.2
         },
         "light_rag": {
-          "answer": "Graph retrieval identified 5 entity node(s): Mumbai Indians, Brabourne Stadium, Mumbai, Dr DY Patil Sports Academy, Mumbai, Dr DY Patil Sports Academy, Mumbai, Wankhede Stadium, Mumbai. Personalised PageRank surfaced a 2310-word context subgraph. Context excerpt: Mumbai Indians is an IPL team. Brabourne Stadium, Mumbai is a venue in Mumbai. Dr DY Patil Sports Academy, Mumbai is a venue in Mumbai. Dr DY Patil Sports Academy, Mumbai is a venue in Navi Mumbai. Wankhede Stadium, Mumbai is a venue in Mumbai. Mumbai Indians played at Wankhede Stadium, Mumbai in 20...",
-          "answer_f1": 0.0723,
-          "context_recall": 0.2727,
-          "latency_ms": 5.0,
-          "cost_usd": 0.0,
-          "use_mock": true,
+          "answer": "The graph context does not contain any information about Mumbai Indians' performance in the 2019 IPL season.",
+          "answer_f1": 0.4,
+          "context_recall": 0.4545,
+          "latency_ms": 2389.9,
+          "cost_usd": 0.001186,
+          "use_mock": false,
           "seed_count": 5,
           "top_node_count": 30,
-          "graph_ms": 4.3
+          "graph_ms": 9.1
         }
       }
     },
@@ -1265,36 +1266,36 @@
       "winner": "hybrid_rag",
       "results": {
         "text_to_sql": {
-          "answer": "Top row: ('mock has no canned SQL for this question',)",
-          "answer_f1": 0.0,
-          "context_recall": 0.0,
-          "latency_ms": 0.6,
-          "cost_usd": 0.0,
-          "use_mock": true,
-          "sql": "SELECT 'mock has no canned SQL for this question' AS note;",
-          "row_count": 1
+          "answer": "No performance data was found for David Warner in the 2019 IPL season.",
+          "answer_f1": 0.25,
+          "context_recall": 0.2,
+          "latency_ms": 9593.6,
+          "cost_usd": 0.001241,
+          "use_mock": false,
+          "sql": "",
+          "row_count": 0
         },
         "hybrid_rag": {
-          "answer": "Retrieved 12 chunks. DA Warner is the most frequently mentioned player in this context.",
-          "answer_f1": 0.16,
+          "answer": "In the 2019 IPL season, David Warner played 12 matches for Sunrisers Hyderabad, scoring 692 runs at a strike rate of 143.87, with a highest score of 100, 8 fifties, and 1 hundred.",
+          "answer_f1": 0.6316,
           "context_recall": 0.0,
-          "latency_ms": 22.8,
-          "cost_usd": 0.0,
-          "use_mock": true,
+          "latency_ms": 1983.4,
+          "cost_usd": 0.000384,
+          "use_mock": false,
           "retrieved_count": 12,
-          "bm25_ms": 11.4,
-          "vector_ms": 11.3
+          "bm25_ms": 34.0,
+          "vector_ms": 32.5
         },
         "light_rag": {
-          "answer": "Graph retrieval identified 3 entity node(s): DA Warner, TH David, SK Warne. Personalised PageRank surfaced a 2899-word context subgraph. Context excerpt: DA Warner is an IPL player. TH David is an IPL player. SK Warne is an IPL player. DA Warner was player of the match for Sunrisers Hyderabad 12 time(s). DA Warner was player of the match for Delhi Capitals 1 time(s). DA Warner was player of the match for Delhi Daredevils 5 time(s). TH David was playe...",
-          "answer_f1": 0.1351,
-          "context_recall": 0.3333,
-          "latency_ms": 3.5,
-          "cost_usd": 0.0,
-          "use_mock": true,
+          "answer": "The graph context does not contain any information about the 2019 IPL season, so I cannot answer the question.",
+          "answer_f1": 0.0645,
+          "context_recall": 0.0667,
+          "latency_ms": 1943.3,
+          "cost_usd": 0.00138,
+          "use_mock": false,
           "seed_count": 3,
           "top_node_count": 30,
-          "graph_ms": 2.8
+          "graph_ms": 8.7
         }
       }
     },
@@ -1305,39 +1306,39 @@
       "expected_best": "hybrid_rag",
       "category": "narrative",
       "difficulty": "medium",
-      "winner": "hybrid_rag",
+      "winner": "text_to_sql",
       "results": {
         "text_to_sql": {
-          "answer": "Top row: ('mock has no canned SQL for this question',)",
-          "answer_f1": 0.0,
-          "context_recall": 0.0,
-          "latency_ms": 0.4,
-          "cost_usd": 0.0,
-          "use_mock": true,
-          "sql": "SELECT 'mock has no canned SQL for this question' AS note;",
-          "row_count": 1
+          "answer": "No data is available for Chennai Super Kings' win record across IPL seasons.",
+          "answer_f1": 0.0882,
+          "context_recall": 0.0526,
+          "latency_ms": 7469.3,
+          "cost_usd": 0.001232,
+          "use_mock": false,
+          "sql": "",
+          "row_count": 0
         },
         "hybrid_rag": {
-          "answer": "Retrieved 12 chunks. Top match: \"In IPL season 2025, on 2025-04-30, Chennai Super Kings played Punjab Kings at MA Chidambaram Stadium, Chepauk, Chennai in Chennai. Punjab Ki...\"",
-          "answer_f1": 0.15,
+          "answer": "",
+          "answer_f1": 0.0,
           "context_recall": 0.0,
-          "latency_ms": 27.6,
-          "cost_usd": 0.0,
-          "use_mock": true,
+          "latency_ms": 4202.5,
+          "cost_usd": 0.000537,
+          "use_mock": false,
           "retrieved_count": 12,
-          "bm25_ms": 8.5,
-          "vector_ms": 19.0
+          "bm25_ms": 17.6,
+          "vector_ms": 41.9
         },
         "light_rag": {
-          "answer": "Graph retrieval identified 3 entity node(s): Chennai Super Kings, Punjab Kings, MA Chidambaram Stadium, Chepauk, Chennai. Personalised PageRank surfaced a 3056-word context subgraph. Context excerpt: Chennai Super Kings is an IPL team. Punjab Kings is an IPL team. MA Chidambaram Stadium, Chepauk, Chennai is a venue in Chennai. Chennai Super Kings played at MA Chidambaram Stadium, Chepauk, Chennai in 2026. Chennai Super Kings beat Punjab Kings by 28 runs. Chennai Super Kings beat Mumbai Indians b...",
-          "answer_f1": 0.0656,
-          "context_recall": 0.0702,
-          "latency_ms": 4.6,
-          "cost_usd": 0.0,
-          "use_mock": true,
+          "answer": "",
+          "answer_f1": 0.0,
+          "context_recall": 0.0,
+          "latency_ms": 3754.6,
+          "cost_usd": 0.001649,
+          "use_mock": false,
           "seed_count": 3,
           "top_node_count": 30,
-          "graph_ms": 3.7
+          "graph_ms": 11.4
         }
       }
     },
@@ -1348,39 +1349,39 @@
       "expected_best": "hybrid_rag",
       "category": "narrative",
       "difficulty": "medium",
-      "winner": "light_rag",
+      "winner": "hybrid_rag",
       "results": {
         "text_to_sql": {
-          "answer": "Top row: ('mock has no canned SQL for this question',)",
-          "answer_f1": 0.0,
-          "context_recall": 0.0,
-          "latency_ms": 0.5,
-          "cost_usd": 0.0,
-          "use_mock": true,
-          "sql": "SELECT 'mock has no canned SQL for this question' AS note;",
-          "row_count": 1
+          "answer": "No data is available for Suresh Raina's performance in the 2013 IPL season.",
+          "answer_f1": 0.1739,
+          "context_recall": 0.1429,
+          "latency_ms": 8762.0,
+          "cost_usd": 0.001278,
+          "use_mock": false,
+          "sql": "",
+          "row_count": 0
         },
         "hybrid_rag": {
-          "answer": "Retrieved 12 chunks. SK Raina is the most frequently mentioned player in this context.",
-          "answer_f1": 0.0833,
+          "answer": "In the 2013 IPL season, Suresh Raina played for Chennai Super Kings, scoring 548 runs from 17 matches at a strike rate of 150.55, including a highest score of 100, four fifties, and one hundred.",
+          "answer_f1": 0.6667,
           "context_recall": 0.0,
-          "latency_ms": 27.9,
-          "cost_usd": 0.0,
-          "use_mock": true,
+          "latency_ms": 2048.4,
+          "cost_usd": 0.000398,
+          "use_mock": false,
           "retrieved_count": 12,
-          "bm25_ms": 13.2,
-          "vector_ms": 14.6
+          "bm25_ms": 27.5,
+          "vector_ms": 35.2
         },
         "light_rag": {
-          "answer": "Graph retrieval identified 1 entity node(s): SK Raina. Personalised PageRank surfaced a 2678-word context subgraph. Context excerpt: SK Raina is an IPL player. SK Raina was player of the match for Chennai Super Kings 12 time(s). SK Raina was player of the match for Gujarat Lions 2 time(s). Chennai Super Kings beat Mumbai Indians by 8 wickets. Chennai Super Kings played at Eden Gardens in 2015. Chennai Super Kings played at Wankhe...",
-          "answer_f1": 0.1127,
-          "context_recall": 0.2857,
-          "latency_ms": 3.4,
-          "cost_usd": 0.0,
-          "use_mock": true,
+          "answer": "The graph context does not provide any specific information about SK Raina's performance in the 2013 IPL season.",
+          "answer_f1": 0.069,
+          "context_recall": 0.0714,
+          "latency_ms": 2538.9,
+          "cost_usd": 0.001276,
+          "use_mock": false,
           "seed_count": 1,
           "top_node_count": 30,
-          "graph_ms": 2.8
+          "graph_ms": 8.4
         }
       }
     },
@@ -1391,39 +1392,39 @@
       "expected_best": "hybrid_rag",
       "category": "narrative",
       "difficulty": "medium",
-      "winner": "hybrid_rag",
+      "winner": "text_to_sql",
       "results": {
         "text_to_sql": {
-          "answer": "Top row: ('mock has no canned SQL for this question',)",
+          "answer": "",
           "answer_f1": 0.0,
           "context_recall": 0.0,
-          "latency_ms": 0.4,
-          "cost_usd": 0.0,
-          "use_mock": true,
-          "sql": "SELECT 'mock has no canned SQL for this question' AS note;",
-          "row_count": 1
+          "latency_ms": 11007.3,
+          "cost_usd": 0.001398,
+          "use_mock": false,
+          "sql": "",
+          "row_count": 0
         },
         "hybrid_rag": {
-          "answer": "Retrieved 12 chunks. Top match: \"In IPL season 2017, on 2017-04-14, Royal Challengers Bangalore played Mumbai Indians at M Chinnaswamy Stadium in Bangalore. Mumbai Indians b...\"",
-          "answer_f1": 0.0482,
+          "answer": "",
+          "answer_f1": 0.0,
           "context_recall": 0.0,
-          "latency_ms": 25.9,
-          "cost_usd": 0.0,
-          "use_mock": true,
+          "latency_ms": 3845.9,
+          "cost_usd": 0.000534,
+          "use_mock": false,
           "retrieved_count": 12,
-          "bm25_ms": 11.0,
-          "vector_ms": 14.8
+          "bm25_ms": 24.5,
+          "vector_ms": 32.3
         },
         "light_rag": {
-          "answer": "Graph retrieval identified 5 entity node(s): JJ Roy, AS Roy, FA Allen, FH Allen, Royal Challengers Bangalore. Personalised PageRank surfaced a 2143-word context subgraph. Context excerpt: JJ Roy is an IPL player. AS Roy is an IPL player. FA Allen is an IPL player. FH Allen is an IPL player. Royal Challengers Bangalore is an IPL team. Royal Challengers Bangalore beat Kolkata Knight Riders by 9 wickets. Royal Challengers Bangalore beat Mumbai Indians by 39 runs. Royal Challengers Banga...",
-          "answer_f1": 0.0315,
-          "context_recall": 0.0984,
-          "latency_ms": 3.3,
-          "cost_usd": 0.0,
-          "use_mock": true,
+          "answer": "",
+          "answer_f1": 0.0,
+          "context_recall": 0.0,
+          "latency_ms": 4539.1,
+          "cost_usd": 0.001252,
+          "use_mock": false,
           "seed_count": 5,
           "top_node_count": 30,
-          "graph_ms": 2.8
+          "graph_ms": 6.3
         }
       }
     },
@@ -1437,36 +1438,36 @@
       "winner": "text_to_sql",
       "results": {
         "text_to_sql": {
-          "answer": "Top row: ('mock has no canned SQL for this question',)",
-          "answer_f1": 0.1538,
-          "context_recall": 0.1667,
-          "latency_ms": 0.4,
-          "cost_usd": 0.0,
-          "use_mock": true,
-          "sql": "SELECT 'mock has no canned SQL for this question' AS note;",
-          "row_count": 1
+          "answer": "There is no data available for Hardik Pandya's performance in the 2021 IPL season.",
+          "answer_f1": 0.375,
+          "context_recall": 0.5,
+          "latency_ms": 9956.8,
+          "cost_usd": 0.001264,
+          "use_mock": false,
+          "sql": "",
+          "row_count": 0
         },
         "hybrid_rag": {
-          "answer": "Retrieved 12 chunks. HH Pandya is the most frequently mentioned player in this context.",
-          "answer_f1": 0.125,
+          "answer": "In the 2021 IPL season, HH Pandya played for Mumbai Indians, featuring in 11 matches and scoring 127 runs off 111 balls at a strike rate of 114.41, with a highest score of 40 and no fifties or hundreds.",
+          "answer_f1": 0.1875,
           "context_recall": 0.0,
-          "latency_ms": 24.1,
-          "cost_usd": 0.0,
-          "use_mock": true,
+          "latency_ms": 2059.3,
+          "cost_usd": 0.000363,
+          "use_mock": false,
           "retrieved_count": 12,
-          "bm25_ms": 11.0,
-          "vector_ms": 13.0
+          "bm25_ms": 24.7,
+          "vector_ms": 26.4
         },
         "light_rag": {
-          "answer": "Graph retrieval identified 2 entity node(s): KH Pandya, HH Pandya. Personalised PageRank surfaced a 2957-word context subgraph. Context excerpt: KH Pandya is an IPL player. HH Pandya is an IPL player. KH Pandya was player of the match for Mumbai Indians 3 time(s). KH Pandya was player of the match for Lucknow Super Giants 2 time(s). KH Pandya was player of the match for Royal Challengers Bengaluru 3 time(s). HH Pandya was player of the match...",
-          "answer_f1": 0.0323,
-          "context_recall": 0.1667,
-          "latency_ms": 4.7,
-          "cost_usd": 0.0,
-          "use_mock": true,
+          "answer": "The context does not provide any information about Hardik Pandya's performance in the 2021 IPL season. It only lists his total player-of-the-match awards for Mumbai Indians and Gujarat Titans, without seasonal breakdown.",
+          "answer_f1": 0.129,
+          "context_recall": 0.3333,
+          "latency_ms": 2083.7,
+          "cost_usd": 0.001394,
+          "use_mock": false,
           "seed_count": 2,
           "top_node_count": 30,
-          "graph_ms": 3.6
+          "graph_ms": 7.9
         }
       }
     },
@@ -1480,36 +1481,36 @@
       "winner": "hybrid_rag",
       "results": {
         "text_to_sql": {
-          "answer": "Top row: ('mock has no canned SQL for this question',)",
+          "answer": "No data was returned for Kolkata Knight Riders' IPL performance.",
           "answer_f1": 0.0,
           "context_recall": 0.0,
-          "latency_ms": 0.5,
-          "cost_usd": 0.0,
-          "use_mock": true,
-          "sql": "SELECT 'mock has no canned SQL for this question' AS note;",
-          "row_count": 1
+          "latency_ms": 8337.8,
+          "cost_usd": 0.001244,
+          "use_mock": false,
+          "sql": "",
+          "row_count": 0
         },
         "hybrid_rag": {
-          "answer": "Retrieved 12 chunks. Top match: \"In IPL season 2024, on 2024-05-11, Kolkata Knight Riders played Mumbai Indians at Eden Gardens, Kolkata in Kolkata. Kolkata Knight Riders be...\"",
-          "answer_f1": 0.0723,
+          "answer": "Based on the provided context, Kolkata Knight Riders had a mixed performance across IPL seasons, winning matches such as beating Mumbai Indians by 18 runs in 2024 and losing others like falling to Rajasthan Royals by 2 wickets in 2024. The context does not include full season standings or overall win-loss records.",
+          "answer_f1": 0.0396,
           "context_recall": 0.0,
-          "latency_ms": 23.2,
-          "cost_usd": 0.0,
-          "use_mock": true,
+          "latency_ms": 4202.0,
+          "cost_usd": 0.000513,
+          "use_mock": false,
           "retrieved_count": 12,
-          "bm25_ms": 9.7,
-          "vector_ms": 13.3
+          "bm25_ms": 16.9,
+          "vector_ms": 30.1
         },
         "light_rag": {
-          "answer": "Graph retrieval identified 2 entity node(s): Kolkata Knight Riders, Eden Gardens, Kolkata. Personalised PageRank surfaced a 2777-word context subgraph. Context excerpt: Kolkata Knight Riders is an IPL team. Eden Gardens, Kolkata is a venue in Kolkata. Kolkata Knight Riders played at Eden Gardens, Kolkata in 2026. Kolkata Knight Riders beat Mumbai Indians by 4 wickets. Kolkata Knight Riders played at Eden Gardens in 2016. Kolkata Knight Riders played at Wankhede Sta...",
-          "answer_f1": 0.0333,
-          "context_recall": 0.0328,
-          "latency_ms": 3.9,
-          "cost_usd": 0.0,
-          "use_mock": true,
+          "answer": "",
+          "answer_f1": 0.0,
+          "context_recall": 0.0,
+          "latency_ms": 3990.8,
+          "cost_usd": 0.001534,
+          "use_mock": false,
           "seed_count": 2,
           "top_node_count": 30,
-          "graph_ms": 3.2
+          "graph_ms": 8.1
         }
       }
     },
@@ -1523,36 +1524,36 @@
       "winner": "light_rag",
       "results": {
         "text_to_sql": {
-          "answer": "Top row: ('mock has no canned SQL for this question',)",
+          "answer": "",
           "answer_f1": 0.0,
-          "context_recall": 0.0,
-          "latency_ms": 0.4,
-          "cost_usd": 0.0,
-          "use_mock": true,
-          "sql": "SELECT 'mock has no canned SQL for this question' AS note;",
-          "row_count": 1
+          "context_recall": 0.75,
+          "latency_ms": 8303.8,
+          "cost_usd": 0.001304,
+          "use_mock": false,
+          "sql": "SELECT DISTINCT t.team_name\nFROM deliveries d\nJOIN innings i ON d.innings_id = i.innings_id\nJOIN players p ON p.player_id = d.batter_id\nJOIN teams t ON t.team_id = i.batting_team_id\nWHERE p.player_name LIKE '%Dhoni%';",
+          "row_count": 3
         },
         "hybrid_rag": {
-          "answer": "Retrieved 12 chunks. MS Dhoni is the most frequently mentioned player in this context.",
-          "answer_f1": 0.1818,
+          "answer": "Based on the provided context, MS Dhoni has only played for Chennai Super Kings across all the IPL seasons mentioned.",
+          "answer_f1": 0.4444,
           "context_recall": 0.0,
-          "latency_ms": 21.2,
-          "cost_usd": 0.0,
-          "use_mock": true,
+          "latency_ms": 1614.8,
+          "cost_usd": 0.000324,
+          "use_mock": false,
           "retrieved_count": 12,
-          "bm25_ms": 9.1,
-          "vector_ms": 12.0
+          "bm25_ms": 16.1,
+          "vector_ms": 27.0
         },
         "light_rag": {
-          "answer": "Graph retrieval identified 1 entity node(s): MS Dhoni. Personalised PageRank surfaced a 2702-word context subgraph. Context excerpt: MS Dhoni is an IPL player. MS Dhoni was player of the match for Chennai Super Kings 16 time(s). MS Dhoni was player of the match for Rising Pune Supergiants 1 time(s). MS Dhoni was player of the match for Rising Pune Supergiant 1 time(s). Chennai Super Kings beat Mumbai Indians by 8 wickets. Chennai...",
-          "answer_f1": 0.3235,
-          "context_recall": 0.9167,
-          "latency_ms": 3.5,
-          "cost_usd": 0.0,
-          "use_mock": true,
+          "answer": "Based on the graph context, MS Dhoni has played for Chennai Super Kings and the Rising Pune Supergiants (also listed as Rising Pune Supergiant).",
+          "answer_f1": 0.8,
+          "context_recall": 1.0,
+          "latency_ms": 1855.0,
+          "cost_usd": 0.00134,
+          "use_mock": false,
           "seed_count": 1,
           "top_node_count": 30,
-          "graph_ms": 2.8
+          "graph_ms": 7.4
         }
       }
     },
@@ -1563,39 +1564,39 @@
       "expected_best": "light_rag",
       "category": "relational",
       "difficulty": "medium",
-      "winner": "hybrid_rag",
+      "winner": "text_to_sql",
       "results": {
         "text_to_sql": {
-          "answer": "Top row: ('mock has no canned SQL for this question',)",
-          "answer_f1": 0.0,
-          "context_recall": 0.0,
-          "latency_ms": 0.4,
-          "cost_usd": 0.0,
-          "use_mock": true,
-          "sql": "SELECT 'mock has no canned SQL for this question' AS note;",
-          "row_count": 1
+          "answer": "Royal Challengers Bangalore have played most often at M Chinnaswamy Stadium, with 61 matches at that venue (plus another 15 at a similarly named venue).",
+          "answer_f1": 0.3784,
+          "context_recall": 0.5789,
+          "latency_ms": 5342.0,
+          "cost_usd": 0.001155,
+          "use_mock": false,
+          "sql": "SELECT v.venue_name, COUNT(*) AS matches_played\nFROM matches m\nJOIN venues v ON v.venue_id = m.venue_id\nJOIN teams t ON (m.team1_id = t.team_id OR m.team2_id = t.team_id)\nWHERE t.team_name = 'Royal Challengers Bangalore'\nGROUP BY v.venue_id, v.venue_name\nORDER BY matches_played DESC",
+          "row_count": 50
         },
         "hybrid_rag": {
-          "answer": "Retrieved 12 chunks. Top match: \"In IPL season 2010, on 2010-04-17, Royal Challengers Bangalore played Mumbai Indians at M Chinnaswamy Stadium in Bangalore. Mumbai Indians b...\"",
-          "answer_f1": 0.1463,
+          "answer": "Based on the context, Royal Challengers Bangalore played most often at M Chinnaswamy Stadium in Bangalore (10 matches) and only twice at St George's Park in Port Elizabeth.",
+          "answer_f1": 0.25,
           "context_recall": 0.0,
-          "latency_ms": 22.2,
-          "cost_usd": 0.0,
-          "use_mock": true,
+          "latency_ms": 3032.2,
+          "cost_usd": 0.000479,
+          "use_mock": false,
           "retrieved_count": 12,
-          "bm25_ms": 10.1,
-          "vector_ms": 12.0
+          "bm25_ms": 21.0,
+          "vector_ms": 28.6
         },
         "light_rag": {
-          "answer": "Graph retrieval identified 5 entity node(s): JJ Roy, AS Roy, FA Allen, FH Allen, Royal Challengers Bangalore. Personalised PageRank surfaced a 2143-word context subgraph. Context excerpt: JJ Roy is an IPL player. AS Roy is an IPL player. FA Allen is an IPL player. FH Allen is an IPL player. Royal Challengers Bangalore is an IPL team. Royal Challengers Bangalore beat Kolkata Knight Riders by 9 wickets. Royal Challengers Bangalore beat Mumbai Indians by 39 runs. Royal Challengers Banga...",
+          "answer": "",
           "answer_f1": 0.0,
           "context_recall": 0.0,
-          "latency_ms": 3.3,
-          "cost_usd": 0.0,
-          "use_mock": true,
+          "latency_ms": 3221.3,
+          "cost_usd": 0.001253,
+          "use_mock": false,
           "seed_count": 5,
           "top_node_count": 30,
-          "graph_ms": 2.8
+          "graph_ms": 10.3
         }
       }
     },
@@ -1606,39 +1607,39 @@
       "expected_best": "light_rag",
       "category": "relational",
       "difficulty": "medium",
-      "winner": "hybrid_rag",
+      "winner": "text_to_sql",
       "results": {
         "text_to_sql": {
-          "answer": "Top row: ('mock has no canned SQL for this question',)",
-          "answer_f1": 0.0769,
-          "context_recall": 0.0,
-          "latency_ms": 0.4,
-          "cost_usd": 0.0,
-          "use_mock": true,
-          "sql": "SELECT 'mock has no canned SQL for this question' AS note;",
-          "row_count": 1
-        },
-        "hybrid_rag": {
-          "answer": "Retrieved 12 chunks. Top match: \"In IPL season 2008, on 2008-05-24, Chennai Super Kings played Rajasthan Royals at MA Chidambaram Stadium, Chepauk in Chennai. Rajasthan Roya...\"",
-          "answer_f1": 0.0976,
-          "context_recall": 0.0,
-          "latency_ms": 33.2,
-          "cost_usd": 0.0,
-          "use_mock": true,
-          "retrieved_count": 12,
-          "bm25_ms": 13.7,
-          "vector_ms": 19.4
-        },
-        "light_rag": {
-          "answer": "Graph retrieval identified 25 entity node(s): Arun Jaitley Stadium, Barabati Stadium, Brabourne Stadium, Dr. Y.S. Rajasekhara Reddy ACA-VDCA Cricket Stadium, Dubai International Cricket Stadium. Personalised PageRank surfaced a 1248-word context subgraph. Context excerpt: Arun Jaitley Stadium is a venue in Delhi. Barabati Stadium is a venue in Cuttack. Brabourne Stadium is a venue in Mumbai. Dr. Y.S. Rajasekhara Reddy ACA-VDCA Cricket Stadium is a venue in Visakhapatnam. Dubai International Cricket Stadium is a venue. Dubai International Cricket Stadium is a venue in...",
+          "answer": "",
           "answer_f1": 0.0,
           "context_recall": 0.0,
-          "latency_ms": 4.4,
+          "latency_ms": 0.0,
           "cost_usd": 0.0,
           "use_mock": true,
+          "sql": "",
+          "row_count": 0
+        },
+        "hybrid_rag": {
+          "answer": "Based on the provided context, no single player won more than one Player of the Match award at MA Chidambaram Stadium; multiple players each won one award.",
+          "answer_f1": 0.0,
+          "context_recall": 0.0,
+          "latency_ms": 3187.3,
+          "cost_usd": 0.000494,
+          "use_mock": false,
+          "retrieved_count": 12,
+          "bm25_ms": 50.9,
+          "vector_ms": 66.5
+        },
+        "light_rag": {
+          "answer": "The graph context does not include any information about Player of the Match awards, so it cannot be determined.",
+          "answer_f1": 0.0,
+          "context_recall": 0.0,
+          "latency_ms": 1731.0,
+          "cost_usd": 0.000638,
+          "use_mock": false,
           "seed_count": 25,
           "top_node_count": 30,
-          "graph_ms": 3.8
+          "graph_ms": 18.2
         }
       }
     },
@@ -1652,36 +1653,36 @@
       "winner": "light_rag",
       "results": {
         "text_to_sql": {
-          "answer": "Top row: ('mock has no canned SQL for this question',)",
-          "answer_f1": 0.0,
-          "context_recall": 0.0,
-          "latency_ms": 0.4,
-          "cost_usd": 0.0,
-          "use_mock": true,
-          "sql": "SELECT 'mock has no canned SQL for this question' AS note;",
-          "row_count": 1
+          "answer": "No IPL teams are listed for Suresh Raina in the available data.",
+          "answer_f1": 0.25,
+          "context_recall": 0.25,
+          "latency_ms": 8976.5,
+          "cost_usd": 0.001299,
+          "use_mock": false,
+          "sql": "",
+          "row_count": 0
         },
         "hybrid_rag": {
-          "answer": "Retrieved 12 chunks. SK Raina is the most frequently mentioned player in this context.",
-          "answer_f1": 0.1111,
+          "answer": "Based on the context, Suresh Raina has played for Gujarat Lions (in 2016 and 2017) and Chennai Super Kings (in several seasons including 2008, 2010, 2015, 2018, 2019, and 2021).",
+          "answer_f1": 0.5517,
           "context_recall": 0.0,
-          "latency_ms": 23.3,
-          "cost_usd": 0.0,
-          "use_mock": true,
+          "latency_ms": 1951.4,
+          "cost_usd": 0.00041,
+          "use_mock": false,
           "retrieved_count": 12,
-          "bm25_ms": 10.0,
-          "vector_ms": 13.3
+          "bm25_ms": 34.6,
+          "vector_ms": 45.0
         },
         "light_rag": {
-          "answer": "Graph retrieval identified 1 entity node(s): SK Raina. Personalised PageRank surfaced a 2678-word context subgraph. Context excerpt: SK Raina is an IPL player. SK Raina was player of the match for Chennai Super Kings 12 time(s). SK Raina was player of the match for Gujarat Lions 2 time(s). Chennai Super Kings beat Mumbai Indians by 8 wickets. Chennai Super Kings played at Eden Gardens in 2015. Chennai Super Kings played at Wankhe...",
-          "answer_f1": 0.2154,
-          "context_recall": 0.875,
-          "latency_ms": 3.7,
-          "cost_usd": 0.0,
-          "use_mock": true,
+          "answer": "Suresh Raina has played for Chennai Super Kings and Gujarat Lions.",
+          "answer_f1": 1.0,
+          "context_recall": 1.0,
+          "latency_ms": 1445.1,
+          "cost_usd": 0.001231,
+          "use_mock": false,
           "seed_count": 1,
           "top_node_count": 30,
-          "graph_ms": 2.8
+          "graph_ms": 18.2
         }
       }
     },
@@ -1692,39 +1693,39 @@
       "expected_best": "light_rag",
       "category": "relational",
       "difficulty": "medium",
-      "winner": "hybrid_rag",
+      "winner": "text_to_sql",
       "results": {
         "text_to_sql": {
-          "answer": "Top row: ('mock has no canned SQL for this question',)",
-          "answer_f1": 0.0769,
-          "context_recall": 0.0,
-          "latency_ms": 0.5,
-          "cost_usd": 0.0,
-          "use_mock": true,
-          "sql": "SELECT 'mock has no canned SQL for this question' AS note;",
+          "answer": "RG Sharma won the most Player of the Match awards at Wankhede Stadium with 8 awards.",
+          "answer_f1": 0.2667,
+          "context_recall": 0.1579,
+          "latency_ms": 4214.9,
+          "cost_usd": 0.001013,
+          "use_mock": false,
+          "sql": "SELECT p.player_name, COUNT(*) AS awards\nFROM matches m\nJOIN venues v ON m.venue_id = v.venue_id\nJOIN players p ON m.player_of_match_id = p.player_id\nWHERE v.venue_name LIKE '%Wankhede%'\nGROUP BY m.player_of_match_id, p.player_name\nORDER BY awards DESC\nLIMIT 1",
           "row_count": 1
         },
         "hybrid_rag": {
-          "answer": "Retrieved 12 chunks. Top match: \"In IPL season 2015, on 2015-05-01, Mumbai Indians played Rajasthan Royals at Wankhede Stadium in Mumbai. Mumbai Indians beat Rajasthan Royal...\"",
-          "answer_f1": 0.0976,
-          "context_recall": 0.0,
-          "latency_ms": 38.3,
-          "cost_usd": 0.0,
-          "use_mock": true,
-          "retrieved_count": 12,
-          "bm25_ms": 18.7,
-          "vector_ms": 19.5
-        },
-        "light_rag": {
-          "answer": "Graph retrieval identified 24 entity node(s): Arun Jaitley Stadium, Barabati Stadium, Brabourne Stadium, Dr. Y.S. Rajasekhara Reddy ACA-VDCA Cricket Stadium, Dubai International Cricket Stadium. Personalised PageRank surfaced a 1235-word context subgraph. Context excerpt: Arun Jaitley Stadium is a venue in Delhi. Barabati Stadium is a venue in Cuttack. Brabourne Stadium is a venue in Mumbai. Dr. Y.S. Rajasekhara Reddy ACA-VDCA Cricket Stadium is a venue in Visakhapatnam. Dubai International Cricket Stadium is a venue. Dubai International Cricket Stadium is a venue in...",
+          "answer": "",
           "answer_f1": 0.0,
           "context_recall": 0.0,
-          "latency_ms": 4.6,
-          "cost_usd": 0.0,
-          "use_mock": true,
+          "latency_ms": 3133.2,
+          "cost_usd": 0.000518,
+          "use_mock": false,
+          "retrieved_count": 12,
+          "bm25_ms": 52.1,
+          "vector_ms": 59.1
+        },
+        "light_rag": {
+          "answer": "The graph context does not contain any information about Player of the Match awards, so I cannot determine who won the most at Wankhede Stadium.",
+          "answer_f1": 0.0526,
+          "context_recall": 0.0526,
+          "latency_ms": 1960.7,
+          "cost_usd": 0.000609,
+          "use_mock": false,
           "seed_count": 24,
           "top_node_count": 30,
-          "graph_ms": 4.1
+          "graph_ms": 13.1
         }
       }
     },
@@ -1738,36 +1739,36 @@
       "winner": "light_rag",
       "results": {
         "text_to_sql": {
-          "answer": "Top row: ('mock has no canned SQL for this question',)",
+          "answer": "",
           "answer_f1": 0.0,
           "context_recall": 0.0,
-          "latency_ms": 0.7,
-          "cost_usd": 0.0,
-          "use_mock": true,
-          "sql": "SELECT 'mock has no canned SQL for this question' AS note;",
-          "row_count": 1
+          "latency_ms": 10264.1,
+          "cost_usd": 0.0014,
+          "use_mock": false,
+          "sql": "",
+          "row_count": 0
         },
         "hybrid_rag": {
-          "answer": "Retrieved 12 chunks. V Sehwag is the most frequently mentioned player in this context.",
-          "answer_f1": 0.1111,
+          "answer": "Based on the retrieved context, Virender Sehwag played for Delhi Daredevils (2008–2013 seasons) and Kings XI Punjab (2014–2015 seasons).",
+          "answer_f1": 0.6957,
           "context_recall": 0.0,
-          "latency_ms": 34.7,
-          "cost_usd": 0.0,
-          "use_mock": true,
+          "latency_ms": 1763.0,
+          "cost_usd": 0.000371,
+          "use_mock": false,
           "retrieved_count": 12,
-          "bm25_ms": 15.1,
-          "vector_ms": 19.5
+          "bm25_ms": 13.0,
+          "vector_ms": 27.4
         },
         "light_rag": {
-          "answer": "Graph retrieval identified 1 entity node(s): V Sehwag. Personalised PageRank surfaced a 2699-word context subgraph. Context excerpt: V Sehwag is an IPL player. V Sehwag was player of the match for Kings XI Punjab 1 time(s). V Sehwag was player of the match for Delhi Daredevils 10 time(s). Kings XI Punjab beat Delhi Daredevils by 9 runs. Kings XI Punjab played at Eden Gardens in 2016. Kings XI Punjab played at Wankhede Stadium in ...",
-          "answer_f1": 0.2121,
-          "context_recall": 0.875,
-          "latency_ms": 4.9,
-          "cost_usd": 0.0,
-          "use_mock": true,
+          "answer": "Virender Sehwag has played for Kings XI Punjab and Delhi Daredevils.",
+          "answer_f1": 1.0,
+          "context_recall": 1.0,
+          "latency_ms": 1896.9,
+          "cost_usd": 0.001301,
+          "use_mock": false,
           "seed_count": 1,
           "top_node_count": 30,
-          "graph_ms": 4.0
+          "graph_ms": 7.9
         }
       }
     },
@@ -1781,36 +1782,36 @@
       "winner": "text_to_sql",
       "results": {
         "text_to_sql": {
-          "answer": "Top row: ('mock has no canned SQL for this question',)",
-          "answer_f1": 0.0769,
-          "context_recall": 0.0,
-          "latency_ms": 0.6,
-          "cost_usd": 0.0,
-          "use_mock": true,
-          "sql": "SELECT 'mock has no canned SQL for this question' AS note;",
-          "row_count": 1
-        },
-        "hybrid_rag": {
-          "answer": "Retrieved 12 chunks. Top match: \"In IPL season 2023, on 2023-04-14, Sunrisers Hyderabad played Kolkata Knight Riders at Eden Gardens, Kolkata in Kolkata. Sunrisers Hyderabad...\"",
-          "answer_f1": 0.05,
-          "context_recall": 0.0,
-          "latency_ms": 43.8,
-          "cost_usd": 0.0,
-          "use_mock": true,
-          "retrieved_count": 12,
-          "bm25_ms": 24.2,
-          "vector_ms": 19.5
-        },
-        "light_rag": {
-          "answer": "Graph retrieval identified 2 entity node(s): Kolkata Knight Riders, Eden Gardens, Kolkata. Personalised PageRank surfaced a 2777-word context subgraph. Context excerpt: Kolkata Knight Riders is an IPL team. Eden Gardens, Kolkata is a venue in Kolkata. Kolkata Knight Riders played at Eden Gardens, Kolkata in 2026. Kolkata Knight Riders beat Mumbai Indians by 4 wickets. Kolkata Knight Riders played at Eden Gardens in 2016. Kolkata Knight Riders played at Wankhede Sta...",
+          "answer": "",
           "answer_f1": 0.0,
           "context_recall": 0.0,
-          "latency_ms": 4.6,
+          "latency_ms": 0.0,
           "cost_usd": 0.0,
           "use_mock": true,
+          "sql": "",
+          "row_count": 0
+        },
+        "hybrid_rag": {
+          "answer": "",
+          "answer_f1": 0.0,
+          "context_recall": 0.0,
+          "latency_ms": 3297.3,
+          "cost_usd": 0.000524,
+          "use_mock": false,
+          "retrieved_count": 12,
+          "bm25_ms": 30.7,
+          "vector_ms": 25.7
+        },
+        "light_rag": {
+          "answer": "The graph does not contain any information about Player of the Match awards, so I cannot answer this question.",
+          "answer_f1": 0.0,
+          "context_recall": 0.0,
+          "latency_ms": 1686.9,
+          "cost_usd": 0.001253,
+          "use_mock": false,
           "seed_count": 2,
           "top_node_count": 30,
-          "graph_ms": 3.7
+          "graph_ms": 8.2
         }
       }
     },
@@ -1821,39 +1822,39 @@
       "expected_best": "light_rag",
       "category": "relational",
       "difficulty": "easy",
-      "winner": "light_rag",
+      "winner": "text_to_sql",
       "results": {
         "text_to_sql": {
-          "answer": "Top row: ('mock has no canned SQL for this question',)",
-          "answer_f1": 0.0,
-          "context_recall": 0.0,
-          "latency_ms": 0.5,
-          "cost_usd": 0.0,
-          "use_mock": true,
-          "sql": "SELECT 'mock has no canned SQL for this question' AS note;",
+          "answer": "Mumbai Indians play most of their matches at Wankhede Stadium, with 67 matches.",
+          "answer_f1": 0.6923,
+          "context_recall": 0.2941,
+          "latency_ms": 4473.0,
+          "cost_usd": 0.00103,
+          "use_mock": false,
+          "sql": "SELECT v.venue_name, COUNT(*) AS match_count\nFROM matches m\nJOIN venues v ON m.venue_id = v.venue_id\nJOIN teams t ON (m.team1_id = t.team_id OR m.team2_id = t.team_id)\nWHERE t.team_name = 'Mumbai Indians'\nGROUP BY v.venue_name\nORDER BY match_count DESC\nLIMIT 1;",
           "row_count": 1
         },
         "hybrid_rag": {
-          "answer": "Retrieved 12 chunks. JJ Bumrah is the most frequently mentioned player in this context.",
-          "answer_f1": 0.0741,
+          "answer": "Based solely on the provided context, there is not enough information to determine where Mumbai Indians play most of their matches, as no comparative data on match locations is given.",
+          "answer_f1": 0.2564,
           "context_recall": 0.0,
-          "latency_ms": 33.0,
-          "cost_usd": 0.0,
-          "use_mock": true,
+          "latency_ms": 2412.2,
+          "cost_usd": 0.000328,
+          "use_mock": false,
           "retrieved_count": 12,
-          "bm25_ms": 15.2,
-          "vector_ms": 17.7
+          "bm25_ms": 21.8,
+          "vector_ms": 22.4
         },
         "light_rag": {
-          "answer": "Graph retrieval identified 5 entity node(s): Mumbai Indians, Brabourne Stadium, Mumbai, Dr DY Patil Sports Academy, Mumbai, Dr DY Patil Sports Academy, Mumbai, Wankhede Stadium, Mumbai. Personalised PageRank surfaced a 2310-word context subgraph. Context excerpt: Mumbai Indians is an IPL team. Brabourne Stadium, Mumbai is a venue in Mumbai. Dr DY Patil Sports Academy, Mumbai is a venue in Mumbai. Dr DY Patil Sports Academy, Mumbai is a venue in Navi Mumbai. Wankhede Stadium, Mumbai is a venue in Mumbai. Mumbai Indians played at Wankhede Stadium, Mumbai in 20...",
-          "answer_f1": 0.1573,
-          "context_recall": 0.4118,
-          "latency_ms": 4.9,
-          "cost_usd": 0.0,
-          "use_mock": true,
+          "answer": "",
+          "answer_f1": 0.0,
+          "context_recall": 0.0,
+          "latency_ms": 3416.4,
+          "cost_usd": 0.00135,
+          "use_mock": false,
           "seed_count": 5,
           "top_node_count": 30,
-          "graph_ms": 4.1
+          "graph_ms": 7.6
         }
       }
     },
@@ -1864,39 +1865,39 @@
       "expected_best": "light_rag",
       "category": "relational",
       "difficulty": "easy",
-      "winner": "light_rag",
+      "winner": "hybrid_rag",
       "results": {
         "text_to_sql": {
-          "answer": "Top row: ('mock has no canned SQL for this question',)",
+          "answer": "",
           "answer_f1": 0.0,
-          "context_recall": 0.0,
-          "latency_ms": 0.6,
-          "cost_usd": 0.0,
-          "use_mock": true,
-          "sql": "SELECT 'mock has no canned SQL for this question' AS note;",
-          "row_count": 1
+          "context_recall": 0.3846,
+          "latency_ms": 8570.9,
+          "cost_usd": 0.001284,
+          "use_mock": false,
+          "sql": "SELECT DISTINCT t.team_name\nFROM teams t\nJOIN innings i ON i.batting_team_id = t.team_id\nJOIN deliveries d ON d.innings_id = i.innings_id\nJOIN players p ON p.player_id = d.batter_id\nWHERE p.player_name LIKE '%Tendulkar%'",
+          "row_count": 2
         },
         "hybrid_rag": {
-          "answer": "Retrieved 12 chunks. SR Tendulkar is the most frequently mentioned player in this context.",
-          "answer_f1": 0.087,
+          "answer": "Based on the retrieved context, Sachin Tendulkar played only for Mumbai Indians in the IPL.",
+          "answer_f1": 0.4348,
           "context_recall": 0.0,
-          "latency_ms": 30.7,
-          "cost_usd": 0.0,
-          "use_mock": true,
+          "latency_ms": 1782.1,
+          "cost_usd": 0.000352,
+          "use_mock": false,
           "retrieved_count": 12,
-          "bm25_ms": 13.7,
-          "vector_ms": 16.9
+          "bm25_ms": 21.0,
+          "vector_ms": 25.6
         },
         "light_rag": {
-          "answer": "Graph retrieval identified 2 entity node(s): Arjun Tendulkar, SR Tendulkar. Personalised PageRank surfaced a 2864-word context subgraph. Context excerpt: Arjun Tendulkar is an IPL player. SR Tendulkar is an IPL player. Arjun Tendulkar played for Mumbai Indians in 2023, 2024. Arjun Tendulkar played for Lucknow Super Giants in 2026. SR Tendulkar was player of the match for Mumbai Indians 8 time(s). Mumbai Indians beat Lucknow Super Giants by 6 wickets....",
-          "answer_f1": 0.2029,
-          "context_recall": 0.5385,
-          "latency_ms": 3.9,
-          "cost_usd": 0.0,
-          "use_mock": true,
+          "answer": "Based on the graph context, SR Tendulkar (Sach",
+          "answer_f1": 0.1053,
+          "context_recall": 0.0769,
+          "latency_ms": 3758.0,
+          "cost_usd": 0.00157,
+          "use_mock": false,
           "seed_count": 2,
           "top_node_count": 30,
-          "graph_ms": 3.1
+          "graph_ms": 9.5
         }
       }
     },
@@ -1907,39 +1908,39 @@
       "expected_best": "light_rag",
       "category": "relational",
       "difficulty": "hard",
-      "winner": "hybrid_rag",
+      "winner": "text_to_sql",
       "results": {
         "text_to_sql": {
-          "answer": "Top row: ('mock has no canned SQL for this question',)",
-          "answer_f1": 0.0,
-          "context_recall": 0.0,
-          "latency_ms": 0.7,
-          "cost_usd": 0.0,
-          "use_mock": true,
-          "sql": "SELECT 'mock has no canned SQL for this question' AS note;",
-          "row_count": 1
+          "answer": "No players have played for both Mumbai Indians and Chennai Super Kings.",
+          "answer_f1": 0.1017,
+          "context_recall": 0.06,
+          "latency_ms": 8460.5,
+          "cost_usd": 0.001238,
+          "use_mock": false,
+          "sql": "",
+          "row_count": 0
         },
         "hybrid_rag": {
-          "answer": "Retrieved 12 chunks. Top match: \"In IPL season 2024, on 2024-04-14, Chennai Super Kings played Mumbai Indians at Wankhede Stadium, Mumbai in Mumbai. Chennai Super Kings beat...\"",
-          "answer_f1": 0.0274,
+          "answer": "The provided context lists only the Player of the Match for each match and does not contain any squad or roster information, so it does not specify which players have played for both teams.",
+          "answer_f1": 0.0822,
           "context_recall": 0.0,
-          "latency_ms": 25.4,
-          "cost_usd": 0.0,
-          "use_mock": true,
+          "latency_ms": 1989.8,
+          "cost_usd": 0.000324,
+          "use_mock": false,
           "retrieved_count": 12,
-          "bm25_ms": 11.8,
-          "vector_ms": 13.5
+          "bm25_ms": 28.7,
+          "vector_ms": 22.2
         },
         "light_rag": {
-          "answer": "Graph retrieval identified 8 entity node(s): Mumbai Indians, Chennai Super Kings, Punjab Kings, Brabourne Stadium, Mumbai, Dr DY Patil Sports Academy, Mumbai. Personalised PageRank surfaced a 3101-word context subgraph. Context excerpt: Mumbai Indians is an IPL team. Chennai Super Kings is an IPL team. Punjab Kings is an IPL team. Brabourne Stadium, Mumbai is a venue in Mumbai. Dr DY Patil Sports Academy, Mumbai is a venue in Mumbai. Dr DY Patil Sports Academy, Mumbai is a venue in Navi Mumbai. Wankhede Stadium, Mumbai is a venue i...",
-          "answer_f1": 0.0167,
-          "context_recall": 0.02,
-          "latency_ms": 3.5,
-          "cost_usd": 0.0,
-          "use_mock": true,
+          "answer": "Based solely on the provided graph context, there is no information about individual players or their team affiliations. Therefore, I cannot identify which players have played for both Mumbai Indians and Chennai Super Kings.",
+          "answer_f1": 0.08,
+          "context_recall": 0.06,
+          "latency_ms": 3939.1,
+          "cost_usd": 0.001586,
+          "use_mock": false,
           "seed_count": 8,
           "top_node_count": 30,
-          "graph_ms": 2.8
+          "graph_ms": 13.0
         }
       }
     },
@@ -1950,39 +1951,39 @@
       "expected_best": "light_rag",
       "category": "relational",
       "difficulty": "medium",
-      "winner": "hybrid_rag",
+      "winner": "text_to_sql",
       "results": {
         "text_to_sql": {
-          "answer": "Top row: ('mock has no canned SQL for this question',)",
-          "answer_f1": 0.0741,
-          "context_recall": 0.0,
-          "latency_ms": 0.4,
-          "cost_usd": 0.0,
-          "use_mock": true,
-          "sql": "SELECT 'mock has no canned SQL for this question' AS note;",
-          "row_count": 1
+          "answer": "Rohit Sharma won the most Player of the Match awards at Eden Gardens with 3 awards.",
+          "answer_f1": 0.1935,
+          "context_recall": 0.4,
+          "latency_ms": 7691.0,
+          "cost_usd": 0.001308,
+          "use_mock": false,
+          "sql": "SELECT p.player_name, COUNT(*) AS awards\nFROM matches m\nJOIN venues v ON m.venue_id = v.venue_id\nJOIN players p ON m.player_of_match_id = p.player_id\nWHERE v.venue_name LIKE '%Eden Gardens%'\nGROUP BY m.player_of_match_id, p.player_name",
+          "row_count": 66
         },
         "hybrid_rag": {
-          "answer": "Retrieved 12 chunks. Top match: \"In IPL season 2018, on 2018-05-09, Mumbai Indians played Kolkata Knight Riders at Eden Gardens in Kolkata. Mumbai Indians beat Kolkata Knigh...\"",
-          "answer_f1": 0.186,
+          "answer": "",
+          "answer_f1": 0.0,
           "context_recall": 0.0,
-          "latency_ms": 23.7,
-          "cost_usd": 0.0,
-          "use_mock": true,
+          "latency_ms": 2791.8,
+          "cost_usd": 0.000517,
+          "use_mock": false,
           "retrieved_count": 12,
-          "bm25_ms": 12.1,
-          "vector_ms": 11.5
+          "bm25_ms": 30.2,
+          "vector_ms": 22.0
         },
         "light_rag": {
-          "answer": "Graph retrieval identified 1 entity node(s): Eden Gardens. Personalised PageRank surfaced a 2590-word context subgraph. Context excerpt: Eden Gardens is a venue in Kolkata. Mumbai Indians played at Eden Gardens in 2016. Mumbai Indians beat Kolkata Knight Riders by 6 wickets. Mumbai Indians played at Wankhede Stadium in 2016. Mumbai Indians beat Chennai Super Kings by 41 runs. Mumbai Indians beat Rajasthan Royals by 8 runs. Mumbai Ind...",
-          "answer_f1": 0.0519,
+          "answer": "The context provided does not include any information about Player of the Match awards, so it is insufficient to determine who won the most at Eden Gardens.",
+          "answer_f1": 0.1053,
           "context_recall": 0.1,
-          "latency_ms": 3.5,
-          "cost_usd": 0.0,
-          "use_mock": true,
+          "latency_ms": 2163.1,
+          "cost_usd": 0.001267,
+          "use_mock": false,
           "seed_count": 1,
           "top_node_count": 30,
-          "graph_ms": 2.9
+          "graph_ms": 9.1
         }
       }
     },
@@ -1996,36 +1997,36 @@
       "winner": "light_rag",
       "results": {
         "text_to_sql": {
-          "answer": "Top row: ('mock has no canned SQL for this question',)",
-          "answer_f1": 0.0,
-          "context_recall": 0.0,
-          "latency_ms": 0.4,
-          "cost_usd": 0.0,
-          "use_mock": true,
-          "sql": "SELECT 'mock has no canned SQL for this question' AS note;",
-          "row_count": 1
+          "answer": "The query returned no rows, so no players were identified.",
+          "answer_f1": 0.0625,
+          "context_recall": 0.0417,
+          "latency_ms": 8315.2,
+          "cost_usd": 0.001268,
+          "use_mock": false,
+          "sql": "",
+          "row_count": 0
         },
         "hybrid_rag": {
-          "answer": "Retrieved 12 chunks. Shakib Al Hasan is the most frequently mentioned player in this context.",
-          "answer_f1": 0.0571,
+          "answer": "Based solely on the provided context, there is not enough information to determine which players have represented the most IPL teams, as it only shows a single team for each player in a given season.",
+          "answer_f1": 0.1702,
           "context_recall": 0.0,
-          "latency_ms": 21.0,
-          "cost_usd": 0.0,
-          "use_mock": true,
+          "latency_ms": 2561.8,
+          "cost_usd": 0.000354,
+          "use_mock": false,
           "retrieved_count": 12,
-          "bm25_ms": 8.5,
-          "vector_ms": 12.5
+          "bm25_ms": 19.5,
+          "vector_ms": 26.9
         },
         "light_rag": {
-          "answer": "Graph retrieval identified 1 entity node(s): KR Sen. Personalised PageRank surfaced a 2606-word context subgraph. Context excerpt: KR Sen is an IPL player. KR Sen played for Rajasthan Royals in 2022, 2023, 2024. Rajasthan Royals beat Mumbai Indians by 30 runs. Rajasthan Royals beat Kolkata Knight Riders by 9 runs. Rajasthan Royals beat Chennai Super Kings by 8 wickets. Rajasthan Royals played at Eden Gardens in 2013. Rajasthan ...",
-          "answer_f1": 0.0732,
-          "context_recall": 0.125,
-          "latency_ms": 4.3,
-          "cost_usd": 0.0,
-          "use_mock": true,
+          "answer": "The context only mentions one player (KR Sen), who played for Rajasthan Royals, so it is insufficient to determine which players have represented the most IPL teams.",
+          "answer_f1": 0.1905,
+          "context_recall": 0.375,
+          "latency_ms": 2402.0,
+          "cost_usd": 0.001297,
+          "use_mock": false,
           "seed_count": 1,
           "top_node_count": 30,
-          "graph_ms": 3.5
+          "graph_ms": 6.6
         }
       }
     },
@@ -2039,36 +2040,36 @@
       "winner": "text_to_sql",
       "results": {
         "text_to_sql": {
-          "answer": "Top row: ('mock has no canned SQL for this question',)",
-          "answer_f1": 0.0769,
-          "context_recall": 0.0,
-          "latency_ms": 0.4,
-          "cost_usd": 0.0,
-          "use_mock": true,
-          "sql": "SELECT 'mock has no canned SQL for this question' AS note;",
+          "answer": "David Warner won the most Player of the Match awards in Hyderabad with 9.",
+          "answer_f1": 0.2143,
+          "context_recall": 0.1579,
+          "latency_ms": 5117.5,
+          "cost_usd": 0.001065,
+          "use_mock": false,
+          "sql": "SELECT p.player_name, COUNT(*) AS awards\nFROM matches m\nJOIN venues v ON m.venue_id = v.venue_id\nJOIN players p ON m.player_of_match_id = p.player_id\nWHERE v.city = 'Hyderabad'\nGROUP BY p.player_id, p.player_name\nORDER BY awards DESC\nLIMIT 1",
           "row_count": 1
         },
         "hybrid_rag": {
-          "answer": "Retrieved 12 chunks. N Jagadeesan is the most frequently mentioned player in this context.",
+          "answer": "",
           "answer_f1": 0.0,
           "context_recall": 0.0,
-          "latency_ms": 24.7,
-          "cost_usd": 0.0,
-          "use_mock": true,
+          "latency_ms": 3693.8,
+          "cost_usd": 0.000549,
+          "use_mock": false,
           "retrieved_count": 12,
-          "bm25_ms": 11.2,
-          "vector_ms": 13.5
+          "bm25_ms": 19.6,
+          "vector_ms": 28.5
         },
         "light_rag": {
-          "answer": "Graph retrieval identified 2 entity node(s): Sunrisers Hyderabad, Rajiv Gandhi International Stadium, Uppal, Hyderabad. Personalised PageRank surfaced a 2774-word context subgraph. Context excerpt: Sunrisers Hyderabad is an IPL team. Rajiv Gandhi International Stadium, Uppal, Hyderabad is a venue in Hyderabad. Sunrisers Hyderabad played at Rajiv Gandhi International Stadium, Uppal, Hyderabad in 2026. Sunrisers Hyderabad beat Mumbai Indians by 6 wickets. Sunrisers Hyderabad beat Kolkata Knight ...",
-          "answer_f1": 0.0267,
+          "answer": "The graph context does not include any data about Player of the Match awards, so I cannot determine who won the most in Hyderabad.",
+          "answer_f1": 0.0541,
           "context_recall": 0.0526,
-          "latency_ms": 3.5,
-          "cost_usd": 0.0,
-          "use_mock": true,
+          "latency_ms": 1906.0,
+          "cost_usd": 0.001294,
+          "use_mock": false,
           "seed_count": 2,
           "top_node_count": 30,
-          "graph_ms": 2.9
+          "graph_ms": 6.2
         }
       }
     },
@@ -2082,36 +2083,36 @@
       "winner": "light_rag",
       "results": {
         "text_to_sql": {
-          "answer": "Top row: ('mock has no canned SQL for this question',)",
-          "answer_f1": 0.0,
-          "context_recall": 0.0,
-          "latency_ms": 0.4,
-          "cost_usd": 0.0,
-          "use_mock": true,
-          "sql": "SELECT 'mock has no canned SQL for this question' AS note;",
-          "row_count": 1
+          "answer": "No IPL team information is available for Chris Gayle in the provided data.",
+          "answer_f1": 0.1739,
+          "context_recall": 0.1429,
+          "latency_ms": 8251.2,
+          "cost_usd": 0.001233,
+          "use_mock": false,
+          "sql": "",
+          "row_count": 0
         },
         "hybrid_rag": {
-          "answer": "Retrieved 12 chunks. CH Gayle is the most frequently mentioned player in this context.",
-          "answer_f1": 0.0833,
+          "answer": "Based on the context, Chris Gayle has played for Royal Challengers Bangalore, Kings XI Punjab (also called Punjab Kings), and Kolkata Knight Riders.",
+          "answer_f1": 0.875,
           "context_recall": 0.0,
-          "latency_ms": 20.1,
-          "cost_usd": 0.0,
-          "use_mock": true,
+          "latency_ms": 2591.1,
+          "cost_usd": 0.000464,
+          "use_mock": false,
           "retrieved_count": 12,
-          "bm25_ms": 8.7,
-          "vector_ms": 11.3
+          "bm25_ms": 16.6,
+          "vector_ms": 25.0
         },
         "light_rag": {
-          "answer": "Graph retrieval identified 1 entity node(s): CH Gayle. Personalised PageRank surfaced a 2750-word context subgraph. Context excerpt: CH Gayle is an IPL player. CH Gayle was player of the match for Kolkata Knight Riders 1 time(s). CH Gayle was player of the match for Royal Challengers Bangalore 17 time(s). CH Gayle was player of the match for Kings XI Punjab 4 time(s). CH Gayle played for Punjab Kings in 2021. Kolkata Knight Rider...",
-          "answer_f1": 0.3714,
-          "context_recall": 0.9286,
-          "latency_ms": 3.5,
-          "cost_usd": 0.0,
-          "use_mock": true,
+          "answer": "Based on the graph, Chris Gayle has played for Kolkata Knight Riders, Royal Challengers Bangalore, Kings XI Punjab, and Punjab Kings.",
+          "answer_f1": 0.9333,
+          "context_recall": 1.0,
+          "latency_ms": 2726.2,
+          "cost_usd": 0.001418,
+          "use_mock": false,
           "seed_count": 1,
           "top_node_count": 30,
-          "graph_ms": 2.8
+          "graph_ms": 7.5
         }
       }
     },
@@ -2122,39 +2123,39 @@
       "expected_best": "light_rag",
       "category": "relational",
       "difficulty": "medium",
-      "winner": "light_rag",
+      "winner": "text_to_sql",
       "results": {
         "text_to_sql": {
-          "answer": "Top row: ('mock has no canned SQL for this question',)",
-          "answer_f1": 0.0,
-          "context_recall": 0.0,
-          "latency_ms": 0.4,
-          "cost_usd": 0.0,
-          "use_mock": true,
-          "sql": "SELECT 'mock has no canned SQL for this question' AS note;",
-          "row_count": 1
+          "answer": "Chennai Super Kings have played most frequently at MA Chidambaram Stadium, Chepauk with 47 matches.",
+          "answer_f1": 0.3404,
+          "context_recall": 0.7143,
+          "latency_ms": 8003.9,
+          "cost_usd": 0.001384,
+          "use_mock": false,
+          "sql": "SELECT v.venue_name, COUNT(*) AS matches_played\nFROM matches m\nJOIN venues v ON m.venue_id = v.venue_id\nWHERE m.team1_id = (SELECT team_id FROM teams WHERE team_name = 'Chennai Super Kings')\n   OR m.team2_id = (SELECT team_id FROM teams WHERE team_name = 'Chennai Super Kings')\nGROUP BY v.venue_id, v.venue_name\nORDER BY matches_played DESC\nLIMIT 10",
+          "row_count": 10
         },
         "hybrid_rag": {
-          "answer": "Retrieved 12 chunks. Top match: \"In IPL season 2025, on 2025-04-30, Chennai Super Kings played Punjab Kings at MA Chidambaram Stadium, Chepauk, Chennai in Chennai. Punjab Ki...\"",
-          "answer_f1": 0.2414,
+          "answer": "",
+          "answer_f1": 0.0,
           "context_recall": 0.0,
-          "latency_ms": 22.7,
-          "cost_usd": 0.0,
-          "use_mock": true,
+          "latency_ms": 3034.2,
+          "cost_usd": 0.000537,
+          "use_mock": false,
           "retrieved_count": 12,
-          "bm25_ms": 11.0,
-          "vector_ms": 11.5
+          "bm25_ms": 23.9,
+          "vector_ms": 29.5
         },
         "light_rag": {
-          "answer": "Graph retrieval identified 3 entity node(s): Chennai Super Kings, Punjab Kings, MA Chidambaram Stadium, Chepauk, Chennai. Personalised PageRank surfaced a 3056-word context subgraph. Context excerpt: Chennai Super Kings is an IPL team. Punjab Kings is an IPL team. MA Chidambaram Stadium, Chepauk, Chennai is a venue in Chennai. Chennai Super Kings played at MA Chidambaram Stadium, Chepauk, Chennai in 2026. Chennai Super Kings beat Punjab Kings by 28 runs. Chennai Super Kings beat Mumbai Indians b...",
-          "answer_f1": 0.28,
-          "context_recall": 0.4857,
-          "latency_ms": 3.4,
-          "cost_usd": 0.0,
-          "use_mock": true,
+          "answer": "",
+          "answer_f1": 0.0,
+          "context_recall": 0.0,
+          "latency_ms": 3713.2,
+          "cost_usd": 0.00165,
+          "use_mock": false,
           "seed_count": 3,
           "top_node_count": 30,
-          "graph_ms": 2.7
+          "graph_ms": 6.8
         }
       }
     }
@@ -2162,63 +2163,64 @@
   "summary": {
     "by_arch": {
       "text_to_sql": {
-        "avg_answer_f1": 0.0138,
-        "avg_context_recall": 0.0033,
-        "avg_latency_ms": 0.5,
-        "total_wins": 9,
-        "expected_wins": 5,
+        "avg_answer_f1": 0.2097,
+        "avg_context_recall": 0.2416,
+        "avg_latency_ms": 7255.2,
+        "total_wins": 25,
+        "expected_wins": 10,
         "expected_total": 20,
-        "win_rate": 0.18
+        "win_rate": 0.5
       },
       "hybrid_rag": {
-        "avg_answer_f1": 0.0641,
+        "avg_answer_f1": 0.2029,
         "avg_context_recall": 0.0,
-        "avg_latency_ms": 28.6,
+        "avg_latency_ms": 2788.9,
         "total_wins": 14,
-        "expected_wins": 6,
+        "expected_wins": 7,
         "expected_total": 15,
         "win_rate": 0.28
       },
       "light_rag": {
-        "avg_answer_f1": 0.0864,
-        "avg_context_recall": 0.2488,
-        "avg_latency_ms": 4.0,
-        "total_wins": 27,
-        "expected_wins": 8,
+        "avg_answer_f1": 0.1733,
+        "avg_context_recall": 0.2649,
+        "avg_latency_ms": 2614.3,
+        "total_wins": 11,
+        "expected_wins": 5,
         "expected_total": 15,
-        "win_rate": 0.54
+        "win_rate": 0.22
       }
     },
     "by_category": {
-      "narrative": {
-        "total": 15,
+      "factual": {
+        "total": 14,
         "winners": {
-          "light_rag": 7,
-          "text_to_sql": 2,
-          "hybrid_rag": 6
-        }
-      },
-      "temporal": {
-        "total": 6,
-        "winners": {
-          "light_rag": 5,
-          "hybrid_rag": 1
+          "text_to_sql": 7,
+          "hybrid_rag": 4,
+          "light_rag": 3
         }
       },
       "relational": {
         "total": 15,
         "winners": {
-          "light_rag": 8,
-          "hybrid_rag": 5,
-          "text_to_sql": 2
+          "light_rag": 5,
+          "text_to_sql": 9,
+          "hybrid_rag": 1
         }
       },
-      "factual": {
-        "total": 14,
+      "narrative": {
+        "total": 15,
         "winners": {
-          "light_rag": 7,
-          "text_to_sql": 5,
-          "hybrid_rag": 2
+          "hybrid_rag": 7,
+          "text_to_sql": 6,
+          "light_rag": 2
+        }
+      },
+      "temporal": {
+        "total": 6,
+        "winners": {
+          "text_to_sql": 3,
+          "hybrid_rag": 2,
+          "light_rag": 1
         }
       }
     }

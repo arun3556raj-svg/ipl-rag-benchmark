@@ -16,7 +16,7 @@ load_dotenv(Path(__file__).resolve().parent.parent / ".env", override=False)
 
 from openai import OpenAI  # noqa: E402
 
-MODEL    = "deepseek-chat"
+MODEL    = "deepseek-v4-flash"
 BASE_URL = os.getenv("DEEPSEEK_BASE_URL", "https://api.deepseek.com/v1")
 
 # Pricing per million tokens (DeepSeek V3 cache-miss rates, June 2025)
