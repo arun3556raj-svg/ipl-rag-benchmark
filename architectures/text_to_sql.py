@@ -26,7 +26,35 @@ Given the schema and a question, write ONE correct SQLite query.
 Return ONLY the raw SQL — no markdown fences, no explanation, no comments.
 The query must be a SELECT statement.
 
-IMPORTANT: Player names in the database use abbreviated initials format, e.g. "V Kohli" not "Virat Kohli", "MS Dhoni" not "MS Dhoni" (already initials), "RG Sharma" not "Rohit Sharma". Always use LIKE '%Surname%' when filtering by player name, never exact equality on the full first name."""
+HARD RULES — violating any of these produces zero rows:
+
+1. PLAYER NAMES: The database stores abbreviated initials, e.g. "V Kohli" not
+   "Virat Kohli", "RG Sharma" not "Rohit Sharma". Always filter with
+   LIKE '%Surname%' — never exact equality on a full first name.
+
+2. deliveries HAS NO match_id COLUMN. This is the most common mistake.
+   To filter deliveries by season or match, you MUST join through innings:
+     deliveries d
+     JOIN innings i ON i.innings_id = d.innings_id
+     JOIN matches m ON m.match_id = i.match_id
+   Never write d.match_id or deliveries.match_id — that column does not exist.
+
+3. WICKETS: A wicket is a row where d.is_wicket = 1. To count wickets taken
+   by a bowler in a season:
+     SELECT p.player_name, COUNT(*) AS wickets
+     FROM deliveries d
+     JOIN innings i ON i.innings_id = d.innings_id
+     JOIN matches m ON m.match_id = i.match_id
+     JOIN players p ON p.player_id = d.bowler_id
+     WHERE d.is_wicket = 1 AND m.season = <year>
+     GROUP BY d.bowler_id, p.player_name
+     ORDER BY wickets DESC LIMIT 1;
+
+4. RUNS SCORED IN A MATCH/SEASON: Aggregate d.runs_batter per batter per
+   innings — not per delivery. Group by (i.match_id, d.batter_id) or
+   (m.season, d.batter_id) after the deliveries→innings→matches join.
+
+5. SEASON is an integer year (e.g. 2020), not a string."""
 
 _ANSWER_SYSTEM = """You are a cricket analyst. Given the question, the SQL that was run,
 and the result rows, write a single concise sentence answering the question.

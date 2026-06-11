@@ -160,6 +160,25 @@ GROUP BY t.team_id, t.team_name
 ORDER BY win_pct DESC;
 ```
 
+### Most wickets in a specific season (IMPORTANT — deliveries has NO match_id)
+
+```sql
+-- WRONG — d.match_id does not exist, returns 0 rows silently
+-- SELECT p.player_name, COUNT(*) FROM deliveries d JOIN matches m ON m.match_id = d.match_id ...
+
+-- CORRECT — always go through innings
+SELECT p.player_name, COUNT(*) AS wickets
+FROM deliveries d
+JOIN innings i ON i.innings_id = d.innings_id
+JOIN matches m ON m.match_id = i.match_id
+JOIN players p ON p.player_id = d.bowler_id
+WHERE d.is_wicket = 1 AND m.season = 2020
+GROUP BY d.bowler_id, p.player_name
+ORDER BY wickets DESC
+LIMIT 1;
+-- Returns: K Rabada, 32 wickets
+```
+
 ### Player fifty-plus scores and team win status (IMPORTANT join pattern)
 
 ```sql
