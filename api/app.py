@@ -12,11 +12,17 @@ All phases wired:
 from __future__ import annotations
 
 import json as _json
+import os
 from pathlib import Path as _Path
+
+from dotenv import load_dotenv
+load_dotenv(_Path(__file__).resolve().parent.parent / ".env", override=False)
 
 from flask import Flask, jsonify, request, send_from_directory
 
 from architectures import hybrid_rag, light_rag, query_classifier, text_to_sql
+
+_USE_MOCK = os.getenv("USE_MOCKS", "true").lower() not in ("false", "0", "no")
 
 _ROOT         = _Path(__file__).resolve().parent.parent
 _FRONTEND_DIR = _ROOT / "frontend"
@@ -25,9 +31,9 @@ _EVAL_PATH    = _ROOT / "data" / "eval_results.json"
 app = Flask(__name__)
 
 _ARCH_FN = {
-    "text_to_sql": lambda q: text_to_sql.answer(q, use_mock=True),
-    "hybrid_rag":  lambda q: hybrid_rag.answer(q, use_mock=True),
-    "light_rag":   lambda q: light_rag.answer(q, use_mock=True),
+    "text_to_sql": lambda q: text_to_sql.answer(q, use_mock=_USE_MOCK),
+    "hybrid_rag":  lambda q: hybrid_rag.answer(q, use_mock=_USE_MOCK),
+    "light_rag":   lambda q: light_rag.answer(q, use_mock=_USE_MOCK),
 }
 
 
@@ -50,6 +56,8 @@ def health():
         "status": "ok",
         "phase": 7,
         "architectures": ["text_to_sql", "hybrid_rag", "light_rag", "auto"],
+        "use_mock": _USE_MOCK,
+        "live_llm": not _USE_MOCK,
     })
 
 
@@ -61,7 +69,7 @@ def sql_endpoint():
         return jsonify({"error": "Missing 'question' in request body."}), 400
 
     try:
-        result = text_to_sql.answer(question, use_mock=True)
+        result = text_to_sql.answer(question, use_mock=_USE_MOCK)
     except Exception as exc:
         return jsonify({"error": str(exc)}), 500
 
@@ -77,7 +85,7 @@ def hybrid_endpoint():
     top_k = int(payload.get("top_k", 12))
 
     try:
-        result = hybrid_rag.answer(question, use_mock=True, top_k=top_k)
+        result = hybrid_rag.answer(question, use_mock=_USE_MOCK, top_k=top_k)
     except Exception as exc:
         return jsonify({"error": str(exc)}), 500
 
@@ -93,7 +101,7 @@ def lightrag_endpoint():
     top_k = int(payload.get("top_k", 30))
 
     try:
-        result = light_rag.answer(question, use_mock=True, top_k=top_k)
+        result = light_rag.answer(question, use_mock=_USE_MOCK, top_k=top_k)
     except Exception as exc:
         return jsonify({"error": str(exc)}), 500
 

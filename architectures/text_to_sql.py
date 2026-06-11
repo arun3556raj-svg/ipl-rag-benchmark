@@ -12,6 +12,7 @@ gets wired in once the api key is available.
 
 from __future__ import annotations
 
+import re
 import sqlite3
 import time
 from pathlib import Path
@@ -20,21 +21,38 @@ ROOT = Path(__file__).resolve().parent.parent
 DB_PATH = ROOT / "data" / "ipl_universe.db"
 SCHEMA_PATH = ROOT / "data" / "schema.md"
 
+_SQL_SYSTEM = """You are an expert SQL analyst for an IPL cricket database.
+Given the schema and a question, write ONE correct SQLite query.
+Return ONLY the raw SQL — no markdown fences, no explanation, no comments.
+The query must be a SELECT statement.
+
+IMPORTANT: Player names in the database use abbreviated initials format, e.g. "V Kohli" not "Virat Kohli", "MS Dhoni" not "MS Dhoni" (already initials), "RG Sharma" not "Rohit Sharma". Always use LIKE '%Surname%' when filtering by player name, never exact equality on the full first name."""
+
+_ANSWER_SYSTEM = """You are a cricket analyst. Given the question, the SQL that was run,
+and the result rows, write a single concise sentence answering the question.
+Use specific numbers. No preamble, no markdown."""
+
 
 def load_schema() -> str:
     """Load the plain english schema doc shipped with the database."""
     return SCHEMA_PATH.read_text(encoding="utf-8")
 
 
-def generate_sql(question: str, use_mock: bool = True) -> str:
-    """Produce a SQL query for the given natural language question.
-
-    In mock mode, return canned SQL for known test questions. The real LLM
-    call gets wired here once the DeepSeek api key is available.
-    """
+def generate_sql(question: str, use_mock: bool = True) -> tuple[str, float, float]:
+    """Produce a SQL query. Returns (sql, latency_ms, cost_usd)."""
     if use_mock:
-        return _mock_generate_sql(question)
-    raise NotImplementedError("Real DeepSeek client not yet wired.")
+        return _mock_generate_sql(question), 0.0, 0.0
+    from architectures.llm import chat
+    schema = load_schema()
+    sql, ms, cost = chat(
+        system=_SQL_SYSTEM,
+        user=f"Schema:\n{schema}\n\nQuestion: {question}",
+        temperature=0.0,
+        max_tokens=512,
+    )
+    # Strip any accidental markdown fences
+    sql = re.sub(r"```(?:sql)?", "", sql, flags=re.I).strip().strip("`")
+    return sql, ms, cost
 
 
 def _mock_generate_sql(question: str) -> str:
@@ -91,15 +109,19 @@ def format_answer(
     sql: str,
     rows: list,
     use_mock: bool = True,
-) -> str:
-    """Turn SQL rows into a natural language sentence.
-
-    Mock mode formats the top row tersely. The real LLM call goes here once
-    the api key is available.
-    """
+) -> tuple[str, float, float]:
+    """Turn SQL rows into a natural language sentence. Returns (text, ms, cost)."""
     if use_mock:
-        return _mock_format_answer(rows)
-    raise NotImplementedError("Real DeepSeek client not yet wired.")
+        return _mock_format_answer(rows), 0.0, 0.0
+    from architectures.llm import chat
+    rows_text = str(rows[:10]) if rows else "No rows returned."
+    text, ms, cost = chat(
+        system=_ANSWER_SYSTEM,
+        user=f"Question: {question}\nSQL: {sql}\nRows: {rows_text}",
+        temperature=0.3,
+        max_tokens=200,
+    )
+    return text, ms, cost
 
 
 def _mock_format_answer(rows: list) -> str:
@@ -118,10 +140,10 @@ def answer(question: str, use_mock: bool = True) -> dict:
     """Run the full Text2SQL pipeline and return a structured result."""
     overall_start = time.perf_counter()
 
-    sql = generate_sql(question, use_mock=use_mock)
+    sql, sql_gen_ms, sql_cost = generate_sql(question, use_mock=use_mock)
     exec_result = execute_sql(sql)
     rows = exec_result["rows"]
-    formatted = format_answer(question, sql, rows, use_mock=use_mock)
+    formatted, fmt_ms, fmt_cost = format_answer(question, sql, rows, use_mock=use_mock)
 
     total_ms = (time.perf_counter() - overall_start) * 1000
 
@@ -133,7 +155,7 @@ def answer(question: str, use_mock: bool = True) -> dict:
         "columns": exec_result["columns"],
         "latency_ms": round(total_ms, 1),
         "sql_exec_ms": round(exec_result["elapsed_ms"], 1),
-        "cost_usd": 0.0,
-        "llm_calls": 2,
+        "cost_usd": round(sql_cost + fmt_cost, 6),
+        "llm_calls": 0 if use_mock else 2,
         "use_mock": use_mock,
     }

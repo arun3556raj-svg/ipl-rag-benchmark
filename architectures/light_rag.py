@@ -188,11 +188,25 @@ def _describe_edge(G: nx.DiGraph, src: str, dst: str, edata: dict) -> str:
     return ""
 
 
+_ANSWER_SYSTEM = (
+    "You are a cricket analyst with access to a knowledge graph of IPL players, "
+    "teams, and venues. Using ONLY the graph context provided, answer the question "
+    "in one or two sentences. Be specific. If the context is insufficient, say so briefly."
+)
+
 def format_answer(question: str, context: str,
-                  seeds: list[str], use_mock: bool = True) -> str:
+                  seeds: list[str], use_mock: bool = True) -> tuple[str, float, float]:
+    """Returns (text, latency_ms, cost_usd)."""
     if use_mock:
-        return _mock_format_answer(question, context, seeds)
-    raise NotImplementedError("Real DeepSeek client not yet wired.")
+        return _mock_format_answer(question, context, seeds), 0.0, 0.0
+    from architectures.llm import chat
+    text, ms, cost = chat(
+        system=_ANSWER_SYSTEM,
+        user=f"Graph context:\n{context}\n\nQuestion: {question}",
+        temperature=0.2,
+        max_tokens=300,
+    )
+    return text, ms, cost
 
 
 def _mock_format_answer(question: str, context: str,
@@ -216,7 +230,7 @@ def _mock_format_answer(question: str, context: str,
 def answer(question: str, use_mock: bool = True, top_k: int = 30) -> dict:
     overall_start = time.perf_counter()
     retrieved = retrieve(question, top_k=top_k)
-    formatted = format_answer(
+    formatted, llm_ms, cost = format_answer(
         question, retrieved["context"], retrieved["seeds"], use_mock=use_mock
     )
     total_ms = (time.perf_counter() - overall_start) * 1000
@@ -229,7 +243,7 @@ def answer(question: str, use_mock: bool = True, top_k: int = 30) -> dict:
         "top_node_count": len(retrieved["top_nodes"]),
         "graph_ms": retrieved["graph_ms"],
         "latency_ms": round(total_ms, 1),
-        "cost_usd": 0.0,
-        "llm_calls": 1,
+        "cost_usd": round(cost, 6),
+        "llm_calls": 0 if use_mock else 1,
         "use_mock": use_mock,
     }

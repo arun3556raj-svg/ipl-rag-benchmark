@@ -192,11 +192,26 @@ def _rrf(rankings: list[list[str]], k: int = 60) -> list[tuple[str, float]]:
     return sorted(scores.items(), key=lambda kv: kv[1], reverse=True)
 
 
-def format_answer(question: str, chunks: list[dict], use_mock: bool = True) -> str:
-    """Generate a natural language answer from retrieved chunks."""
+_ANSWER_SYSTEM = (
+    "You are a cricket analyst. Using ONLY the retrieved context below, "
+    "answer the question in one or two clear sentences. "
+    "Cite specific numbers when they appear in the context. "
+    "If the context does not contain enough information, say so briefly."
+)
+
+def format_answer(question: str, chunks: list[dict], use_mock: bool = True) -> tuple[str, float, float]:
+    """Generate a natural language answer. Returns (text, latency_ms, cost_usd)."""
     if use_mock:
-        return _mock_format_answer(question, chunks)
-    raise NotImplementedError("Real DeepSeek client not yet wired.")
+        return _mock_format_answer(question, chunks), 0.0, 0.0
+    from architectures.llm import chat
+    context = "\n\n".join(c["text"] for c in chunks[:12])
+    text, ms, cost = chat(
+        system=_ANSWER_SYSTEM,
+        user=f"Context:\n{context}\n\nQuestion: {question}",
+        temperature=0.2,
+        max_tokens=300,
+    )
+    return text, ms, cost
 
 
 def _mock_format_answer(question: str, chunks: list[dict]) -> str:
@@ -240,7 +255,7 @@ def _mock_format_answer(question: str, chunks: list[dict]) -> str:
 def answer(question: str, use_mock: bool = True, top_k: int = 12) -> dict:
     overall_start = time.perf_counter()
     retrieved = retrieve(question, top_k=top_k)
-    formatted = format_answer(question, retrieved["chunks"], use_mock=use_mock)
+    formatted, llm_ms, cost = format_answer(question, retrieved["chunks"], use_mock=use_mock)
     total_ms = (time.perf_counter() - overall_start) * 1000
 
     return {
@@ -251,7 +266,7 @@ def answer(question: str, use_mock: bool = True, top_k: int = 12) -> dict:
         "bm25_ms": retrieved["bm25_ms"],
         "vector_ms": retrieved["vector_ms"],
         "latency_ms": round(total_ms, 1),
-        "cost_usd": 0.0,
-        "llm_calls": 1,
+        "cost_usd": round(cost, 6),
+        "llm_calls": 0 if use_mock else 1,
         "use_mock": use_mock,
     }
