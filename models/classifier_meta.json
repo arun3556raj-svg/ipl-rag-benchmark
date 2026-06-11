@@ -1,0 +1,49 @@
+{
+  "loo_accuracy": 0.9,
+  "n_samples": 50,
+  "n_features": 384,
+  "labels": [
+    "text_to_sql",
+    "hybrid_rag",
+    "light_rag"
+  ],
+  "confusion": {
+    "text_to_sql": {
+      "text_to_sql": 17,
+      "hybrid_rag": 1,
+      "light_rag": 2
+    },
+    "hybrid_rag": {
+      "text_to_sql": 1,
+      "hybrid_rag": 14,
+      "light_rag": 0
+    },
+    "light_rag": {
+      "text_to_sql": 1,
+      "hybrid_rag": 0,
+      "light_rag": 14
+    }
+  },
+  "per_class": {
+    "text_to_sql": {
+      "precision": 0.895,
+      "recall": 0.85,
+      "f1": 0.872,
+      "support": 20
+    },
+    "hybrid_rag": {
+      "precision": 0.933,
+      "recall": 0.933,
+      "f1": 0.933,
+      "support": 15
+    },
+    "light_rag": {
+      "precision": 0.875,
+      "recall": 0.933,
+      "f1": 0.903,
+      "support": 15
+    }
+  },
+  "embedding_model": "all-MiniLM-L6-v2",
+  "classifier": "LogisticRegression(C=1.0, max_iter=1000)"
+}

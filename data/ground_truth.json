@@ -1,0 +1,402 @@
+[
+  {
+    "id": "q001",
+    "question": "Who has scored the most runs in IPL history?",
+    "ground_truth": "V Kohli with 8746 runs.",
+    "expected_best": "text_to_sql",
+    "category": "factual",
+    "difficulty": "easy"
+  },
+  {
+    "id": "q002",
+    "question": "Who has taken the most wickets in IPL history?",
+    "ground_truth": "YS Chahal with 223 wickets.",
+    "expected_best": "text_to_sql",
+    "category": "factual",
+    "difficulty": "easy"
+  },
+  {
+    "id": "q003",
+    "question": "Which team has won the most matches in IPL history?",
+    "ground_truth": "Mumbai Indians with 155 wins.",
+    "expected_best": "text_to_sql",
+    "category": "factual",
+    "difficulty": "easy"
+  },
+  {
+    "id": "q004",
+    "question": "What is the highest individual innings score in IPL?",
+    "ground_truth": "CH Gayle scored 175 runs in 2013.",
+    "expected_best": "text_to_sql",
+    "category": "factual",
+    "difficulty": "easy"
+  },
+  {
+    "id": "q005",
+    "question": "Which venue has hosted the most IPL matches?",
+    "ground_truth": "Eden Gardens (Kolkata) with 77 matches.",
+    "expected_best": "text_to_sql",
+    "category": "factual",
+    "difficulty": "easy"
+  },
+  {
+    "id": "q006",
+    "question": "Who has hit the most sixes in IPL history?",
+    "ground_truth": "CH Gayle with 359 sixes.",
+    "expected_best": "text_to_sql",
+    "category": "factual",
+    "difficulty": "easy"
+  },
+  {
+    "id": "q007",
+    "question": "Who scored the most runs in the 2016 IPL season?",
+    "ground_truth": "V Kohli with 973 runs in 2016.",
+    "expected_best": "text_to_sql",
+    "category": "temporal",
+    "difficulty": "easy"
+  },
+  {
+    "id": "q008",
+    "question": "Who took the most wickets in the 2020 IPL season?",
+    "ground_truth": "K Rabada with 32 wickets in 2020.",
+    "expected_best": "text_to_sql",
+    "category": "temporal",
+    "difficulty": "easy"
+  },
+  {
+    "id": "q009",
+    "question": "Who has hit the most fours in IPL history?",
+    "ground_truth": "V Kohli with 783 fours.",
+    "expected_best": "text_to_sql",
+    "category": "factual",
+    "difficulty": "easy"
+  },
+  {
+    "id": "q010",
+    "question": "Which batsman has scored the most centuries in IPL?",
+    "ground_truth": "V Kohli with 8 IPL centuries.",
+    "expected_best": "text_to_sql",
+    "category": "factual",
+    "difficulty": "easy"
+  },
+  {
+    "id": "q011",
+    "question": "Which batsman has the highest career strike rate in IPL (minimum 500 balls faced)?",
+    "ground_truth": "Shubman Gill with a strike rate of 158.93.",
+    "expected_best": "text_to_sql",
+    "category": "factual",
+    "difficulty": "medium"
+  },
+  {
+    "id": "q012",
+    "question": "How many centuries have been scored in IPL history in total?",
+    "ground_truth": "112 centuries have been scored in IPL history.",
+    "expected_best": "text_to_sql",
+    "category": "factual",
+    "difficulty": "easy"
+  },
+  {
+    "id": "q013",
+    "question": "Who has won the most Player of the Match awards in IPL history?",
+    "ground_truth": "AB de Villiers with 25 Player of the Match awards.",
+    "expected_best": "text_to_sql",
+    "category": "factual",
+    "difficulty": "easy"
+  },
+  {
+    "id": "q014",
+    "question": "Which team scored the most cumulative runs in a single IPL season?",
+    "ground_truth": "Punjab Kings scored the most runs in 2025 with 3120 total runs.",
+    "expected_best": "text_to_sql",
+    "category": "temporal",
+    "difficulty": "medium"
+  },
+  {
+    "id": "q015",
+    "question": "Which bowler has the best economy rate in IPL (minimum 50 wickets)?",
+    "ground_truth": "R Ashwin with an average economy of 7.11 runs per over (across seasons with 187 total wickets).",
+    "expected_best": "text_to_sql",
+    "category": "factual",
+    "difficulty": "medium"
+  },
+  {
+    "id": "q016",
+    "question": "Who scored the most runs in the 2019 IPL season?",
+    "ground_truth": "DA Warner with 692 runs in 2019.",
+    "expected_best": "text_to_sql",
+    "category": "temporal",
+    "difficulty": "easy"
+  },
+  {
+    "id": "q017",
+    "question": "Which team took the most wickets in the 2013 IPL season?",
+    "ground_truth": "Mumbai Indians with 117 wickets in 2013.",
+    "expected_best": "text_to_sql",
+    "category": "temporal",
+    "difficulty": "medium"
+  },
+  {
+    "id": "q018",
+    "question": "Which batsman has scored the most half-centuries (fifties) in IPL?",
+    "ground_truth": "V Kohli with 64 fifties.",
+    "expected_best": "text_to_sql",
+    "category": "factual",
+    "difficulty": "easy"
+  },
+  {
+    "id": "q019",
+    "question": "How many IPL seasons has MS Dhoni played in?",
+    "ground_truth": "MS Dhoni has played in 18 IPL seasons.",
+    "expected_best": "text_to_sql",
+    "category": "factual",
+    "difficulty": "easy"
+  },
+  {
+    "id": "q020",
+    "question": "Who scored the most runs in the 2023 IPL season?",
+    "ground_truth": "Shubman Gill with 890 runs in 2023.",
+    "expected_best": "text_to_sql",
+    "category": "temporal",
+    "difficulty": "easy"
+  },
+  {
+    "id": "q021",
+    "question": "How did Virat Kohli perform in the 2016 IPL season?",
+    "ground_truth": "Virat Kohli had an exceptional 2016 season for Royal Challengers Bangalore, scoring 973 runs in 16 matches with a highest score of 113 and 7 fifties at a strike rate of 152.75.",
+    "expected_best": "hybrid_rag",
+    "category": "narrative",
+    "difficulty": "medium"
+  },
+  {
+    "id": "q022",
+    "question": "How did Chris Gayle perform in the 2012 IPL season?",
+    "ground_truth": "Chris Gayle was destructive in 2012 for Royal Challengers Bangalore, scoring 733 runs in 14 matches with 59 sixes and a highest score of 128.",
+    "expected_best": "hybrid_rag",
+    "category": "narrative",
+    "difficulty": "medium"
+  },
+  {
+    "id": "q023",
+    "question": "Describe Rohit Sharma's batting career across IPL seasons.",
+    "ground_truth": "Rohit Sharma's top 3 seasons by runs: .",
+    "expected_best": "hybrid_rag",
+    "category": "narrative",
+    "difficulty": "medium"
+  },
+  {
+    "id": "q024",
+    "question": "What made AB de Villiers a standout IPL performer?",
+    "ground_truth": "AB de Villiers' best season saw him score 687 runs in 16 matches for Royal Challengers Bangalore with 37 sixes at a strike rate of 169.63.",
+    "expected_best": "hybrid_rag",
+    "category": "narrative",
+    "difficulty": "medium"
+  },
+  {
+    "id": "q025",
+    "question": "How did Sunrisers Hyderabad perform in the 2016 IPL season?",
+    "ground_truth": "Sunrisers Hyderabad won 11 matches out of 17 in the 2016 season and won the IPL title.",
+    "expected_best": "hybrid_rag",
+    "category": "narrative",
+    "difficulty": "medium"
+  },
+  {
+    "id": "q026",
+    "question": "Describe Jasprit Bumrah's bowling career in IPL.",
+    "ground_truth": "Jasprit Bumrah's wicket tally by season: 2013: 3 wkts for Mumbai Indians; 2014: 5 wkts for Mumbai Indians; 2015: 3 wkts for Mumbai Indians; 2016: 15 wkts for Mumbai Indians; 2017: 20 wkts for Mumbai Indians.",
+    "expected_best": "hybrid_rag",
+    "category": "narrative",
+    "difficulty": "medium"
+  },
+  {
+    "id": "q027",
+    "question": "How did Yuvraj Singh perform in the 2014 IPL season?",
+    "ground_truth": "Yuvraj Singh played for Royal Challengers Bangalore in 2014, scoring 376 runs in 14 matches with a highest score of 83.",
+    "expected_best": "hybrid_rag",
+    "category": "narrative",
+    "difficulty": "medium"
+  },
+  {
+    "id": "q028",
+    "question": "How has KL Rahul's IPL career evolved across seasons?",
+    "ground_truth": "KL Rahul's runs by season: 2013: 20 runs for Royal Challengers Bangalore; 2014: 166 runs for Sunrisers Hyderabad; 2015: 142 runs for Sunrisers Hyderabad; 2016: 397 runs for Royal Challengers Bangalore; 2018: 659 runs for Kings XI Punjab.",
+    "expected_best": "hybrid_rag",
+    "category": "narrative",
+    "difficulty": "medium"
+  },
+  {
+    "id": "q029",
+    "question": "How did Mumbai Indians perform in the 2019 IPL season?",
+    "ground_truth": "Mumbai Indians won 10 of 16 matches in 2019 and won the IPL title that season.",
+    "expected_best": "hybrid_rag",
+    "category": "narrative",
+    "difficulty": "medium"
+  },
+  {
+    "id": "q030",
+    "question": "How did David Warner perform in the 2019 IPL season?",
+    "ground_truth": "David Warner scored 692 runs in 12 matches for Sunrisers Hyderabad in 2019 with 21 sixes and a highest score of 100.",
+    "expected_best": "hybrid_rag",
+    "category": "narrative",
+    "difficulty": "medium"
+  },
+  {
+    "id": "q031",
+    "question": "Summarise Chennai Super Kings' win record across IPL seasons.",
+    "ground_truth": "Chennai Super Kings wins per season: 2008: 9 wins; 2009: 8 wins; 2010: 9 wins; 2011: 11 wins; 2012: 10 wins; 2013: 12 wins; 2014: 10 wins; 2015: 10 wins; 2018: 11 wins; 2019: 10 wins; 2020: 6 wins; 2021: 11 wins; 2022: 4 wins; 2023: 10 wins; 2024: 7 wins; 2025: 4 wins; 2026: 6 wins.",
+    "expected_best": "hybrid_rag",
+    "category": "narrative",
+    "difficulty": "medium"
+  },
+  {
+    "id": "q032",
+    "question": "How did Suresh Raina perform in the 2013 IPL season?",
+    "ground_truth": "Suresh Raina scored 548 runs in 17 matches for Chennai Super Kings in 2013 with a highest score of 100.",
+    "expected_best": "hybrid_rag",
+    "category": "narrative",
+    "difficulty": "medium"
+  },
+  {
+    "id": "q033",
+    "question": "How has Royal Challengers Bangalore performed across IPL seasons?",
+    "ground_truth": "RCB wins per season: 2008: 4 wins; 2009: 9 wins; 2010: 8 wins; 2011: 10 wins; 2012: 8 wins; 2013: 8 wins; 2014: 5 wins; 2015: 8 wins; 2016: 9 wins; 2017: 3 wins; 2018: 6 wins; 2019: 5 wins; 2020: 6 wins; 2021: 9 wins; 2022: 9 wins; 2023: 7 wins; 2024: 7 wins; 2025: 11 wins; 2026: 11 wins.",
+    "expected_best": "hybrid_rag",
+    "category": "narrative",
+    "difficulty": "medium"
+  },
+  {
+    "id": "q034",
+    "question": "How did Hardik Pandya perform in the 2021 IPL season?",
+    "ground_truth": "No stats found for Hardik Pandya in 2021.",
+    "expected_best": "hybrid_rag",
+    "category": "narrative",
+    "difficulty": "medium"
+  },
+  {
+    "id": "q035",
+    "question": "Summarise Kolkata Knight Riders' performance across IPL seasons.",
+    "ground_truth": "KKR wins per season: 2008: 6 wins; 2009: 3 wins; 2010: 7 wins; 2011: 8 wins; 2012: 12 wins; 2013: 6 wins; 2014: 11 wins; 2015: 7 wins; 2016: 8 wins; 2017: 9 wins; 2018: 9 wins; 2019: 6 wins; 2020: 6 wins; 2021: 9 wins; 2022: 6 wins; 2023: 6 wins; 2024: 11 wins; 2025: 5 wins; 2026: 5 wins.",
+    "expected_best": "hybrid_rag",
+    "category": "narrative",
+    "difficulty": "medium"
+  },
+  {
+    "id": "q036",
+    "question": "Which IPL teams has MS Dhoni played for?",
+    "ground_truth": "MS Dhoni has played for: Rising Pune Supergiant, Chennai Super Kings, Rising Pune Supergiants.",
+    "expected_best": "light_rag",
+    "category": "relational",
+    "difficulty": "easy"
+  },
+  {
+    "id": "q037",
+    "question": "Which venues has Royal Challengers Bangalore played at most often?",
+    "ground_truth": "RCB's most common venues: M Chinnaswamy Stadium (61 matches); M Chinnaswamy Stadium, Bengaluru (24 matches); M.Chinnaswamy Stadium (15 matches).",
+    "expected_best": "light_rag",
+    "category": "relational",
+    "difficulty": "medium"
+  },
+  {
+    "id": "q038",
+    "question": "Who won the most Player of the Match awards at MA Chidambaram Stadium (Chepauk)?",
+    "ground_truth": "Top POM winners at Chepauk: MEK Hussey (5), RA Jadeja (5), MS Dhoni (5), M Vijay (4), SK Raina (4).",
+    "expected_best": "light_rag",
+    "category": "relational",
+    "difficulty": "medium"
+  },
+  {
+    "id": "q039",
+    "question": "Which IPL teams has Suresh Raina played for?",
+    "ground_truth": "Suresh Raina has played for: Gujarat Lions, Chennai Super Kings.",
+    "expected_best": "light_rag",
+    "category": "relational",
+    "difficulty": "easy"
+  },
+  {
+    "id": "q040",
+    "question": "Who won the most Player of the Match awards at Wankhede Stadium?",
+    "ground_truth": "Top POM winners at Wankhede: RG Sharma (8), JJ Bumrah (5), KA Pollard (5), SA Yadav (4), HH Pandya (4).",
+    "expected_best": "light_rag",
+    "category": "relational",
+    "difficulty": "medium"
+  },
+  {
+    "id": "q041",
+    "question": "Which IPL teams has Virender Sehwag played for?",
+    "ground_truth": "Virender Sehwag played for: Delhi Daredevils, Kings XI Punjab.",
+    "expected_best": "light_rag",
+    "category": "relational",
+    "difficulty": "easy"
+  },
+  {
+    "id": "q042",
+    "question": "Who won the most Player of the Match awards for Kolkata Knight Riders?",
+    "ground_truth": "Top KKR POM winners: SP Narine (17), AD Russell (16), G Gambhir (10), CV Varun (8), YK Pathan (7).",
+    "expected_best": "light_rag",
+    "category": "relational",
+    "difficulty": "medium"
+  },
+  {
+    "id": "q043",
+    "question": "Where does Mumbai Indians play most of their matches?",
+    "ground_truth": "Mumbai Indians play most at: Wankhede Stadium (67 matches); Wankhede Stadium, Mumbai (32 matches); Eden Gardens (13 matches).",
+    "expected_best": "light_rag",
+    "category": "relational",
+    "difficulty": "easy"
+  },
+  {
+    "id": "q044",
+    "question": "Which IPL teams did Sachin Tendulkar play for?",
+    "ground_truth": "Sachin Tendulkar played for: Royal Challengers Bangalore, Mumbai Indians, Rajasthan Royals, Lucknow Super Giants.",
+    "expected_best": "light_rag",
+    "category": "relational",
+    "difficulty": "easy"
+  },
+  {
+    "id": "q045",
+    "question": "Which players have played for both Mumbai Indians and Chennai Super Kings?",
+    "ground_truth": "Players who played for both MI and CSK: A Kamboj, A Nehra, AF Milne, AM Rahane, AT Rayudu, CJ Jordan, D Brevis, DJ Bravo, DL Chahar, DR Smith, Harbhajan Singh, JDP Oram, KV Sharma, MEK Hussey, MJ Santner, Mustafizur Rahman, NLTC Perera, PA Patel, PP Chawla, RD Chahar, RJ Gleeson, RV Uthappa, SN Thakur, TG Southee.",
+    "expected_best": "light_rag",
+    "category": "relational",
+    "difficulty": "hard"
+  },
+  {
+    "id": "q046",
+    "question": "Who won the most Player of the Match awards at Eden Gardens?",
+    "ground_truth": "Top POM winners at Eden Gardens: AD Russell (12), SP Narine (7), YK Pathan (5), SC Ganguly (3), CV Varun (3).",
+    "expected_best": "light_rag",
+    "category": "relational",
+    "difficulty": "medium"
+  },
+  {
+    "id": "q047",
+    "question": "Which players have represented the most IPL teams?",
+    "ground_truth": "Players with most IPL teams: AJ Finch (9 teams), JD Unadkat (8 teams), MA Agarwal (7 teams), AM Rahane (7 teams), KD Karthik (7 teams).",
+    "expected_best": "light_rag",
+    "category": "relational",
+    "difficulty": "hard"
+  },
+  {
+    "id": "q048",
+    "question": "Who won the most Player of the Match awards in Hyderabad?",
+    "ground_truth": "Top POM winners in Hyderabad: DA Warner (9), Abhishek Sharma (5), Rashid Khan (4), DW Steyn (3), B Kumar (3).",
+    "expected_best": "light_rag",
+    "category": "relational",
+    "difficulty": "medium"
+  },
+  {
+    "id": "q049",
+    "question": "Which IPL teams has Chris Gayle played for?",
+    "ground_truth": "Chris Gayle played for: Royal Challengers Bangalore, Kings XI Punjab, Punjab Kings, Kolkata Knight Riders.",
+    "expected_best": "light_rag",
+    "category": "relational",
+    "difficulty": "easy"
+  },
+  {
+    "id": "q050",
+    "question": "Which venues has Chennai Super Kings played at most frequently in IPL?",
+    "ground_truth": "CSK's most frequent venues: MA Chidambaram Stadium, Chepauk, Chennai (47 matches); MA Chidambaram Stadium, Chepauk, Chennai, Chennai (28 matches); Wankhede Stadium, Mumbai (14 matches); Wankhede Stadium, Mumbai, Mumbai (13 matches); Eden Gardens, Kolkata (11 matches).",
+    "expected_best": "light_rag",
+    "category": "relational",
+    "difficulty": "medium"
+  }
+]

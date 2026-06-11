@@ -1,0 +1,40 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+.pytest_cache/
+*.egg-info/
+build/
+dist/
+
+# Virtual environment
+.venv/
+venv/
+env/
+
+# Environment
+.env
+.env.local
+
+# Editor
+.vscode/
+.idea/
+*.swp
+.DS_Store
+
+# Project specific
+*.log
+
+# Large data artifacts (rebuild locally)
+data/chroma_db/
+data/graph.pkl
+data/chunks.json
+
+# Compiled models (rebuild with train_classifier.py)
+models/classifier.pkl
+
+# DB is tracked (small enough, needed for demo)
+# data/ipl_universe.db  ← keep this
+
+# Claude internal
+.claude/
