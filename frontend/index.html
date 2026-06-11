@@ -101,6 +101,27 @@
     /* Sections */
     section { position: relative; }
 
+    /* Cricket animation overlay */
+    #cricket-overlay {
+      position: fixed; inset: 0; z-index: 300;
+      background: rgba(6, 10, 6, 0.96);
+      display: none;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 32px;
+      pointer-events: all;
+    }
+    #cricket-scene { width: min(780px, 92vw); height: auto; }
+    #anim-status {
+      font-family: 'Space Mono', monospace;
+      font-size: 11px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+    .bail-el { transition: opacity 0.1s; }
+
     /* Input */
     textarea {
       background: transparent;
@@ -627,8 +648,9 @@
       if (!q) return;
 
       const btn = $('fire-btn');
-      btn.textContent = 'Bowling...';
+      btn.textContent = 'BOWLING...';
       btn.disabled = true;
+      CA.show();
 
       try {
         const res = await fetch(ENDPOINTS[arch] || '/api/route', {
@@ -637,12 +659,13 @@
           body: JSON.stringify({question: q}),
         });
         const data = await res.json();
-        if (data.error) { showError(data.error); return; }
-        showResult(data);
+        if (data.error) { CA.hide(); showError(data.error); return; }
+        CA.success(() => showResult(data));
       } catch (e) {
+        CA.hide();
         showError(e.message + ' — is the Flask server running?');
       } finally {
-        btn.textContent = 'Bowl It';
+        btn.textContent = 'BOWL IT';
         btn.disabled = false;
       }
     }
@@ -860,8 +883,290 @@
       start: 'top 88%',
     });
 
+    /* ---- Cricket Animation Engine ---- */
+    const CA = (() => {
+      let _loopTl = null, _msgTimer = null, _msgIdx = 0;
+      const MSGS = [
+        'Reading the archive...',
+        'Building the query...',
+        'Running the numbers...',
+        'Crunching 295K deliveries...',
+        'Consulting the pitch report...',
+        'Asking the umpire...',
+        'Checking the stats board...',
+      ];
+
+      const el = id => document.getElementById(id);
+
+      function _reset() {
+        gsap.set('#cball',       { x:0, y:0, opacity:0, r:8 });
+        gsap.set('#bih',         { opacity:1 });
+        gsap.set('#bowl-arm',    { rotation:0, transformOrigin:'8px 213px' });
+        gsap.set('#bowler-fig',  { x:0 });
+        gsap.set('#bat-grp',     { rotation:0 });
+        gsap.set('#six-txt',     { opacity:0, scale:0.05, transformOrigin:'400px 115px' });
+        gsap.set('#impact-ring', { opacity:0, scale:1, transformOrigin:'283px 224px' });
+      }
+
+      function _loop() {
+        if (_loopTl) _loopTl.kill();
+        const tl = gsap.timeline({ repeat:-1, repeatDelay:0.5 });
+
+        // Run-up
+        tl.to('#bowler-fig', { x:22, duration:0.55, ease:'power1.inOut' });
+        // Arm comes over
+        tl.to('#bowl-arm', { rotation:-348, transformOrigin:'8px 213px', duration:0.3, ease:'power2.in' }, '-=0.1');
+        // Release
+        tl.call(() => { gsap.set('#bih',{opacity:0}); gsap.set('#cball',{x:22,y:0,opacity:1}); });
+        // Ball travels — x linear, y drops slightly (gravity)
+        tl.to('#cball', { x:278, duration:0.5, ease:'none' });
+        tl.to('#cball', { y:34,  duration:0.5, ease:'power1.in' }, '<');
+        // Defensive push
+        tl.to('#bat-grp', { rotation:-28, transformOrigin:'-24px 228px', duration:0.14, ease:'power2.out' }, '-=0.14');
+        // Ball deflects down
+        tl.to('#cball', { y:90, x:258, duration:0.22, ease:'power2.in' });
+        tl.to('#cball', { opacity:0, duration:0.08 });
+        // Reset everything
+        tl.to('#bat-grp',    { rotation:0, duration:0.25, ease:'power1.inOut' }, '+=0.05');
+        tl.to('#bowl-arm',   { rotation:0, transformOrigin:'8px 213px', duration:0.2 }, '<');
+        tl.to('#bowler-fig', { x:0, duration:0.28 }, '<');
+        tl.call(() => { gsap.set('#bih',{opacity:1}); gsap.set('#cball',{x:0,y:0,opacity:0}); });
+
+        _loopTl = tl;
+      }
+
+      function _cycleMsg() {
+        _msgIdx = (_msgIdx + 1) % MSGS.length;
+        const s = el('anim-status');
+        gsap.to(s, { opacity:0, duration:0.18, onComplete:() => {
+          s.textContent = MSGS[_msgIdx];
+          gsap.to(s, { opacity:1, duration:0.18 });
+        }});
+      }
+
+      return {
+        show() {
+          _msgIdx = 0;
+          el('anim-status').textContent = MSGS[0];
+          const o = el('cricket-overlay');
+          o.style.opacity = '1';
+          o.style.display = 'flex';
+          _reset();
+          _loop();
+          _msgTimer = setInterval(_cycleMsg, 2300);
+        },
+
+        success(onDone) {
+          if (_loopTl) _loopTl.kill();
+          clearInterval(_msgTimer);
+          el('anim-status').textContent = '';
+
+          const tl = gsap.timeline({ onComplete:() => {
+            gsap.to('#cricket-overlay', { opacity:0, duration:0.35, onComplete:() => {
+              el('cricket-overlay').style.display = 'none';
+              el('cricket-overlay').style.opacity = '1';
+              _reset();
+              if (onDone) onDone();
+            }});
+          }});
+
+          // Set state: mid run-up, arm cocked
+          tl.call(() => {
+            gsap.set('#bih',{opacity:0});
+            gsap.set('#cball',{x:22,y:0,opacity:1});
+            gsap.set('#bowler-fig',{x:22});
+            gsap.set('#bowl-arm',{rotation:-348, transformOrigin:'8px 213px'});
+          });
+
+          // Final delivery — faster
+          tl.to('#cball', { x:278, duration:0.36, ease:'none' }, '+=0.05');
+          tl.to('#cball', { y:34,  duration:0.36, ease:'power1.in' }, '<');
+
+          // Full swing
+          tl.to('#bat-grp', { rotation:-158, transformOrigin:'-24px 228px', duration:0.2, ease:'power3.out' }, '-=0.1');
+
+          // Impact ring
+          tl.to('#impact-ring', { opacity:1, scale:2.8, transformOrigin:'283px 224px', duration:0.35, ease:'power2.out' });
+          tl.to('#impact-ring', { opacity:0, duration:0.2 }, '-=0.1');
+
+          // Ball launches high — x slow-out, y rockets upward
+          tl.to('#cball', { x:570, duration:0.9, ease:'power1.in' }, '-=0.3');
+          tl.to('#cball', { y:-340, duration:0.9, ease:'power2.out' }, '<');
+          tl.to('#cball', { opacity:0, duration:0.15 }, '-=0.15');
+
+          // SIX! bursts in
+          tl.to('#six-txt', { opacity:1, scale:1, transformOrigin:'400px 115px', duration:0.38, ease:'back.out(2.5)' }, '-=0.6');
+
+          // Hold
+          tl.to({}, { duration:0.85 });
+        },
+
+        hide() {
+          if (_loopTl) _loopTl.kill();
+          clearInterval(_msgTimer);
+          const o = el('cricket-overlay');
+          if (o) { o.style.display = 'none'; o.style.opacity = '1'; }
+          _reset();
+        }
+      };
+    })();
+
     /* ---- init ---- */
     loadBench();
   </script>
+
+  <!-- Cricket animation overlay -->
+  <div id="cricket-overlay">
+    <svg id="cricket-scene" viewBox="0 0 800 300" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <radialGradient id="sky-grad" cx="50%" cy="0%" r="80%">
+          <stop offset="0%"   stop-color="#0d1f0d"/>
+          <stop offset="100%" stop-color="#060a06"/>
+        </radialGradient>
+        <filter id="glow-f" x="-50%" y="-50%" width="200%" height="200%">
+          <feGaussianBlur stdDeviation="6" result="blur"/>
+          <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+        </filter>
+        <filter id="six-glow" x="-30%" y="-30%" width="160%" height="160%">
+          <feGaussianBlur stdDeviation="10" result="blur"/>
+          <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+        </filter>
+      </defs>
+
+      <!-- Sky -->
+      <rect width="800" height="300" fill="url(#sky-grad)"/>
+
+      <!-- Floodlights -->
+      <circle cx="60"  cy="22" r="12" fill="#fffbe8" filter="url(#glow-f)" opacity="0.9"/>
+      <circle cx="740" cy="22" r="12" fill="#fffbe8" filter="url(#glow-f)" opacity="0.9"/>
+      <!-- Light cones -->
+      <polygon points="60,34 0,280 120,280"   fill="#fffbe8" opacity="0.025"/>
+      <polygon points="740,34 680,280 800,280" fill="#fffbe8" opacity="0.025"/>
+
+      <!-- Ground -->
+      <rect x="0" y="250" width="800" height="50" fill="#1a3d1a"/>
+      <ellipse cx="400" cy="252" rx="395" ry="18" fill="#1f481f"/>
+
+      <!-- Pitch strip -->
+      <rect x="165" y="222" width="470" height="30" fill="#b09060" rx="2"/>
+      <rect x="165" y="248" width="470" height="5"  fill="#907040" rx="1"/>
+
+      <!-- Crease lines -->
+      <line x1="272" y1="218" x2="272" y2="256" stroke="white" stroke-width="1.5" opacity="0.65"/>
+      <line x1="528" y1="218" x2="528" y2="256" stroke="white" stroke-width="1.5" opacity="0.65"/>
+
+      <!-- Stumps + bails (batting end) -->
+      <g id="stumps-grp">
+        <rect x="549" y="210" width="3.5" height="42" fill="#f0ead8" rx="1"/>
+        <rect x="559" y="210" width="3.5" height="42" fill="#f0ead8" rx="1"/>
+        <rect x="569" y="210" width="3.5" height="42" fill="#f0ead8" rx="1"/>
+        <rect id="bail1" class="bail-el" x="548" y="210" width="26" height="2.5" fill="#f0ead8" rx="1"/>
+        <rect id="bail2" class="bail-el" x="548" y="213" width="26" height="1"   fill="#d0c8b0" rx="0.5"/>
+      </g>
+
+      <!-- ===== BOWLER ===== -->
+      <g id="bowler-fig" transform="translate(235,0)">
+        <!-- Head -->
+        <circle cx="0" cy="196" r="11" fill="#c8926a"/>
+        <!-- Cap -->
+        <path d="M-11,193 Q0,183 11,193" fill="#1a3a6a"/>
+        <rect x="-13" y="192" width="26" height="3" fill="#1a3a6a" rx="1"/>
+        <!-- Body / whites -->
+        <rect x="-7" y="207" width="14" height="30" fill="#ddeeff" rx="2"/>
+        <!-- Shirt detail -->
+        <line x1="-5" y1="213" x2="5" y2="213" stroke="#aaccee" stroke-width="0.8"/>
+
+        <!-- Bowling arm group (rotates around shoulder joint 8,213) -->
+        <g id="bowl-arm">
+          <line x1="8" y1="213" x2="27" y2="193" stroke="#c8926a" stroke-width="4" stroke-linecap="round"/>
+          <!-- Ball in hand (hides when released) -->
+          <circle id="bih" cx="27" cy="193" r="7.5" fill="#cc2200" stroke="#991500" stroke-width="1"/>
+          <!-- Seam detail on bih -->
+          <path d="M24,190 Q27,192 24,196" fill="none" stroke="white" stroke-width="0.8" opacity="0.6" id="bih-seam"/>
+        </g>
+
+        <!-- Non-bowling arm -->
+        <line x1="-7" y1="213" x2="-24" y2="224" stroke="#c8926a" stroke-width="4" stroke-linecap="round"/>
+
+        <!-- Legs — spread stride -->
+        <line x1="-4" y1="237" x2="-15" y2="262" stroke="#1a1a4a" stroke-width="4" stroke-linecap="round"/>
+        <line x1=" 4" y1="237" x2=" 16" y2="262" stroke="#1a1a4a" stroke-width="4" stroke-linecap="round"/>
+        <!-- Shoes -->
+        <ellipse cx="-16" cy="263" rx="8" ry="3" fill="#111"/>
+        <ellipse cx=" 17" cy="263" rx="8" ry="3" fill="#111"/>
+      </g>
+
+      <!-- ===== CRICKET BALL (in flight) ===== -->
+      <circle id="cball" cx="262" cy="193" r="8" fill="#cc2200" stroke="#991500" stroke-width="1.2" opacity="0">
+        <title>Cricket ball</title>
+      </circle>
+      <!-- Seam on cball -->
+      <path id="cball-seam" d="M259,190 Q262,193 259,197" fill="none" stroke="white" stroke-width="0.9" opacity="0"/>
+
+      <!-- Impact ring (hidden, appears on SIX) -->
+      <circle id="impact-ring" cx="283" cy="224" r="18" fill="none" stroke="#FFD700" stroke-width="3" opacity="0"/>
+
+      <!-- ===== BATSMAN ===== -->
+      <g id="batsman-fig" transform="translate(553,0)">
+        <!-- Helmet -->
+        <circle cx="0" cy="194" r="13" fill="#1e1e1e"/>
+        <path d="M-13,196 Q0,188 13,196" fill="#0a0a0a"/>
+        <!-- Grille -->
+        <rect x="-9" y="198" width="18" height="4" fill="none" stroke="#444" stroke-width="0.8" rx="1"/>
+        <line x1="-9" y1="200" x2="9" y2="200" stroke="#444" stroke-width="0.6"/>
+        <line x1="-9" y1="202" x2="9" y2="202" stroke="#444" stroke-width="0.6"/>
+
+        <!-- Body -->
+        <rect x="-9" y="207" width="18" height="30" fill="white" rx="2"/>
+        <!-- Jersey lines -->
+        <line x1="-6" y1="215" x2="6" y2="215" stroke="#ddd" stroke-width="0.8"/>
+        <line x1="-6" y1="222" x2="6" y2="222" stroke="#ddd" stroke-width="0.8"/>
+
+        <!-- Front arm (holds top of bat) -->
+        <line x1="-9" y1="212" x2="-26" y2="224" stroke="#c8926a" stroke-width="4" stroke-linecap="round"/>
+        <!-- Back arm -->
+        <line x1=" 9" y1="212" x2=" 20" y2="223" stroke="#c8926a" stroke-width="4" stroke-linecap="round"/>
+
+        <!-- Bat (rotates around grip top at -24,228) -->
+        <g id="bat-grp">
+          <!-- Handle -->
+          <rect x="-28" y="224" width="8" height="12" fill="#c8a050" rx="2"/>
+          <!-- Blade -->
+          <rect x="-29" y="235" width="10" height="36" fill="#e8c070" rx="2" stroke="#c09040" stroke-width="0.8"/>
+          <!-- Blade grain lines -->
+          <line x1="-27" y1="240" x2="-21" y2="240" stroke="#c09040" stroke-width="0.5"/>
+          <line x1="-27" y1="248" x2="-21" y2="248" stroke="#c09040" stroke-width="0.5"/>
+          <line x1="-27" y1="256" x2="-21" y2="256" stroke="#c09040" stroke-width="0.5"/>
+          <!-- Sweet spot -->
+          <rect x="-28" y="243" width="10" height="14" fill="#dab860" rx="1" opacity="0.6"/>
+        </g>
+
+        <!-- Pads -->
+        <rect x="-14" y="237" width="11" height="26" fill="#f0f0f0" rx="3"/>
+        <rect x="  3" y="237" width="11" height="26" fill="#f0f0f0" rx="3"/>
+        <!-- Pad straps -->
+        <line x1="-13" y1="244" x2=" -4" y2="244" stroke="#ddd" stroke-width="0.8"/>
+        <line x1="  4" y1="244" x2=" 13" y2="244" stroke="#ddd" stroke-width="0.8"/>
+        <line x1="-13" y1="252" x2=" -4" y2="252" stroke="#ddd" stroke-width="0.8"/>
+        <line x1="  4" y1="252" x2=" 13" y2="252" stroke="#ddd" stroke-width="0.8"/>
+        <!-- Shoes -->
+        <ellipse cx="-8" cy="264" rx="10" ry="4" fill="#222"/>
+        <ellipse cx=" 8" cy="264" rx="10" ry="4" fill="#222"/>
+      </g>
+
+      <!-- ===== SIX! text (burst in on success) ===== -->
+      <text id="six-txt" x="400" y="130"
+            text-anchor="middle"
+            font-size="80" font-weight="900"
+            font-family="'Playfair Display', Georgia, serif"
+            fill="#FFD700" stroke="#b8860b" stroke-width="2"
+            filter="url(#six-glow)"
+            opacity="0" transform="scale(0.05)">SIX!</text>
+
+    </svg>
+
+    <p id="anim-status">Reading the archive...</p>
+  </div>
+
 </body>
 </html>
