@@ -130,6 +130,8 @@ matches.player_of_match_id -> players.player_id
 3. **Some tables are empty.** `curated_moments`, `head_to_head`, and `team_stats` exist as empty shells. Ignore them.
 4. **Season is an integer year** like 2017 or 2024.
 5. **A wicket is a row where is_wicket = 1.** Use that to count dismissals.
+6. **CRITICAL: deliveries has NO match_id column.** To reach match context from a delivery, you MUST go through innings: `deliveries.innings_id → innings.innings_id → innings.match_id → matches.match_id`. Never write `deliveries.match_id` — that column does not exist and will return empty results silently.
+7. **Player batting score in a match** requires aggregating `runs_batter` from deliveries grouped by `(innings_id, batter_id)`. The per-match score is `SUM(d.runs_batter)` grouped on `i.match_id, d.batter_id` after joining `deliveries d JOIN innings i ON i.innings_id = d.innings_id`.
 
 ## Example questions and queries
 
@@ -156,6 +158,25 @@ FROM teams t
 JOIN matches m ON m.team1_id = t.team_id OR m.team2_id = t.team_id
 GROUP BY t.team_id, t.team_name
 ORDER BY win_pct DESC;
+```
+
+### Player fifty-plus scores and team win status (IMPORTANT join pattern)
+
+```sql
+-- deliveries has NO match_id — must go through innings
+SELECT
+    COUNT(*) AS fifty_plus_scores,
+    SUM(CASE WHEN m.winner_id = fifties.batting_team_id THEN 1 ELSE 0 END) AS wins
+FROM (
+    SELECT i.match_id, i.batting_team_id, SUM(d.runs_batter) AS bat_runs
+    FROM deliveries d
+    JOIN innings i ON i.innings_id = d.innings_id
+    JOIN players p ON p.player_id = d.batter_id
+    WHERE p.player_name LIKE '%Rahul%'
+    GROUP BY i.match_id, i.innings_id
+    HAVING SUM(d.runs_batter) >= 50
+) AS fifties
+JOIN matches m ON m.match_id = fifties.match_id;
 ```
 
 ### Most economical bowler in the powerplay across seasons
