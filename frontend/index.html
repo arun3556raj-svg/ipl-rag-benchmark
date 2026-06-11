@@ -27,6 +27,42 @@
       --purple:     #A855F7;
     }
 
+    /* ---- Light theme ---- */
+    :root[data-theme="light"] {
+      --bg:       #F5F1EA;
+      --surface:  #EDE9E0;
+      --elevated: #E4DFD4;
+      --border:   #CEC9BF;
+      --text:     #1A1816;
+      --muted:    #7A7570;
+    }
+    [data-theme="light"] nav {
+      background: linear-gradient(to bottom, rgba(245,241,234,0.97) 0%, transparent 100%);
+    }
+    [data-theme="light"] body::after { opacity: 0.12; }
+    [data-theme="light"] textarea::placeholder { color: #b8b4ae; }
+    [data-theme="light"] ::-webkit-scrollbar-thumb { background: #c0bbb4; }
+    [data-theme="light"] .arch-chip:hover { border-color: #b0aba5; color: var(--text); }
+    [data-theme="light"] .div-line { border-top-color: #d8d4cc; }
+
+    /* Hardcoded Tailwind color overrides */
+    [data-theme="light"] .text-\[\#F2EDE4\] { color: var(--text) !important; }
+    [data-theme="light"] .text-\[\#383838\] { color: var(--muted) !important; }
+    [data-theme="light"] .text-\[\#2a2a2a\] { color: var(--muted) !important; }
+    [data-theme="light"] .text-\[\#3a3a3a\] { color: var(--muted) !important; }
+    [data-theme="light"] .text-\[\#444\]    { color: #5a5654 !important; }
+    [data-theme="light"] .text-\[\#555\]    { color: #5a5654 !important; }
+    [data-theme="light"] .text-\[\#2e2e2e\] { color: #a8a4a0 !important; }
+    [data-theme="light"] .border-\[\#161616\] { border-color: #d4cfc8 !important; }
+    [data-theme="light"] .border-\[\#141414\] { border-color: #d4cfc8 !important; }
+    [data-theme="light"] .border-\[\#1e1e1e\] { border-color: #d4cfc8 !important; }
+    [data-theme="light"] .border-\[\#1c1c1c\] { border-color: #ccc8c0 !important; }
+    [data-theme="light"] .border-\[\#181818\] { border-color: #d4cfc8 !important; }
+    [data-theme="light"] .bg-\[\#0d0d0d\]   { background: var(--elevated) !important; color: var(--text) !important; }
+    [data-theme="light"] .hover\:text-\[\#F2EDE4\]:hover { color: var(--text) !important; }
+    [data-theme="light"] .hover\:border-\[\#2e2e2e\]:focus-within,
+    [data-theme="light"] .focus-within\:border-\[\#2e2e2e\]:focus-within { border-color: var(--muted) !important; }
+
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
     html { scroll-behavior: smooth; }
@@ -148,6 +184,10 @@
       <a href="#query"     class="mono text-[10px] tracking-widest text-[#383838] uppercase hover:text-[#F2EDE4] transition-colors">Query</a>
       <a href="#benchmark" class="mono text-[10px] tracking-widest text-[#383838] uppercase hover:text-[#F2EDE4] transition-colors">Benchmark</a>
       <a href="#about"     class="mono text-[10px] tracking-widest text-[#383838] uppercase hover:text-[#F2EDE4] transition-colors">About</a>
+      <button id="theme-toggle" onclick="toggleTheme()" title="Toggle theme" style="background:none;border:none;cursor:pointer;padding:4px;opacity:0.45;transition:opacity 0.2s;" onmouseover="this.style.opacity='0.9'" onmouseout="this.style.opacity='0.45'">
+        <svg id="icon-moon" xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+        <svg id="icon-sun"  xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display:none"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+      </button>
     </div>
   </nav>
 
@@ -527,6 +567,25 @@
       const el = document.getElementById(id);
       if (el) el.scrollIntoView({behavior:'smooth'});
     }
+
+    /* ---- theme toggle ---- */
+    function toggleTheme() {
+      const isLight = document.documentElement.dataset.theme === 'light';
+      document.documentElement.dataset.theme = isLight ? '' : 'light';
+      $('icon-moon').style.display = isLight ? '' : 'none';
+      $('icon-sun').style.display  = isLight ? 'none' : '';
+      localStorage.setItem('stadium-theme', isLight ? 'dark' : 'light');
+    }
+    (function initTheme() {
+      const saved = localStorage.getItem('stadium-theme');
+      if (saved === 'light') {
+        document.documentElement.dataset.theme = 'light';
+        document.addEventListener('DOMContentLoaded', () => {
+          $('icon-moon').style.display = 'none';
+          $('icon-sun').style.display  = '';
+        });
+      }
+    })();
 
     /* ---- arch selection ---- */
     let arch = 'auto';
